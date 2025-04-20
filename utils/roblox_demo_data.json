@@ -1,0 +1,278 @@
+{
+  "users": {
+    "1234567": {
+      "id": 1234567,
+      "name": "RobloxDemoUser",
+      "displayName": "Demo User",
+      "description": "This is a demo user for BloxAPI",
+      "created": "2019-08-02T18:45:26.91Z",
+      "isBanned": false,
+      "externalAppDisplayName": "Demo User",
+      "hasVerifiedBadge": true
+    },
+    "987654321": {
+      "id": 987654321,
+      "name": "AnotherDemoUser",
+      "displayName": "Another Demo",
+      "description": "Another demo user for testing",
+      "created": "2016-04-14T23:27:18.32Z",
+      "isBanned": false,
+      "externalAppDisplayName": "Another Demo",
+      "hasVerifiedBadge": false
+    }
+  },
+  "user_search": {
+    "Roblox": [
+      {
+        "id": 1,
+        "name": "Roblox",
+        "displayName": "Roblox",
+        "hasVerifiedBadge": true
+      },
+      {
+        "id": 156,
+        "name": "Builderman",
+        "displayName": "Builder Man",
+        "hasVerifiedBadge": true
+      },
+      {
+        "id": 20075347,
+        "name": "RobloxDev",
+        "displayName": "Roblox Developer",
+        "hasVerifiedBadge": true
+      },
+      {
+        "id": 1567614,
+        "name": "RobloxTester",
+        "displayName": "Tester",
+        "hasVerifiedBadge": false
+      },
+      {
+        "id": 34695519,
+        "name": "RobloxFan",
+        "displayName": "Roblox Fan",
+        "hasVerifiedBadge": false
+      }
+    ]
+  },
+  "games": {
+    "1234567890": {
+      "id": 1234567890,
+      "name": "Demo Game",
+      "description": "This is a demo game for BloxAPI",
+      "creator": {
+        "id": 1234567,
+        "name": "RobloxDemoUser",
+        "type": "User"
+      },
+      "rootPlace": {
+        "id": 123456789,
+        "name": "Demo Game"
+      },
+      "created": "2022-10-15T14:30:22.54Z",
+      "updated": "2025-04-01T12:15:48.76Z",
+      "placeVisits": 5248679,
+      "playingCount": 1254,
+      "favoriteCount": 124875,
+      "universeId": 4567890123,
+      "maxPlayers": 50,
+      "allowedGearCategories": [
+        "MeleeWeapons",
+        "RangedWeapons",
+        "Navigation"
+      ],
+      "genre": "Adventure",
+      "price": 0,
+      "copying": false
+    },
+    "987654321": {
+      "id": 987654321,
+      "name": "Another Demo Game",
+      "description": "Another demo game for BloxAPI testing",
+      "creator": {
+        "id": 987654321,
+        "name": "AnotherDemoUser",
+        "type": "User"
+      },
+      "rootPlace": {
+        "id": 987654,
+        "name": "Another Demo Game"
+      },
+      "created": "2023-05-28T09:12:37.81Z",
+      "updated": "2025-03-25T19:42:51.38Z",
+      "placeVisits": 1389452,
+      "playingCount": 847,
+      "favoriteCount": 78954,
+      "universeId": 9876543210,
+      "maxPlayers": 30,
+      "allowedGearCategories": [],
+      "genre": "All",
+      "price": 0,
+      "copying": false
+    }
+  },
+  "game_details": {
+    "1234567890": {
+      "id": 1234567890,
+      "name": "Demo Game",
+      "description": "This is a demo game for BloxAPI with extended details",
+      "creator": {
+        "id": 1234567,
+        "name": "RobloxDemoUser",
+        "type": "User",
+        "hasVerifiedBadge": true
+      },
+      "rootPlace": {
+        "id": 123456789,
+        "name": "Demo Game",
+        "description": "This is the main place for Demo Game"
+      },
+      "created": "2022-10-15T14:30:22.54Z",
+      "updated": "2025-04-01T12:15:48.76Z",
+      "placeVisits": 5248679,
+      "playingCount": 1254,
+      "favoriteCount": 124875,
+      "universeId": 4567890123,
+      "maxPlayers": 50,
+      "allowedGearCategories": [
+        "MeleeWeapons",
+        "RangedWeapons",
+        "Navigation"
+      ],
+      "genre": "Adventure",
+      "price": 0,
+      "copying": false,
+      "isForSale": false,
+      "studioAccessToApisAllowed": true,
+      "createVipServersAllowed": true,
+      "universeAvatarType": "MorphToR15",
+      "universeScaleType": "Classic",
+      "universeAnimationType": "Standard",
+      "universeJointPositioningType": "Standard",
+      "universeCollisionType": "OuterBox",
+      "universeBodyType": "Standard",
+      "isArchived": false,
+      "isFriendsOnly": false,
+      "gameRating": {
+        "rating": 4.8,
+        "ratingCount": 1254
+      },
+      "badges": [
+        {
+          "id": 12345,
+          "name": "Welcome to Demo Game",
+          "description": "Join the game for the first time",
+          "enabled": true,
+          "iconImageId": 654321,
+          "created": "2022-10-15T14:35:12.34Z",
+          "updated": "2022-10-15T14:35:12.34Z",
+          "statistics": {
+            "awardedCount": 4125789,
+            "winRatePercentage": 89.5
+          }
+        },
+        {
+          "id": 23456,
+          "name": "Master Demo Player",
+          "description": "Complete all levels in Demo Game",
+          "enabled": true,
+          "iconImageId": 765432,
+          "created": "2022-10-15T14:40:25.67Z",
+          "updated": "2023-03-12T10:15:38.92Z",
+          "statistics": {
+            "awardedCount": 254789,
+            "winRatePercentage": 12.8
+          }
+        }
+      ]
+    },
+    "987654321": {
+      "id": 987654321,
+      "name": "Another Demo Game",
+      "description": "Another demo game for BloxAPI testing with extended details",
+      "creator": {
+        "id": 987654321,
+        "name": "AnotherDemoUser",
+        "type": "User",
+        "hasVerifiedBadge": false
+      },
+      "rootPlace": {
+        "id": 987654,
+        "name": "Another Demo Game",
+        "description": "This is the main place for Another Demo Game"
+      },
+      "created": "2023-05-28T09:12:37.81Z",
+      "updated": "2025-03-25T19:42:51.38Z",
+      "placeVisits": 1389452,
+      "playingCount": 847,
+      "favoriteCount": 78954,
+      "universeId": 9876543210,
+      "maxPlayers": 30,
+      "allowedGearCategories": [],
+      "genre": "All",
+      "price": 0,
+      "copying": false,
+      "isForSale": false,
+      "studioAccessToApisAllowed": true,
+      "createVipServersAllowed": true,
+      "universeAvatarType": "MorphToR15",
+      "universeScaleType": "Classic",
+      "universeAnimationType": "Standard",
+      "universeJointPositioningType": "Standard",
+      "universeCollisionType": "OuterBox",
+      "universeBodyType": "Standard",
+      "isArchived": false,
+      "isFriendsOnly": false,
+      "gameRating": {
+        "rating": 4.5,
+        "ratingCount": 789
+      },
+      "badges": [
+        {
+          "id": 34567,
+          "name": "First Steps",
+          "description": "Complete the tutorial",
+          "enabled": true,
+          "iconImageId": 876543,
+          "created": "2023-05-28T10:32:45.12Z",
+          "updated": "2023-05-28T10:32:45.12Z",
+          "statistics": {
+            "awardedCount": 987543,
+            "winRatePercentage": 78.2
+          }
+        }
+      ]
+    }
+  },
+  "friends": {
+    "1234567": [
+      {
+        "id": 23456789,
+        "name": "DemoFriend1",
+        "displayName": "Demo Friend One",
+        "hasVerifiedBadge": false,
+        "isOnline": true,
+        "friendsCount": 154,
+        "created": "2020-07-15T08:45:12.38Z"
+      },
+      {
+        "id": 34567890,
+        "name": "DemoFriend2",
+        "displayName": "Demo Friend Two",
+        "hasVerifiedBadge": false,
+        "isOnline": false,
+        "friendsCount": 278,
+        "created": "2019-02-28T12:34:56.78Z"
+      },
+      {
+        "id": 45678901,
+        "name": "DemoFriend3",
+        "displayName": "Demo Friend Three",
+        "hasVerifiedBadge": true,
+        "isOnline": false,
+        "friendsCount": 457,
+        "created": "2021-04-12T18:22:47.15Z"
+      }
+    ]
+  }
+}

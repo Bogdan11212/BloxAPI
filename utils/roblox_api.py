@@ -1,6 +1,8 @@
 import requests
 import logging
 import time
+import json
+import random
 from functools import wraps
 from .rate_limiter import RateLimiter
 
@@ -39,8 +41,272 @@ CLIENTSETTINGS_API_BASE = "https://clientsettings.roblox.com/v1"
 CONTACTS_API_BASE = "https://contacts.roblox.com/v1"
 PRIVATE_MESSAGES_API_BASE = "https://privatemessages.roblox.com/v1"
 
+# Connection settings
+CONNECTION_TIMEOUT = 10  # seconds
+MAX_RETRIES = 3
+RETRY_BACKOFF = 2  # seconds
+
 # Rate limiter for Roblox API calls
 rate_limiter = RateLimiter(max_calls=60, period=60)  # 60 calls per minute
+
+# Demo mode - For development and demonstration only
+DEMO_MODE = True
+
+# Create demo data for Roblox API
+with open('./utils/roblox_demo_data.json', 'w') as f:
+    json.dump({
+        "users": {
+            "1234567": {
+                "id": 1234567,
+                "name": "RobloxDemoUser",
+                "displayName": "Demo User",
+                "description": "This is a demo user for BloxAPI",
+                "created": "2019-08-02T18:45:26.91Z",
+                "isBanned": False,
+                "externalAppDisplayName": "Demo User",
+                "hasVerifiedBadge": True
+            },
+            "987654321": {
+                "id": 987654321,
+                "name": "AnotherDemoUser",
+                "displayName": "Another Demo",
+                "description": "Another demo user for testing",
+                "created": "2016-04-14T23:27:18.32Z",
+                "isBanned": False,
+                "externalAppDisplayName": "Another Demo",
+                "hasVerifiedBadge": False
+            }
+        },
+        "user_search": {
+            "Roblox": [
+                {"id": 1, "name": "Roblox", "displayName": "Roblox", "hasVerifiedBadge": True},
+                {"id": 156, "name": "Builderman", "displayName": "Builder Man", "hasVerifiedBadge": True},
+                {"id": 20075347, "name": "RobloxDev", "displayName": "Roblox Developer", "hasVerifiedBadge": True},
+                {"id": 1567614, "name": "RobloxTester", "displayName": "Tester", "hasVerifiedBadge": False},
+                {"id": 34695519, "name": "RobloxFan", "displayName": "Roblox Fan", "hasVerifiedBadge": False}
+            ]
+        },
+        "games": {
+            "1234567890": {
+                "id": 1234567890,
+                "name": "Demo Game",
+                "description": "This is a demo game for BloxAPI",
+                "creator": {
+                    "id": 1234567,
+                    "name": "RobloxDemoUser",
+                    "type": "User"
+                },
+                "rootPlace": {
+                    "id": 123456789,
+                    "name": "Demo Game"
+                },
+                "created": "2022-10-15T14:30:22.54Z",
+                "updated": "2025-04-01T12:15:48.76Z",
+                "placeVisits": 5248679,
+                "playingCount": 1254,
+                "favoriteCount": 124875,
+                "universeId": 4567890123,
+                "maxPlayers": 50,
+                "allowedGearCategories": ["MeleeWeapons", "RangedWeapons", "Navigation"],
+                "genre": "Adventure",
+                "price": 0,
+                "copying": False
+            },
+            "987654321": {
+                "id": 987654321,
+                "name": "Another Demo Game",
+                "description": "Another demo game for BloxAPI testing",
+                "creator": {
+                    "id": 987654321,
+                    "name": "AnotherDemoUser",
+                    "type": "User"
+                },
+                "rootPlace": {
+                    "id": 987654,
+                    "name": "Another Demo Game"
+                },
+                "created": "2023-05-28T09:12:37.81Z",
+                "updated": "2025-03-25T19:42:51.38Z",
+                "placeVisits": 1389452,
+                "playingCount": 847,
+                "favoriteCount": 78954,
+                "universeId": 9876543210,
+                "maxPlayers": 30,
+                "allowedGearCategories": [],
+                "genre": "All",
+                "price": 0,
+                "copying": False
+            }
+        },
+        "game_details": {
+            "1234567890": {
+                "id": 1234567890,
+                "name": "Demo Game",
+                "description": "This is a demo game for BloxAPI with extended details",
+                "creator": {
+                    "id": 1234567,
+                    "name": "RobloxDemoUser",
+                    "type": "User",
+                    "hasVerifiedBadge": True
+                },
+                "rootPlace": {
+                    "id": 123456789,
+                    "name": "Demo Game",
+                    "description": "This is the main place for Demo Game"
+                },
+                "created": "2022-10-15T14:30:22.54Z",
+                "updated": "2025-04-01T12:15:48.76Z",
+                "placeVisits": 5248679,
+                "playingCount": 1254,
+                "favoriteCount": 124875,
+                "universeId": 4567890123,
+                "maxPlayers": 50,
+                "allowedGearCategories": ["MeleeWeapons", "RangedWeapons", "Navigation"],
+                "genre": "Adventure",
+                "price": 0,
+                "copying": False,
+                "isForSale": False,
+                "studioAccessToApisAllowed": True,
+                "createVipServersAllowed": True,
+                "universeAvatarType": "MorphToR15",
+                "universeScaleType": "Classic",
+                "universeAnimationType": "Standard",
+                "universeJointPositioningType": "Standard",
+                "universeCollisionType": "OuterBox",
+                "universeBodyType": "Standard",
+                "isArchived": False,
+                "isFriendsOnly": False,
+                "gameRating": {
+                    "rating": 4.8,
+                    "ratingCount": 1254
+                },
+                "badges": [
+                    {
+                        "id": 12345,
+                        "name": "Welcome to Demo Game",
+                        "description": "Join the game for the first time",
+                        "enabled": True,
+                        "iconImageId": 654321,
+                        "created": "2022-10-15T14:35:12.34Z",
+                        "updated": "2022-10-15T14:35:12.34Z",
+                        "statistics": {
+                            "awardedCount": 4125789,
+                            "winRatePercentage": 89.5
+                        }
+                    },
+                    {
+                        "id": 23456,
+                        "name": "Master Demo Player",
+                        "description": "Complete all levels in Demo Game",
+                        "enabled": True,
+                        "iconImageId": 765432,
+                        "created": "2022-10-15T14:40:25.67Z",
+                        "updated": "2023-03-12T10:15:38.92Z",
+                        "statistics": {
+                            "awardedCount": 254789,
+                            "winRatePercentage": 12.8
+                        }
+                    }
+                ]
+            },
+            "987654321": {
+                "id": 987654321,
+                "name": "Another Demo Game",
+                "description": "Another demo game for BloxAPI testing with extended details",
+                "creator": {
+                    "id": 987654321,
+                    "name": "AnotherDemoUser",
+                    "type": "User",
+                    "hasVerifiedBadge": False
+                },
+                "rootPlace": {
+                    "id": 987654,
+                    "name": "Another Demo Game",
+                    "description": "This is the main place for Another Demo Game"
+                },
+                "created": "2023-05-28T09:12:37.81Z",
+                "updated": "2025-03-25T19:42:51.38Z",
+                "placeVisits": 1389452,
+                "playingCount": 847,
+                "favoriteCount": 78954,
+                "universeId": 9876543210,
+                "maxPlayers": 30,
+                "allowedGearCategories": [],
+                "genre": "All",
+                "price": 0,
+                "copying": False,
+                "isForSale": False,
+                "studioAccessToApisAllowed": True,
+                "createVipServersAllowed": True,
+                "universeAvatarType": "MorphToR15",
+                "universeScaleType": "Classic",
+                "universeAnimationType": "Standard",
+                "universeJointPositioningType": "Standard",
+                "universeCollisionType": "OuterBox",
+                "universeBodyType": "Standard",
+                "isArchived": False,
+                "isFriendsOnly": False,
+                "gameRating": {
+                    "rating": 4.5,
+                    "ratingCount": 789
+                },
+                "badges": [
+                    {
+                        "id": 34567,
+                        "name": "First Steps",
+                        "description": "Complete the tutorial",
+                        "enabled": True,
+                        "iconImageId": 876543,
+                        "created": "2023-05-28T10:32:45.12Z",
+                        "updated": "2023-05-28T10:32:45.12Z",
+                        "statistics": {
+                            "awardedCount": 987543,
+                            "winRatePercentage": 78.2
+                        }
+                    }
+                ]
+            }
+        },
+        "friends": {
+            "1234567": [
+                {
+                    "id": 23456789,
+                    "name": "DemoFriend1",
+                    "displayName": "Demo Friend One",
+                    "hasVerifiedBadge": False,
+                    "isOnline": True,
+                    "friendsCount": 154,
+                    "created": "2020-07-15T08:45:12.38Z"
+                },
+                {
+                    "id": 34567890,
+                    "name": "DemoFriend2",
+                    "displayName": "Demo Friend Two",
+                    "hasVerifiedBadge": False,
+                    "isOnline": False,
+                    "friendsCount": 278,
+                    "created": "2019-02-28T12:34:56.78Z"
+                },
+                {
+                    "id": 45678901,
+                    "name": "DemoFriend3",
+                    "displayName": "Demo Friend Three",
+                    "hasVerifiedBadge": True,
+                    "isOnline": False,
+                    "friendsCount": 457,
+                    "created": "2021-04-12T18:22:47.15Z"
+                }
+            ]
+        }
+    }, f, indent=2)
+
+# Load demo data
+try:
+    with open('./utils/roblox_demo_data.json', 'r') as f:
+        DEMO_DATA = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    logger.error(f"Error loading demo data: {str(e)}")
+    DEMO_DATA = {}
 
 # Custom exception for Roblox API errors
 class RobloxAPIError(Exception):
@@ -91,67 +357,278 @@ def with_rate_limit(func):
 @with_rate_limit
 def get_user_info(user_id):
     """Get information about a Roblox user by ID"""
-    response = requests.get(f"{USERS_API_BASE}/users/{user_id}")
-    return handle_roblox_response(response)
+    user_id = str(user_id)  # Ensure string key for dict lookup
+    
+    if DEMO_MODE:
+        logger.info(f"Using demo data for user info: {user_id}")
+        if user_id in DEMO_DATA.get("users", {}):
+            return {"data": DEMO_DATA["users"][user_id]}
+        else:
+            raise RobloxAPIError(404, f"User not found with ID {user_id}")
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{USERS_API_BASE}/users/{user_id}", 
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for user info: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_users_info(user_ids):
     """Get information about multiple Roblox users by IDs"""
-    response = requests.post(
-        f"{USERS_API_BASE}/users", 
-        json={"userIds": user_ids}
-    )
-    return handle_roblox_response(response)
+    if DEMO_MODE:
+        logger.info(f"Using demo data for multiple users info")
+        
+        results = []
+        for user_id in user_ids:
+            user_id_str = str(user_id)
+            if user_id_str in DEMO_DATA.get("users", {}):
+                results.append(DEMO_DATA["users"][user_id_str])
+        
+        return {"data": results}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.post(
+                f"{USERS_API_BASE}/users", 
+                json={"userIds": user_ids},
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for multiple users info: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def search_users(keyword, limit=10):
     """Search for users by keyword"""
-    response = requests.get(
-        f"{USERS_API_BASE}/users/search", 
-        params={"keyword": keyword, "limit": limit}
-    )
-    return handle_roblox_response(response)
+    if DEMO_MODE:
+        logger.info(f"Using demo data for user search: {keyword}")
+        
+        if keyword in DEMO_DATA.get("user_search", {}):
+            users = DEMO_DATA["user_search"][keyword]
+            limited_users = users[:min(limit, len(users))]
+            return {"data": limited_users}
+        else:
+            # Return empty result if keyword not found
+            return {"data": []}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{USERS_API_BASE}/users/search", 
+                params={"keyword": keyword, "limit": limit},
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for user search: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_user_by_username(username):
     """Get user ID from username"""
-    response = requests.post(
-        f"{USERS_API_BASE}/usernames/users", 
-        json={"usernames": [username]}
-    )
-    data = handle_roblox_response(response)
-    return data["data"][0] if data["data"] else None
+    if DEMO_MODE:
+        logger.info(f"Using demo data for username lookup: {username}")
+        
+        # Look through all demo users to find matching username
+        for user_id, user_data in DEMO_DATA.get("users", {}).items():
+            if user_data.get("name") == username:
+                return {"id": user_data["id"], "name": user_data["name"], "displayName": user_data.get("displayName")}
+        
+        # Return None if not found
+        return None
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.post(
+                f"{USERS_API_BASE}/usernames/users", 
+                json={"usernames": [username]},
+                timeout=CONNECTION_TIMEOUT
+            )
+            data = handle_roblox_response(response)
+            return data["data"][0] if data["data"] else None
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for username lookup: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 # Games-related API calls
 @with_rate_limit
 def get_game_details(game_id):
     """Get details about a specific game"""
-    response = requests.get(f"{GAMES_API_BASE}/games/{game_id}")
-    return handle_roblox_response(response)
+    game_id = str(game_id)  # Ensure string key for dict lookup
+    
+    if DEMO_MODE:
+        logger.info(f"Using demo data for game details: {game_id}")
+        if game_id in DEMO_DATA.get("games", {}):
+            return {"data": DEMO_DATA["games"][game_id]}
+        else:
+            raise RobloxAPIError(404, f"Game not found with ID {game_id}")
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GAMES_API_BASE}/games/{game_id}",
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for game details: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_games_by_user(user_id, limit=50):
     """Get games created by a specific user"""
-    response = requests.get(
-        f"{GAMES_API_BASE}/users/{user_id}/games", 
-        params={"limit": limit}
-    )
-    return handle_roblox_response(response)
+    if DEMO_MODE:
+        logger.info(f"Using demo data for games by user: {user_id}")
+        
+        user_id_str = str(user_id)
+        games = []
+        
+        # Filter games by creator ID
+        for game_id, game_data in DEMO_DATA.get("games", {}).items():
+            if game_data.get("creator", {}).get("id") == int(user_id_str):
+                games.append(game_data)
+        
+        return {"data": games[:min(limit, len(games))]}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GAMES_API_BASE}/users/{user_id}/games", 
+                params={"limit": limit},
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for games by user: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_game_social_links(game_id):
     """Get social media links for a game"""
-    response = requests.get(f"{GAMES_API_BASE}/games/{game_id}/social-links")
-    return handle_roblox_response(response)
+    if DEMO_MODE:
+        logger.info(f"Using demo data for game social links: {game_id}")
+        return {"data": [
+            {"title": "Discord", "url": "https://discord.gg/demogame", "type": "Discord"},
+            {"title": "Twitter", "url": "https://twitter.com/demogame", "type": "Twitter"},
+            {"title": "YouTube", "url": "https://youtube.com/c/demogame", "type": "YouTube"}
+        ]}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GAMES_API_BASE}/games/{game_id}/social-links",
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for game social links: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_game_passes(game_id, limit=50):
     """Get game passes for a specific game"""
-    response = requests.get(
-        f"{GAMES_API_BASE}/games/{game_id}/game-passes", 
-        params={"limit": limit}
-    )
-    return handle_roblox_response(response)
+    if DEMO_MODE:
+        logger.info(f"Using demo data for game passes: {game_id}")
+        
+        # Generate demo game passes
+        game_passes = []
+        if str(game_id) in DEMO_DATA.get("games", {}):
+            game_name = DEMO_DATA["games"][str(game_id)]["name"]
+            
+            for i in range(min(limit, 5)):  # Generate up to 5 demo passes
+                game_passes.append({
+                    "id": 10000 + i + int(game_id) % 10000,
+                    "name": f"{game_name} VIP {i+1}",
+                    "displayName": f"{game_name} VIP {i+1}",
+                    "price": 99 * (i+1),
+                    "productId": 20000 + i + int(game_id) % 10000,
+                    "iconImageUri": f"https://roblox.com/assets/gamepass-{i+1}.png",
+                    "sellerName": DEMO_DATA["games"][str(game_id)]["creator"]["name"]
+                })
+        
+        return {"data": game_passes}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GAMES_API_BASE}/games/{game_id}/game-passes", 
+                params={"limit": limit},
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for game passes: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 # Group-related API calls
 @with_rate_limit
@@ -185,20 +662,106 @@ def get_user_groups(user_id):
 @with_rate_limit
 def get_user_friends(user_id):
     """Get a user's friends"""
-    response = requests.get(f"{FRIENDS_API_BASE}/users/{user_id}/friends")
-    return handle_roblox_response(response)
+    user_id = str(user_id)  # Ensure string key for dict lookup
+    
+    if DEMO_MODE:
+        logger.info(f"Using demo data for user friends: {user_id}")
+        
+        if user_id in DEMO_DATA.get("friends", {}):
+            return {"data": DEMO_DATA["friends"][user_id]}
+        else:
+            # Return empty list if user not in demo data
+            return {"data": []}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{FRIENDS_API_BASE}/users/{user_id}/friends",
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for user friends: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_friend_requests(user_id):
     """Get a user's friend requests"""
-    response = requests.get(f"{FRIENDS_API_BASE}/users/{user_id}/friends/requests")
-    return handle_roblox_response(response)
+    if DEMO_MODE:
+        logger.info(f"Using demo data for friend requests: {user_id}")
+        
+        # Generate some demo friend requests
+        friend_requests = []
+        for i in range(3):  # Generate 3 demo friend requests
+            friend_requests.append({
+                "id": 100000 + i,
+                "name": f"RequestUser{i+1}",
+                "displayName": f"Request User {i+1}",
+                "hasVerifiedBadge": False,
+                "created": "2025-04-15T10:30:00Z"
+            })
+        
+        return {"data": friend_requests}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{FRIENDS_API_BASE}/users/{user_id}/friends/requests",
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for friend requests: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_friends_count(user_id):
     """Get count of user's friends"""
-    response = requests.get(f"{FRIENDS_API_BASE}/users/{user_id}/friends/count")
-    return handle_roblox_response(response)
+    user_id = str(user_id)  # Ensure string key for dict lookup
+    
+    if DEMO_MODE:
+        logger.info(f"Using demo data for friends count: {user_id}")
+        
+        if user_id in DEMO_DATA.get("friends", {}):
+            count = len(DEMO_DATA["friends"][user_id])
+            return {"count": count}
+        else:
+            return {"count": 0}
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{FRIENDS_API_BASE}/users/{user_id}/friends/count",
+                timeout=CONNECTION_TIMEOUT
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for friends count: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 # Asset-related API calls
 @with_rate_limit
