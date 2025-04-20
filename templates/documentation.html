@@ -325,7 +325,7 @@
                             <span class="endpoint-url">/api/users/search</span>
                         </div>
                         <div class="endpoint-card-body">
-                            <p class="endpoint-description">Searches for Roblox users by keyword.</p>
+                            <p class="endpoint-description">Searches for Roblox users by keyword. This endpoint always connects to the real Roblox API with enhanced error handling and retry mechanisms.</p>
                             
                             <h5 class="section-title">Query Parameters</h5>
                             <table class="table table-dark table-hover parameter-table">
@@ -340,12 +340,12 @@
                                     <tr>
                                         <td>keyword</td>
                                         <td>string</td>
-                                        <td>The search term (required)</td>
+                                        <td>The search term (required). Special characters are automatically sanitized.</td>
                                     </tr>
                                     <tr>
                                         <td>limit</td>
                                         <td>integer</td>
-                                        <td>Maximum number of results to return (default: 10)</td>
+                                        <td>Maximum number of results to return (default: 10, max: 100)</td>
                                     </tr>
                                 </tbody>
                             </table>

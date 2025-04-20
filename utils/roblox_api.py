@@ -50,7 +50,7 @@ RETRY_BACKOFF = 2  # seconds
 rate_limiter = RateLimiter(max_calls=60, period=60)  # 60 calls per minute
 
 # Demo mode - For development and demonstration only
-DEMO_MODE = True
+DEMO_MODE = False
 
 # Create demo data for Roblox API
 with open('./utils/roblox_demo_data.json', 'w') as f:
@@ -319,22 +319,43 @@ def handle_roblox_response(response):
     """
     Process the Roblox API response and handle errors
     """
-    if response.status_code == 200:
+    if response.status_code >= 200 and response.status_code < 300:
         try:
-            return response.json()
+            json_response = response.json()
+            # Check if the response has an errors array (common in Roblox API)
+            if 'errors' in json_response and json_response['errors'] and len(json_response['errors']) > 0:
+                error = json_response['errors'][0]
+                error_code = error.get('code', 0)
+                error_message = error.get('message', 'Unknown error in API response')
+                logger.error(f"API error in JSON response: {error_message} (Code: {error_code})")
+                raise RobloxAPIError(response.status_code, error_message)
+            return json_response
         except ValueError:
-            logger.error("Failed to parse JSON response")
-            raise RobloxAPIError(500, "Failed to parse response from Roblox API")
+            logger.error(f"Failed to parse JSON response: {response.text[:200]}")
+            raise RobloxAPIError(500, f"Failed to parse response from Roblox API: {response.text[:50]}...")
     elif response.status_code == 429:
         retry_after = int(response.headers.get('Retry-After', 60))
         logger.warning(f"Rate limit reached. Retry after {retry_after} seconds")
         raise RobloxAPIError(429, f"Rate limit reached. Try again in {retry_after} seconds")
+    elif response.status_code == 404:
+        logger.warning(f"Resource not found: {response.url}")
+        raise RobloxAPIError(404, f"The requested resource was not found")
+    elif response.status_code == 401:
+        logger.error("Unauthorized access to Roblox API")
+        raise RobloxAPIError(401, "Unauthorized access to Roblox API, authentication required")
+    elif response.status_code == 403:
+        logger.error("Forbidden access to Roblox API")
+        raise RobloxAPIError(403, "Forbidden access to Roblox API, you don't have permission to access this resource")
     else:
         try:
             error_data = response.json()
-            error_msg = error_data.get('message', 'Unknown error')
+            error_msg = error_data.get('message', None)
+            if not error_msg and 'errors' in error_data and error_data['errors'] and len(error_data['errors']) > 0:
+                error_msg = error_data['errors'][0].get('message', 'Unknown error')
+            if not error_msg:
+                error_msg = f"HTTP Error: {response.status_code}"
         except ValueError:
-            error_msg = f"HTTP Error: {response.status_code}"
+            error_msg = f"HTTP Error: {response.status_code}, Response: {response.text[:100]}"
         
         logger.error(f"Roblox API error: {error_msg}")
         raise RobloxAPIError(response.status_code, error_msg)
@@ -347,10 +368,24 @@ def with_rate_limit(func):
     def wrapper(*args, **kwargs):
         rate_limiter.wait_if_needed()
         try:
-            return func(*args, **kwargs)
+            result = func(*args, **kwargs)
+            # Рассмотрим успешный ответ API
+            return result
+        except requests.ConnectionError as e:
+            logger.error(f"Connection error to Roblox API: {str(e)}")
+            raise RobloxAPIError(503, f"Connection error to Roblox API: {str(e)}")
+        except requests.Timeout as e:
+            logger.error(f"Timeout error when connecting to Roblox API: {str(e)}")
+            raise RobloxAPIError(504, f"Timeout error when connecting to Roblox API: {str(e)}")
+        except requests.TooManyRedirects as e:
+            logger.error(f"Too many redirects when connecting to Roblox API: {str(e)}")
+            raise RobloxAPIError(500, f"Too many redirects when connecting to Roblox API: {str(e)}")
         except requests.RequestException as e:
-            logger.error(f"Request error: {str(e)}")
+            logger.error(f"Request error to Roblox API: {str(e)}")
             raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+        except Exception as e:
+            logger.exception(f"Unexpected error in API call: {str(e)}")
+            raise RobloxAPIError(500, f"Unexpected error in API call: {str(e)}")
     return wrapper
 
 # User-related API calls
@@ -433,13 +468,27 @@ def search_users(keyword, limit=10):
             # Return empty result if keyword not found
             return {"data": []}
     
+    # Проверка корректности параметров
+    if not keyword or len(keyword.strip()) == 0:
+        logger.warning("Empty keyword in search_users")
+        return {"data": []}
+    
+    # Убедимся, что параметр limit находится в допустимом диапазоне
+    if limit <= 0:
+        limit = 10  # используем значение по умолчанию при недопустимом значении
+    elif limit > 100:
+        limit = 100  # API ограничивает максимальное значение 
+    
     # Real API call with retries
     retries = 0
     while retries < MAX_RETRIES:
         try:
+            # Убедимся, что параметр keyword не содержит фигурные скобки или другие недопустимые символы
+            sanitized_keyword = keyword.replace("{", "").replace("}", "").replace("?", "").strip()
+            
             response = requests.get(
                 f"{USERS_API_BASE}/users/search", 
-                params={"keyword": keyword, "limit": limit},
+                params={"keyword": sanitized_keyword, "limit": limit},
                 timeout=CONNECTION_TIMEOUT
             )
             return handle_roblox_response(response)
@@ -492,11 +541,22 @@ def get_user_by_username(username):
 @with_rate_limit
 def get_game_details(game_id):
     """Get details about a specific game"""
-    game_id = str(game_id)  # Ensure string key for dict lookup
+    # Проверяем, что ID является валидным
+    try:
+        game_id_int = int(game_id)
+        game_id = str(game_id_int)  # Ensure string key for dict lookup
+        if game_id_int <= 0:
+            logger.error(f"Invalid game ID: {game_id}")
+            raise RobloxAPIError(400, f"Invalid game ID: {game_id}. Game ID must be a positive integer.")
+    except ValueError:
+        logger.error(f"Invalid game ID format: {game_id}")
+        raise RobloxAPIError(400, f"Invalid game ID format: {game_id}. Game ID must be a positive integer.")
     
     if DEMO_MODE:
         logger.info(f"Using demo data for game details: {game_id}")
-        if game_id in DEMO_DATA.get("games", {}):
+        if game_id in DEMO_DATA.get("game_details", {}):
+            return {"data": DEMO_DATA["game_details"][game_id]}
+        elif game_id in DEMO_DATA.get("games", {}):
             return {"data": DEMO_DATA["games"][game_id]}
         else:
             raise RobloxAPIError(404, f"Game not found with ID {game_id}")
@@ -507,8 +567,18 @@ def get_game_details(game_id):
         try:
             response = requests.get(
                 f"{GAMES_API_BASE}/games/{game_id}",
-                timeout=CONNECTION_TIMEOUT
+                timeout=CONNECTION_TIMEOUT,
+                headers={
+                    "Accept": "application/json",
+                    "User-Agent": "BloxAPI/1.0"
+                }
             )
+            
+            # Проверяем, есть ли у нас 404 (не найдено)
+            if response.status_code == 404:
+                logger.warning(f"Game not found with ID {game_id}")
+                raise RobloxAPIError(404, f"Game not found with ID {game_id}")
+                
             return handle_roblox_response(response)
         except requests.exceptions.RequestException as e:
             retries += 1
