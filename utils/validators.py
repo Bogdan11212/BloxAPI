@@ -73,3 +73,9 @@ class AssetInfoSchema(Schema):
     """Schema for asset information query parameters"""
     include_purchase_count = fields.Boolean(default=False)
     include_creator = fields.Boolean(default=True)
+
+# Stats and analytics validators
+class DateRangeSchema(Schema):
+    """Schema for date range query parameters"""
+    start_date = fields.String(required=True)
+    end_date = fields.String(required=True)

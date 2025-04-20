@@ -56,6 +56,58 @@ from routes.develop import (
 )
 from routes.chat import ChatConversationsResource, ChatMessagesResource
 
+# Import new advanced modules
+from routes.events import (
+    UserEventsResource, GameEventsResource, GroupEventsResource,
+    EventHistoryResource, EventDetailsResource
+)
+from routes.moderation import (
+    ContentModerationStatusResource, ModerationHistoryResource,
+    AssetModerationCheckResource, TextModerationCheckResource,
+    ImageModerationCheckResource, ReportAbuseResource, SafetySettingsResource
+)
+from routes.monetization import (
+    DeveloperProductsResource, DeveloperProductDetailsResource,
+    GamePassesResource, GamePassDetailsResource, PremiumPayoutsResource,
+    TransactionHistoryResource, SalesSummaryResource, RevenueSummaryResource,
+    ProductPurchasesResource, PlayerOwnershipResource
+)
+from routes.social import (
+    SocialConnectionsResource, SocialLinksResource, FollowersResource,
+    FollowingsResource, SubscribersResource, SubscriptionsResource,
+    FollowerStatusResource, FollowingStatusResource,
+    FriendRecommendationsResource, SocialGraphResource, AccountRelationshipResource
+)
+from routes.statistics import (
+    GameUniverseStatsResource, GameVersionHistoryStatsResource,
+    GamePlaytimeStatsResource, GameRetentionStatsResource,
+    GamePerformanceStatsResource, GameDeviceStatsResource,
+    GameDemographicStatsResource, GameGeographicStatsResource,
+    GameConversionStatsResource, PlayerActivityStatsResource,
+    TrendingGamesResource, GameComparisonStatsResource
+)
+from routes.servers import (
+    GameServerInstancesResource, ServerDetailsResource,
+    ServerPlayersResource, ServerStatsResource, ServerLogsResource,
+    ServerMessageResource, ServerShutdownResource, ServerJoinScriptResource,
+    VipServersResource, CreateVipServerResource, UpdateVipServerResource,
+    VipServerSubscribersResource, PrivateServersResource
+)
+from routes.subscriptions import (
+    UserSubscriptionsResource, UserSubscribersResource,
+    UserSubscriptionDetailsResource, SubscriptionOptionsResource,
+    SubscriptionStatusResource, SubscriptionNotificationsResource,
+    SubscriptionFeedResource
+)
+from routes.user_profiles import (
+    UserStatusResource, UserBiographyResource, UserDisplayNameResource,
+    UserPremiumStatusResource, UserProfilePresenceResource, UserOnlineStatusResource,
+    UserProfileBadgesResource, UserMembershipTypeResource,
+    UserPreviousUsernamesResource, UserAgeResource, UserJoinDateResource,
+    UserDisplayNameHistoryResource, SearchUsersByDisplayNameResource,
+    UserConnectionsResource, UserProfileThemeResource, UserRobloxBadgesResource
+)
+
 # Import external service integrations
 from routes.external import (
     # Rolimon's routes
@@ -179,6 +231,103 @@ api.add_resource(RblxValuesItemProjectedStatusResource, '/api/external/rblx-valu
 api.add_resource(RblxValuesItemStabilityResource, '/api/external/rblx-values/items/<int:item_id>/stability')
 api.add_resource(RblxValuesRisingItemsResource, '/api/external/rblx-values/market/rising')
 api.add_resource(RblxValuesFallingItemsResource, '/api/external/rblx-values/market/falling')
+
+# Register Events API routes
+api.add_resource(UserEventsResource, '/api/events/users/<int:user_id>')
+api.add_resource(GameEventsResource, '/api/events/games/<int:universe_id>')
+api.add_resource(GroupEventsResource, '/api/events/groups/<int:group_id>')
+api.add_resource(EventHistoryResource, '/api/events/history/<string:entity_type>/<int:entity_id>')
+api.add_resource(EventDetailsResource, '/api/events/<int:event_id>')
+
+# Register Moderation API routes
+api.add_resource(ContentModerationStatusResource, '/api/moderation/content/<string:content_type>/<int:content_id>')
+api.add_resource(ModerationHistoryResource, '/api/moderation/users/<int:user_id>/history')
+api.add_resource(AssetModerationCheckResource, '/api/moderation/assets/<int:asset_id>')
+api.add_resource(TextModerationCheckResource, '/api/moderation/text')
+api.add_resource(ImageModerationCheckResource, '/api/moderation/image')
+api.add_resource(ReportAbuseResource, '/api/moderation/report')
+api.add_resource(SafetySettingsResource, '/api/moderation/users/<int:user_id>/safety-settings')
+
+# Register Monetization API routes
+api.add_resource(DeveloperProductsResource, '/api/monetization/games/<int:universe_id>/developer-products')
+api.add_resource(DeveloperProductDetailsResource, '/api/monetization/developer-products/<int:product_id>')
+api.add_resource(GamePassesResource, '/api/monetization/games/<int:universe_id>/game-passes')
+api.add_resource(GamePassDetailsResource, '/api/monetization/game-passes/<int:pass_id>')
+api.add_resource(PremiumPayoutsResource, '/api/monetization/games/<int:universe_id>/premium-payouts')
+api.add_resource(TransactionHistoryResource, '/api/monetization/games/<int:universe_id>/transactions')
+api.add_resource(SalesSummaryResource, '/api/monetization/games/<int:universe_id>/sales-summary')
+api.add_resource(RevenueSummaryResource, '/api/monetization/games/<int:universe_id>/revenue-summary')
+api.add_resource(ProductPurchasesResource, '/api/monetization/games/<int:universe_id>/products/<int:product_id>/purchases')
+api.add_resource(PlayerOwnershipResource, '/api/monetization/users/<int:user_id>/ownership/<string:asset_type>/<int:asset_id>')
+
+# Register Social API routes
+api.add_resource(SocialConnectionsResource, '/api/social/users/<int:user_id>/connections')
+api.add_resource(SocialLinksResource, '/api/social/users/<int:user_id>/links')
+api.add_resource(FollowersResource, '/api/social/users/<int:user_id>/followers')
+api.add_resource(FollowingsResource, '/api/social/users/<int:user_id>/followings')
+api.add_resource(SubscribersResource, '/api/social/users/<int:user_id>/subscribers')
+api.add_resource(SubscriptionsResource, '/api/social/users/<int:user_id>/subscriptions')
+api.add_resource(FollowerStatusResource, '/api/social/users/<int:user_id>/followers/<int:follower_id>/status')
+api.add_resource(FollowingStatusResource, '/api/social/users/<int:user_id>/followings/<int:following_id>/status')
+api.add_resource(FriendRecommendationsResource, '/api/social/users/<int:user_id>/friend-recommendations')
+api.add_resource(SocialGraphResource, '/api/social/users/<int:user_id>/graph')
+api.add_resource(AccountRelationshipResource, '/api/social/users/<int:user_id>/relationship/<int:other_user_id>')
+
+# Register Statistics API routes
+api.add_resource(GameUniverseStatsResource, '/api/statistics/games/<int:universe_id>/universe')
+api.add_resource(GameVersionHistoryStatsResource, '/api/statistics/games/<int:universe_id>/version-history')
+api.add_resource(GamePlaytimeStatsResource, '/api/statistics/games/<int:universe_id>/playtime')
+api.add_resource(GameRetentionStatsResource, '/api/statistics/games/<int:universe_id>/retention')
+api.add_resource(GamePerformanceStatsResource, '/api/statistics/games/<int:universe_id>/performance')
+api.add_resource(GameDeviceStatsResource, '/api/statistics/games/<int:universe_id>/devices')
+api.add_resource(GameDemographicStatsResource, '/api/statistics/games/<int:universe_id>/demographics')
+api.add_resource(GameGeographicStatsResource, '/api/statistics/games/<int:universe_id>/geographic')
+api.add_resource(GameConversionStatsResource, '/api/statistics/games/<int:universe_id>/conversion')
+api.add_resource(PlayerActivityStatsResource, '/api/statistics/users/<int:user_id>/activity')
+api.add_resource(TrendingGamesResource, '/api/statistics/games/trending')
+api.add_resource(GameComparisonStatsResource, '/api/statistics/games/compare')
+
+# Register Servers API routes
+api.add_resource(GameServerInstancesResource, '/api/servers/games/<int:universe_id>/instances')
+api.add_resource(ServerDetailsResource, '/api/servers/<string:server_id>')
+api.add_resource(ServerPlayersResource, '/api/servers/<string:server_id>/players')
+api.add_resource(ServerStatsResource, '/api/servers/<string:server_id>/stats')
+api.add_resource(ServerLogsResource, '/api/servers/<string:server_id>/logs')
+api.add_resource(ServerMessageResource, '/api/servers/<string:server_id>/message')
+api.add_resource(ServerShutdownResource, '/api/servers/<string:server_id>/shutdown')
+api.add_resource(ServerJoinScriptResource, '/api/servers/<string:server_id>/join-script')
+api.add_resource(VipServersResource, '/api/servers/games/<int:universe_id>/vip')
+api.add_resource(CreateVipServerResource, '/api/servers/games/<int:universe_id>/vip/create')
+api.add_resource(UpdateVipServerResource, '/api/servers/vip/<string:server_id>')
+api.add_resource(VipServerSubscribersResource, '/api/servers/vip/<string:server_id>/subscribers')
+api.add_resource(PrivateServersResource, '/api/servers/users/<int:user_id>/private')
+
+# Register Subscriptions API routes
+api.add_resource(UserSubscriptionsResource, '/api/subscriptions/users/<int:user_id>/subscriptions')
+api.add_resource(UserSubscribersResource, '/api/subscriptions/users/<int:user_id>/subscribers')
+api.add_resource(UserSubscriptionDetailsResource, '/api/subscriptions/users/<int:user_id>/subscriptions/<int:subscription_id>')
+api.add_resource(SubscriptionOptionsResource, '/api/subscriptions/options/<string:entity_type>/<int:entity_id>')
+api.add_resource(SubscriptionStatusResource, '/api/subscriptions/users/<int:user_id>/status/<string:entity_type>/<int:entity_id>')
+api.add_resource(SubscriptionNotificationsResource, '/api/subscriptions/users/<int:user_id>/notifications')
+api.add_resource(SubscriptionFeedResource, '/api/subscriptions/users/<int:user_id>/feed')
+
+# Register User Profiles API routes
+api.add_resource(UserStatusResource, '/api/user-profiles/<int:user_id>/status')
+api.add_resource(UserBiographyResource, '/api/user-profiles/<int:user_id>/biography')
+api.add_resource(UserDisplayNameResource, '/api/user-profiles/<int:user_id>/display-name')
+api.add_resource(UserPremiumStatusResource, '/api/user-profiles/<int:user_id>/premium-status')
+api.add_resource(UserProfilePresenceResource, '/api/user-profiles/<int:user_id>/presence')
+api.add_resource(UserOnlineStatusResource, '/api/user-profiles/<int:user_id>/online-status')
+api.add_resource(UserProfileBadgesResource, '/api/user-profiles/<int:user_id>/badges')
+api.add_resource(UserMembershipTypeResource, '/api/user-profiles/<int:user_id>/membership-type')
+api.add_resource(UserPreviousUsernamesResource, '/api/user-profiles/<int:user_id>/previous-usernames')
+api.add_resource(UserAgeResource, '/api/user-profiles/<int:user_id>/age')
+api.add_resource(UserJoinDateResource, '/api/user-profiles/<int:user_id>/join-date')
+api.add_resource(UserDisplayNameHistoryResource, '/api/user-profiles/<int:user_id>/display-name-history')
+api.add_resource(SearchUsersByDisplayNameResource, '/api/user-profiles/search-by-display-name')
+api.add_resource(UserConnectionsResource, '/api/user-profiles/<int:user_id>/connections')
+api.add_resource(UserProfileThemeResource, '/api/user-profiles/<int:user_id>/theme')
+api.add_resource(UserRobloxBadgesResource, '/api/user-profiles/<int:user_id>/roblox-badges')
 
 # Web routes for documentation
 @app.route('/')

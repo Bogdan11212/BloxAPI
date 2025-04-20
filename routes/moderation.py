@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 import logging
 from utils.validators import PaginationSchema
-from utils.roblox_api import (
+from utils.roblox_api_extra import (
     get_content_moderation_status,
     get_moderation_history,
     check_asset_moderation,
