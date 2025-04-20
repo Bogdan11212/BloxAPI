@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External Integrations - BloxAPI</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modern.css') }}">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark modern-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="bi bi-box-fill me-2 text-primary"></i>
+                <span class="fw-bold">BloxAPI</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="bi bi-house-fill me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs"><i class="bi bi-file-earmark-text-fill me-1"></i> API Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/integrations"><i class="bi bi-box-arrow-in-right me-1"></i> Integrations</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="https://github.com/Bogdan11212/BloxAPI" target="_blank" class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-github me-1"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="container mt-4">
+        <div class="modern-hero">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="fade-in-up">External API Integrations</h1>
+                    <p class="fade-in-up delay-1">BloxAPI provides seamless integration with popular Roblox third-party services. Try out the interactive demos below to see how you can leverage these powerful connections.</p>
+                    <div class="fade-in-up delay-2">
+                        <a href="#demo-section" class="btn btn-modern btn-gradient me-3">
+                            <i class="bi bi-play-fill me-1"></i> Try The Demos
+                        </a>
+                        <a href="/docs#external-services" class="btn btn-modern btn-outline-light">
+                            <i class="bi bi-file-text me-1"></i> View Documentation
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="position-relative">
+                        <div class="floating-card">
+                            <img src="{{ url_for('static', filename='img/integration-illustration.svg') }}" alt="API Integrations" class="img-fluid" width="250" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22250%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20250%20250%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%20focusable%3D%22false%22%3E%3Crect%20width%3D%22250%22%20height%3D%22250%22%20fill%3D%22%236366f1%22%3E%3C%2Frect%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23dee2e6%22%20dy%3D%22.3em%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%3EIntegrations%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Overview Section -->
+    <div class="container mt-5 pt-4">
+        <div class="row g-4">
+            <div class="col-md-3 mb-4 fade-in-up">
+                <div class="modern-card integration-card h-100">
+                    <div class="card-header text-center">
+                        <div class="integration-icon rolimon-icon">
+                            <i class="bi bi-graph-up-arrow fs-1 text-white"></i>
+                        </div>
+                        <h4 class="fw-bold mb-0">RoliMon's</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Access the most popular Roblox limited item values platform. Get up-to-date values, RAP data, price histories, and player inventory worths.</p>
+                        <ul class="mb-0">
+                            <li>Item Values & Details</li>
+                            <li>Price History Tracking</li>
+                            <li>Player RAP & Value</li>
+                            <li>Market Deals & Trends</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#rolimon-demo" class="btn btn-modern btn-gradient">Try Demo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4 fade-in-up">
+                <div class="modern-card integration-card h-100">
+                    <div class="card-header text-center">
+                        <div class="integration-icon rblxtrade-icon">
+                            <i class="bi bi-currency-exchange fs-1 text-white"></i>
+                        </div>
+                        <h4 class="fw-bold mb-0">Rblx.Trade</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Connect with the Roblox trading community platform. Evaluate trades, check player reputation, and browse trade advertisements.</p>
+                        <ul class="mb-0">
+                            <li>Trade Value Calculator</li>
+                            <li>Player Trade Reputation</li>
+                            <li>Current Trade Ads</li>
+                            <li>Trading Community Data</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#rblxtrade-demo" class="btn btn-modern btn-gradient">Try Demo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4 fade-in-up">
+                <div class="modern-card integration-card h-100">
+                    <div class="card-header text-center">
+                        <div class="integration-icon roliverse-icon">
+                            <i class="bi bi-arrow-left-right fs-1 text-white"></i>
+                        </div>
+                        <h4 class="fw-bold mb-0">Roliverse</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Get insights into the Roblox trading ecosystem with advanced market analytics, trading activity tracking, and demand metrics.</p>
+                        <ul class="mb-0">
+                            <li>Market Trends Analysis</li>
+                            <li>Item Demand Indexes</li>
+                            <li>Player Trading Activity</li>
+                            <li>Historical Market Data</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#roliverse-demo" class="btn btn-modern btn-gradient">Try Demo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4 fade-in-up">
+                <div class="modern-card integration-card h-100">
+                    <div class="card-header text-center">
+                        <div class="integration-icon rblxvalues-icon">
+                            <i class="bi bi-shield-check fs-1 text-white"></i>
+                        </div>
+                        <h4 class="fw-bold mb-0">Rblx Values</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Protect your trading with advanced item analysis tools. Check for projected items, assess value stability, and track rising/falling market items.</p>
+                        <ul class="mb-0">
+                            <li>Projected Item Detection</li>
+                            <li>Item Stability Ratings</li>
+                            <li>Rising Value Items</li>
+                            <li>Falling Value Items</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#rblxvalues-demo" class="btn btn-modern btn-gradient">Try Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Demo Section -->
+    <div class="container mt-5 pt-4" id="demo-section">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Interactive API Demos</h2>
+            <p class="text-light opacity-75 mx-auto" style="max-width: 700px;">
+                Try out the integration APIs below to see how they work in real-time. 
+                These demos connect to our BloxAPI endpoints which integrate with external services.
+            </p>
+        </div>
+
+        <!-- Tabs for different demo services -->
+        <div class="modern-card">
+            <div class="card-body p-4">
+                <ul class="nav nav-tabs mb-4" id="demoTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="rolimon-tab" data-bs-toggle="tab" data-bs-target="#rolimon-demo" type="button" role="tab" aria-controls="rolimon-demo" aria-selected="true">
+                            <i class="bi bi-graph-up-arrow me-1"></i> RoliMon's
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="rblxtrade-tab" data-bs-toggle="tab" data-bs-target="#rblxtrade-demo" type="button" role="tab" aria-controls="rblxtrade-demo" aria-selected="false">
+                            <i class="bi bi-currency-exchange me-1"></i> Rblx.Trade
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="roliverse-tab" data-bs-toggle="tab" data-bs-target="#roliverse-demo" type="button" role="tab" aria-controls="roliverse-demo" aria-selected="false">
+                            <i class="bi bi-arrow-left-right me-1"></i> Roliverse
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="rblxvalues-tab" data-bs-toggle="tab" data-bs-target="#rblxvalues-demo" type="button" role="tab" aria-controls="rblxvalues-demo" aria-selected="false">
+                            <i class="bi bi-shield-check me-1"></i> Rblx Values
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="demoTabContent">
+                    <!-- RoliMon's Demo -->
+                    <div class="tab-pane fade show active" id="rolimon-demo" role="tabpanel" aria-labelledby="rolimon-tab">
+                        <div class="demo-area">
+                            <div class="demo-area-header">
+                                <h5 class="mb-0"><i class="bi bi-graph-up-arrow me-2"></i> RoliMon's Item Value Checker</h5>
+                            </div>
+                            <div class="demo-area-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4 mb-lg-0">
+                                        <h6 class="mb-3">Get Item Details</h6>
+                                        <form id="rolimon-item-form">
+                                            <div class="mb-3">
+                                                <label for="rolimon-item-id" class="form-label">Roblox Item ID:</label>
+                                                <input type="number" class="form-control form-control-modern" id="rolimon-item-id" placeholder="Example: 1365767 (Dominus Frigidus)" required>
+                                                <div class="form-text">Enter a Roblox limited item ID to check its current value and details.</div>
+                                            </div>
+                                            <button type="submit" class="btn btn-modern btn-gradient">
+                                                <i class="bi bi-search me-1"></i> Get Item Details
+                                            </button>
+                                        </form>
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="mb-3">API Endpoint Used:</h6>
+                                            <div class="code-block">
+GET /api/external/rolimon/items/{itemId}
+                                            </div>
+                                            
+                                            <h6 class="mt-3 mb-2">Example Items to Try:</h6>
+                                            <ul>
+                                                <li>1365767 - Dominus Frigidus</li>
+                                                <li>1028606 - Classic ROBLOX Fedora</li>
+                                                <li>617605 - Clockwork's Headphones</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h6 class="mb-3">API Response:</h6>
+                                        <div id="rolimon-result" class="demo-result">
+                                            <div class="text-center py-5 text-muted">
+                                                <i class="bi bi-arrow-left-circle fs-4 mb-2"></i>
+                                                <p>Enter an item ID and click "Get Item Details" to see the response here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rblx.Trade Demo -->
+                    <div class="tab-pane fade" id="rblxtrade-demo" role="tabpanel" aria-labelledby="rblxtrade-tab">
+                        <div class="demo-area">
+                            <div class="demo-area-header">
+                                <h5 class="mb-0"><i class="bi bi-currency-exchange me-2"></i> Rblx.Trade Value Calculator</h5>
+                            </div>
+                            <div class="demo-area-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4 mb-lg-0">
+                                        <h6 class="mb-3">Calculate Trade Value</h6>
+                                        <form id="rblx-trade-form">
+                                            <div class="mb-3">
+                                                <label for="trade-offer-items" class="form-label">Offer Items (comma-separated IDs):</label>
+                                                <input type="text" class="form-control form-control-modern" id="trade-offer-items" placeholder="Example: 1365767, 31101391" required>
+                                                <div class="form-text">Item IDs you are offering in the trade</div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="trade-request-items" class="form-label">Request Items (comma-separated IDs):</label>
+                                                <input type="text" class="form-control form-control-modern" id="trade-request-items" placeholder="Example: 1028606, 617605" required>
+                                                <div class="form-text">Item IDs you are requesting in the trade</div>
+                                            </div>
+                                            <button type="submit" class="btn btn-modern btn-gradient">
+                                                <i class="bi bi-calculator me-1"></i> Calculate Trade
+                                            </button>
+                                        </form>
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="mb-3">API Endpoint Used:</h6>
+                                            <div class="code-block">
+POST /api/external/rblx-trade/trade-calculator
+{
+  "offer_items": [1365767, 31101391],
+  "request_items": [1028606, 617605]
+}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h6 class="mb-3">API Response:</h6>
+                                        <div id="rblx-trade-result" class="demo-result">
+                                            <div class="text-center py-5 text-muted">
+                                                <i class="bi bi-arrow-left-circle fs-4 mb-2"></i>
+                                                <p>Enter trade items and click "Calculate Trade" to see the response here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Roliverse Demo -->
+                    <div class="tab-pane fade" id="roliverse-demo" role="tabpanel" aria-labelledby="roliverse-tab">
+                        <div class="demo-area">
+                            <div class="demo-area-header">
+                                <h5 class="mb-0"><i class="bi bi-arrow-left-right me-2"></i> Roliverse Market Trends</h5>
+                            </div>
+                            <div class="demo-area-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4 mb-lg-0">
+                                        <h6 class="mb-3">Get Market Trends</h6>
+                                        <form id="roliverse-form">
+                                            <div class="mb-3">
+                                                <label for="market-item-type" class="form-label">Item Type:</label>
+                                                <select class="form-select form-control-modern" id="market-item-type" required>
+                                                    <option value="limited">Limited Items</option>
+                                                    <option value="ugc">UGC Items</option>
+                                                    <option value="all">All Items</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="market-time-period" class="form-label">Time Period:</label>
+                                                <select class="form-select form-control-modern" id="market-time-period" required>
+                                                    <option value="day">Past Day</option>
+                                                    <option value="week" selected>Past Week</option>
+                                                    <option value="month">Past Month</option>
+                                                    <option value="year">Past Year</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-modern btn-gradient">
+                                                <i class="bi bi-graph-up me-1"></i> Get Market Trends
+                                            </button>
+                                        </form>
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="mb-3">API Endpoint Used:</h6>
+                                            <div class="code-block">
+GET /api/external/roliverse/market/trends?item_type=limited&time_period=week
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h6 class="mb-3">API Response:</h6>
+                                        <div id="roliverse-result" class="demo-result">
+                                            <div class="text-center py-5 text-muted">
+                                                <i class="bi bi-arrow-left-circle fs-4 mb-2"></i>
+                                                <p>Select parameters and click "Get Market Trends" to see the response here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rblx Values Demo -->
+                    <div class="tab-pane fade" id="rblxvalues-demo" role="tabpanel" aria-labelledby="rblxvalues-tab">
+                        <div class="demo-area">
+                            <div class="demo-area-header">
+                                <h5 class="mb-0"><i class="bi bi-shield-check me-2"></i> Rblx Values Rising Items</h5>
+                            </div>
+                            <div class="demo-area-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4 mb-lg-0">
+                                        <h6 class="mb-3">Get Rising Value Items</h6>
+                                        <form id="rblx-values-form">
+                                            <div class="mb-3">
+                                                <label for="rising-items-limit" class="form-label">Number of Items:</label>
+                                                <input type="number" class="form-control form-control-modern" id="rising-items-limit" value="10" min="1" max="50" required>
+                                                <div class="form-text">How many rising value items to retrieve</div>
+                                            </div>
+                                            <button type="submit" class="btn btn-modern btn-gradient">
+                                                <i class="bi bi-arrow-up-right me-1"></i> Get Rising Items
+                                            </button>
+                                        </form>
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="mb-3">API Endpoint Used:</h6>
+                                            <div class="code-block">
+GET /api/external/rblx-values/market/rising?limit=10
+                                            </div>
+                                            
+                                            <div class="alert alert-info mt-3">
+                                                <i class="bi bi-info-circle-fill me-2"></i>
+                                                <span>This endpoint helps traders identify items with increasing value to make better investment decisions.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h6 class="mb-3">API Response:</h6>
+                                        <div id="rblx-values-result" class="demo-result">
+                                            <div class="text-center py-5 text-muted">
+                                                <i class="bi bi-arrow-left-circle fs-4 mb-2"></i>
+                                                <p>Set a limit and click "Get Rising Items" to see the response here.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Usage Examples Section -->
+    <div class="container mt-5 pt-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Integration Code Examples</h2>
+            <p class="text-light opacity-75 mx-auto" style="max-width: 700px;">
+                Here are some ready-to-use code snippets showing how to integrate with our external service APIs.
+            </p>
+        </div>
+
+        <div class="modern-card">
+            <div class="card-body p-4">
+                <ul class="nav nav-tabs mb-4" id="codeExampleTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="python-tab" data-bs-toggle="tab" data-bs-target="#python-examples" type="button" role="tab" aria-controls="python-examples" aria-selected="true">Python</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="javascript-tab" data-bs-toggle="tab" data-bs-target="#javascript-examples" type="button" role="tab" aria-controls="javascript-examples" aria-selected="false">JavaScript</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curl-tab" data-bs-toggle="tab" data-bs-target="#curl-examples" type="button" role="tab" aria-controls="curl-examples" aria-selected="false">cURL</button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="codeExampleTabsContent">
+                    <!-- Python Examples -->
+                    <div class="tab-pane fade show active" id="python-examples" role="tabpanel" aria-labelledby="python-tab">
+                        <div class="accordion" id="pythonExamplesAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pythonRolimonExample" aria-expanded="true" aria-controls="pythonRolimonExample">
+                                        RoliMon's Integration
+                                    </button>
+                                </h2>
+                                <div id="pythonRolimonExample" class="accordion-collapse collapse show" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-rolimon-code">Copy</button>
+                                            <div class="code-block" id="python-rolimon-code">
+import requests
+
+# Get item value and details from RoliMon's
+item_id = 1365767  # Dominus Frigidus
+response = requests.get(f'https://api.example.com/api/external/rolimon/items/{item_id}')
+item_data = response.json()
+
+print(f"Item Name: {item_data['data']['name']}")
+print(f"Current Value: {item_data['data']['value']}")
+print(f"RAP: {item_data['data']['rap']}")
+print(f"Value Trend: {item_data['data']['trend']}")
+
+# Get player RAP
+user_id = 1234567
+response = requests.get(f'https://api.example.com/api/external/rolimon/players/{user_id}/rap')
+rap_data = response.json()
+
+print(f"Player RAP: {rap_data['data']['rap']}")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pythonRblxTradeExample" aria-expanded="false" aria-controls="pythonRblxTradeExample">
+                                        Rblx.Trade Integration
+                                    </button>
+                                </h2>
+                                <div id="pythonRblxTradeExample" class="accordion-collapse collapse" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-rblxtrade-code">Copy</button>
+                                            <div class="code-block" id="python-rblxtrade-code">
+import requests
+
+# Calculate trade value using Rblx.Trade
+data = {
+    "offer_items": [1365767, 31101391],  # Offering Dominus Frigidus and Dominus Empyreus
+    "request_items": [1028606, 617605]   # Requesting Classic ROBLOX Fedora and Clockwork's Headphones
+}
+
+response = requests.post('https://api.example.com/api/external/rblx-trade/trade-calculator', json=data)
+calculation = response.json()
+
+print(f"Offering Total Value: {calculation['data']['offer_value']}")
+print(f"Requesting Total Value: {calculation['data']['request_value']}")
+print(f"Value Difference: {calculation['data']['value_difference']}")
+print(f"Trade Recommendation: {calculation['data']['recommendation']}")
+
+# Get player trade reputation
+user_id = 1234567
+response = requests.get(f'https://api.example.com/api/external/rblx-trade/players/{user_id}/reputation')
+reputation = response.json()
+
+print(f"Reputation Score: {reputation['data']['score']}/10")
+print(f"Total Trades: {reputation['data']['total_trades']}")
+print(f"Completed Trades: {reputation['data']['completed_trades']}")
+print(f"Cancelled Trades: {reputation['data']['cancelled_trades']}")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pythonRoliverseExample" aria-expanded="false" aria-controls="pythonRoliverseExample">
+                                        Roliverse Integration
+                                    </button>
+                                </h2>
+                                <div id="pythonRoliverseExample" class="accordion-collapse collapse" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-roliverse-code">Copy</button>
+                                            <div class="code-block" id="python-roliverse-code">
+import requests
+
+# Get market trends from Roliverse
+params = {
+    "item_type": "limited",
+    "time_period": "week"
+}
+response = requests.get('https://api.example.com/api/external/roliverse/market/trends', params=params)
+trends = response.json()
+
+print("Top Rising Items This Week:")
+for item in trends['data']['rising_items'][:5]:
+    print(f"{item['name']}: +{item['percentage_change']}% (Current Value: {item['value']})")
+
+print("\nTop Falling Items This Week:")
+for item in trends['data']['falling_items'][:5]:
+    print(f"{item['name']}: {item['percentage_change']}% (Current Value: {item['value']})")
+
+# Get demand index for an item
+item_id = 1365767  # Dominus Frigidus
+response = requests.get(f'https://api.example.com/api/external/roliverse/items/{item_id}/demand')
+demand = response.json()
+
+print(f"Demand Index: {demand['data']['demand_index']}/10")
+print(f"Demand Category: {demand['data']['demand_category']}")
+print(f"Trading Volume: {demand['data']['trading_volume']} per day")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pythonRblxValuesExample" aria-expanded="false" aria-controls="pythonRblxValuesExample">
+                                        Rblx Values Integration
+                                    </button>
+                                </h2>
+                                <div id="pythonRblxValuesExample" class="accordion-collapse collapse" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-rblxvalues-code">Copy</button>
+                                            <div class="code-block" id="python-rblxvalues-code">
+import requests
+
+# Check if an item is projected
+item_id = 1365767  # Dominus Frigidus
+response = requests.get(f'https://api.example.com/api/external/rblx-values/items/{item_id}/projected')
+projected = response.json()
+
+print(f"Is Projected: {projected['data']['is_projected']}")
+if projected['data']['is_projected']:
+    print(f"Projected Since: {projected['data']['projected_since']}")
+    print(f"Real Value Estimate: {projected['data']['real_value_estimate']}")
+    print(f"Inflation Percentage: {projected['data']['inflation_percentage']}%")
+
+# Get rising value items
+response = requests.get('https://api.example.com/api/external/rblx-values/market/rising?limit=10')
+rising = response.json()
+
+print("\nTop Rising Value Items:")
+for item in rising['data']['items']:
+    print(f"{item['name']}: +{item['value_change']} in last {item['time_period']}")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- JavaScript Examples -->
+                    <div class="tab-pane fade" id="javascript-examples" role="tabpanel" aria-labelledby="javascript-tab">
+                        <div class="accordion" id="javascriptExamplesAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jsRolimonExample" aria-expanded="true" aria-controls="jsRolimonExample">
+                                        RoliMon's Integration
+                                    </button>
+                                </h2>
+                                <div id="jsRolimonExample" class="accordion-collapse collapse show" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-rolimon-code">Copy</button>
+                                            <div class="code-block" id="js-rolimon-code">
+// Get item value and details from RoliMon's
+const itemId = 1365767; // Dominus Frigidus
+
+fetch(`https://api.example.com/api/external/rolimon/items/${itemId}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Item Name: ${data.data.name}`);
+    console.log(`Current Value: ${data.data.value}`);
+    console.log(`RAP: ${data.data.rap}`);
+    console.log(`Value Trend: ${data.data.trend}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Get player RAP
+const userId = 1234567;
+
+fetch(`https://api.example.com/api/external/rolimon/players/${userId}/rap`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Player RAP: ${data.data.rap}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsRblxTradeExample" aria-expanded="false" aria-controls="jsRblxTradeExample">
+                                        Rblx.Trade Integration
+                                    </button>
+                                </h2>
+                                <div id="jsRblxTradeExample" class="accordion-collapse collapse" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-rblxtrade-code">Copy</button>
+                                            <div class="code-block" id="js-rblxtrade-code">
+// Calculate trade value using Rblx.Trade
+const tradeData = {
+  offer_items: [1365767, 31101391], // Offering Dominus Frigidus and Dominus Empyreus
+  request_items: [1028606, 617605]  // Requesting Classic ROBLOX Fedora and Clockwork's Headphones
+};
+
+fetch('https://api.example.com/api/external/rblx-trade/trade-calculator', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(tradeData)
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Offering Total Value: ${data.data.offer_value}`);
+    console.log(`Requesting Total Value: ${data.data.request_value}`);
+    console.log(`Value Difference: ${data.data.value_difference}`);
+    console.log(`Trade Recommendation: ${data.data.recommendation}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Get player trade reputation
+const userId = 1234567;
+
+fetch(`https://api.example.com/api/external/rblx-trade/players/${userId}/reputation`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Reputation Score: ${data.data.score}/10`);
+    console.log(`Total Trades: ${data.data.total_trades}`);
+    console.log(`Completed Trades: ${data.data.completed_trades}`);
+    console.log(`Cancelled Trades: ${data.data.cancelled_trades}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsRoliverseExample" aria-expanded="false" aria-controls="jsRoliverseExample">
+                                        Roliverse Integration
+                                    </button>
+                                </h2>
+                                <div id="jsRoliverseExample" class="accordion-collapse collapse" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-roliverse-code">Copy</button>
+                                            <div class="code-block" id="js-roliverse-code">
+// Get market trends from Roliverse
+const params = new URLSearchParams({
+  item_type: 'limited',
+  time_period: 'week'
+});
+
+fetch(`https://api.example.com/api/external/roliverse/market/trends?${params}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log("Top Rising Items This Week:");
+    data.data.rising_items.slice(0, 5).forEach(item => {
+      console.log(`${item.name}: +${item.percentage_change}% (Current Value: ${item.value})`);
+    });
+    
+    console.log("\nTop Falling Items This Week:");
+    data.data.falling_items.slice(0, 5).forEach(item => {
+      console.log(`${item.name}: ${item.percentage_change}% (Current Value: ${item.value})`);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Get demand index for an item
+const itemId = 1365767; // Dominus Frigidus
+
+fetch(`https://api.example.com/api/external/roliverse/items/${itemId}/demand`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Demand Index: ${data.data.demand_index}/10`);
+    console.log(`Demand Category: ${data.data.demand_category}`);
+    console.log(`Trading Volume: ${data.data.trading_volume} per day`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsRblxValuesExample" aria-expanded="false" aria-controls="jsRblxValuesExample">
+                                        Rblx Values Integration
+                                    </button>
+                                </h2>
+                                <div id="jsRblxValuesExample" class="accordion-collapse collapse" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-rblxvalues-code">Copy</button>
+                                            <div class="code-block" id="js-rblxvalues-code">
+// Check if an item is projected
+const itemId = 1365767; // Dominus Frigidus
+
+fetch(`https://api.example.com/api/external/rblx-values/items/${itemId}/projected`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Is Projected: ${data.data.is_projected}`);
+    if (data.data.is_projected) {
+      console.log(`Projected Since: ${data.data.projected_since}`);
+      console.log(`Real Value Estimate: ${data.data.real_value_estimate}`);
+      console.log(`Inflation Percentage: ${data.data.inflation_percentage}%`);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Get rising value items
+fetch('https://api.example.com/api/external/rblx-values/market/rising?limit=10')
+  .then(response => response.json())
+  .then(data => {
+    console.log("\nTop Rising Value Items:");
+    data.data.items.forEach(item => {
+      console.log(`${item.name}: +${item.value_change} in last ${item.time_period}`);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- cURL Examples -->
+                    <div class="tab-pane fade" id="curl-examples" role="tabpanel" aria-labelledby="curl-tab">
+                        <div class="accordion" id="curlExamplesAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#curlRolimonExample" aria-expanded="true" aria-controls="curlRolimonExample">
+                                        RoliMon's Integration
+                                    </button>
+                                </h2>
+                                <div id="curlRolimonExample" class="accordion-collapse collapse show" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-rolimon-code">Copy</button>
+                                            <div class="code-block" id="curl-rolimon-code">
+# Get item value and details from RoliMon's
+curl -X GET "https://api.example.com/api/external/rolimon/items/1365767"
+
+# Get player RAP
+curl -X GET "https://api.example.com/api/external/rolimon/players/1234567/rap"
+
+# Get player inventory value
+curl -X GET "https://api.example.com/api/external/rolimon/players/1234567/inventory-value"
+
+# Get item price history
+curl -X GET "https://api.example.com/api/external/rolimon/items/1365767/history?period=month"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curlRblxTradeExample" aria-expanded="false" aria-controls="curlRblxTradeExample">
+                                        Rblx.Trade Integration
+                                    </button>
+                                </h2>
+                                <div id="curlRblxTradeExample" class="accordion-collapse collapse" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-rblxtrade-code">Copy</button>
+                                            <div class="code-block" id="curl-rblxtrade-code">
+# Calculate trade value using Rblx.Trade
+curl -X POST "https://api.example.com/api/external/rblx-trade/trade-calculator" \
+     -H "Content-Type: application/json" \
+     -d '{
+         "offer_items": [1365767, 31101391],
+         "request_items": [1028606, 617605]
+     }'
+
+# Get player trade reputation
+curl -X GET "https://api.example.com/api/external/rblx-trade/players/1234567/reputation"
+
+# Get current trade advertisements
+curl -X GET "https://api.example.com/api/external/rblx-trade/trade-ads?limit=50"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curlRoliverseExample" aria-expanded="false" aria-controls="curlRoliverseExample">
+                                        Roliverse Integration
+                                    </button>
+                                </h2>
+                                <div id="curlRoliverseExample" class="accordion-collapse collapse" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-roliverse-code">Copy</button>
+                                            <div class="code-block" id="curl-roliverse-code">
+# Get market trends from Roliverse
+curl -X GET "https://api.example.com/api/external/roliverse/market/trends?item_type=limited&time_period=week"
+
+# Get demand index for an item
+curl -X GET "https://api.example.com/api/external/roliverse/items/1365767/demand"
+
+# Get player trading activity
+curl -X GET "https://api.example.com/api/external/roliverse/players/1234567/trades?limit=20"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curlRblxValuesExample" aria-expanded="false" aria-controls="curlRblxValuesExample">
+                                        Rblx Values Integration
+                                    </button>
+                                </h2>
+                                <div id="curlRblxValuesExample" class="accordion-collapse collapse" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-rblxvalues-code">Copy</button>
+                                            <div class="code-block" id="curl-rblxvalues-code">
+# Check if an item is projected
+curl -X GET "https://api.example.com/api/external/rblx-values/items/1365767/projected"
+
+# Get item stability rating
+curl -X GET "https://api.example.com/api/external/rblx-values/items/1365767/stability"
+
+# Get rising value items
+curl -X GET "https://api.example.com/api/external/rblx-values/market/rising?limit=10"
+
+# Get falling value items
+curl -X GET "https://api.example.com/api/external/rblx-values/market/falling?limit=10"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 pt-5 pb-4">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-box-fill me-2 text-primary fs-4"></i>
+                        <h5 class="mb-0 fw-bold">BloxAPI</h5>
+                    </div>
+                    <p class="text-light opacity-75">A comprehensive API for Roblox platform integration with external services support for developers.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> Home</a></li>
+                        <li class="mb-2"><a href="/docs" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> API Documentation</a></li>
+                        <li class="mb-2"><a href="/integrations" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> Integrations</a></li>
+                        <li><a href="https://github.com/Bogdan11212/BloxAPI" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold mb-3">External Services</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#rolimon-demo" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> RoliMon's Integration</a></li>
+                        <li class="mb-2"><a href="#rblxtrade-demo" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> Rblx.Trade Integration</a></li>
+                        <li class="mb-2"><a href="#roliverse-demo" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> Roliverse Integration</a></li>
+                        <li><a href="#rblxvalues-demo" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> Rblx Values Integration</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3 opacity-25">
+            <div class="text-center">
+                <p class="text-light opacity-75 small mb-0">&copy; 2025 BloxAPI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/demo.js') }}"></script>
+</body>
+</html>
