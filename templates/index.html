@@ -35,9 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/docs"><i class="bi bi-file-earmark-text-fill me-1"></i> API Documentation</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pricing"><i class="bi bi-tag-fill me-1"></i> Pricing</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#comparison"><i class="bi bi-bar-chart-fill me-1"></i> Comparison</a>
                     </li>
@@ -406,144 +404,7 @@ curl -X GET http://localhost:5000/api/games/1234567890/details
     </div>
 
     <!-- Pricing Plans section -->
-    <div class="container mt-5 pt-4" id="pricing">
-        <div class="gradient-header text-center">
-            <h2 class="fw-bold mb-3">Pricing Plans</h2>
-            <p class="opacity-80 mb-0">Choose the right plan for your project needs</p>
-        </div>
-        
-        <div class="row mt-4 g-4">
-            <div class="col-md-4">
-                <div class="glass-card h-100 border-start border-4 border-success">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3 class="fw-bold">Free</h3>
-                            <div class="price-tag d-flex align-items-center justify-content-center my-4">
-                                <span class="display-4 fw-bold">$0</span>
-                                <span class="fs-5 ms-2 text-muted">/month</span>
-                            </div>
-                            <p class="text-muted">Perfect for hobbyists and small projects</p>
-                        </div>
-                        
-                        <ul class="list-unstyled">
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>1,000 API calls per day</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Standard endpoints access</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Rate limiting at 60 calls/min</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-x-circle-fill text-danger me-2"></i>
-                                <span class="text-muted">Premium endpoints</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-x-circle-fill text-danger me-2"></i>
-                                <span class="text-muted">Analytics dashboard</span>
-                            </li>
-                        </ul>
-                        
-                        <div class="d-grid mt-4">
-                            <a href="#api-explorer" class="btn btn-outline-success">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="glass-card h-100 border-start border-4 border-primary position-relative transform-scale-up" style="z-index: 1;">
-                    <div class="position-absolute top-0 start-50 translate-middle">
-                        <span class="badge bg-primary px-3 py-2 rounded-pill">POPULAR</span>
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3 class="fw-bold">Pro</h3>
-                            <div class="price-tag d-flex align-items-center justify-content-center my-4">
-                                <span class="display-4 fw-bold">$19</span>
-                                <span class="fs-5 ms-2 text-muted">/month</span>
-                            </div>
-                            <p class="text-muted">Ideal for growing applications</p>
-                        </div>
-                        
-                        <ul class="list-unstyled">
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>50,000 API calls per day</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>All standard endpoints</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Rate limiting at 120 calls/min</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Basic analytics dashboard</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Email support</span>
-                            </li>
-                        </ul>
-                        
-                        <div class="d-grid mt-4">
-                            <button class="btn btn-primary">Choose Plan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="glass-card h-100 border-start border-4 border-info">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3 class="fw-bold">Enterprise</h3>
-                            <div class="price-tag d-flex align-items-center justify-content-center my-4">
-                                <span class="display-4 fw-bold">$99</span>
-                                <span class="fs-5 ms-2 text-muted">/month</span>
-                            </div>
-                            <p class="text-muted">For large-scale applications</p>
-                        </div>
-                        
-                        <ul class="list-unstyled">
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Unlimited API calls</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>All endpoints including premium</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Rate limiting at 300 calls/min</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Advanced analytics dashboard</span>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span>Priority support</span>
-                            </li>
-                        </ul>
-                        
-                        <div class="d-grid mt-4">
-                            <button class="btn btn-outline-info">Contact Sales</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
     <!-- API Comparison section -->
     <div class="container mt-5 pt-4" id="comparison">
         <div class="gradient-header text-center">

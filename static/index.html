@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox API - Comprehensive Platform Interaction</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark modern-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-box-fill me-2 text-primary"></i>
+                <span class="fw-bold">Roblox API Hub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html"><i class="bi bi-house-fill me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.html"><i class="bi bi-file-earmark-text-fill me-1"></i> API Documentation</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison"><i class="bi bi-bar-chart-fill me-1"></i> Comparison</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#api-explorer"><i class="bi bi-code-square me-1"></i> API Explorer</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="https://github.com/Bogdan11212/BloxAPI" target="_blank" class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-github me-1"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modern hero section with gradient -->
+    <div class="container mt-4">
+        <div class="hero-section text-center p-5 animate-fade-in">
+            <h1 class="display-4 mb-4 fw-bold">Comprehensive Roblox API</h1>
+            <p class="lead fs-4">A modern, powerful API for seamless Roblox platform interaction</p>
+            <p class="mb-4 text-light opacity-75">Access users, games, groups, assets and more with a simple, consistent interface</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="documentation.html" class="btn btn-modern-primary">
+                    <i class="bi bi-file-earmark-text me-1"></i> Explore Documentation
+                </a>
+                <a href="#api-explorer" class="btn btn-modern-outline">
+                    <i class="bi bi-lightning-charge me-1"></i> Try API Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features section with modern cards -->
+    <div class="container mt-5 pt-3">
+        <h2 class="text-center mb-2 fw-bold">Key Features</h2>
+        <p class="text-center text-light opacity-75 mb-5">Everything you need to integrate with the Roblox platform</p>
+        
+        <!-- [Copy the rest of the features section from the templates/index.html] -->
+        <!-- This is just a placeholder to keep the example concise -->
+    </div>
+
+    <!-- API Explorer section -->
+    <div class="container mt-5 pt-4" id="api-explorer">
+        <div class="gradient-header text-center">
+            <h2 class="fw-bold mb-3">API Explorer</h2>
+            <p class="opacity-80 mb-0">Test and explore the API endpoints in real-time</p>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-10 mx-auto">
+                <div class="api-tester-container">
+                    <ul class="nav nav-tabs api-example-tabs mb-4" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="user-api-tab" data-bs-toggle="tab" data-bs-target="#user-api" type="button" role="tab" aria-controls="user-api" aria-selected="true">
+                                <i class="bi bi-person me-1"></i> User API
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="game-api-tab" data-bs-toggle="tab" data-bs-target="#game-api" type="button" role="tab" aria-controls="game-api" aria-selected="false">
+                                <i class="bi bi-controller me-1"></i> Game API
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="group-api-tab" data-bs-toggle="tab" data-bs-target="#group-api" type="button" role="tab" aria-controls="group-api" aria-selected="false">
+                                <i class="bi bi-people me-1"></i> Group API
+                            </button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content">
+                        <!-- User API Tab -->
+                        <div class="tab-pane fade show active" id="user-api" role="tabpanel" aria-labelledby="user-api-tab">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Endpoint</label>
+                                        <select class="form-select user-endpoint-select">
+                                            <option value="getUser">Get User by ID</option>
+                                            <option value="searchUsers">Search Users</option>
+                                            <option value="getFriends">Get User Friends</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 user-id-input">
+                                        <label class="form-label">User ID</label>
+                                        <input type="text" class="form-control" placeholder="123456789" value="1234567">
+                                    </div>
+                                    <div class="mb-3 user-keyword-input d-none">
+                                        <label class="form-label">Keyword</label>
+                                        <input type="text" class="form-control" placeholder="builderman">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end mb-4">
+                                <button type="button" class="btn btn-modern-primary user-send-request">
+                                    <i class="bi bi-send me-1"></i> Send Request
+                                </button>
+                            </div>
+                            
+                            <h6 class="mb-2"><i class="bi bi-arrow-return-right me-1"></i> Response:</h6>
+                            <div class="request-result user-result">
+                                <div class="text-center text-secondary p-4">
+                                    <i class="bi bi-arrow-clockwise me-1"></i> Response will appear here
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Game API Tab -->
+                        <div class="tab-pane fade" id="game-api" role="tabpanel" aria-labelledby="game-api-tab">
+                            <!-- Game API content here -->
+                        </div>
+                        
+                        <!-- Group API Tab -->
+                        <div class="tab-pane fade" id="group-api" role="tabpanel" aria-labelledby="group-api-tab">
+                            <!-- Group API content here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Roblox API Hub</h5>
+                    <p class="opacity-75">A comprehensive API for interacting with the Roblox platform. Access users, games, groups, and more.</p>
+                    <div class="social-links mt-3">
+                        <a href="https://github.com/Bogdan11212/BloxAPI" target="_blank" class="me-3"><i class="bi bi-github fs-4"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-4"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-discord fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="fw-bold mb-3">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="documentation.html" class="text-decoration-none">Documentation</a></li>
+                        <li class="mb-2"><a href="#api-explorer" class="text-decoration-none">API Explorer</a></li>
+                        <li class="mb-2"><a href="https://github.com/Bogdan11212/BloxAPI" class="text-decoration-none">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="fw-bold mb-3">API</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="documentation.html#user-endpoints" class="text-decoration-none">Users</a></li>
+                        <li class="mb-2"><a href="documentation.html#game-endpoints" class="text-decoration-none">Games</a></li>
+                        <li class="mb-2"><a href="documentation.html#group-endpoints" class="text-decoration-none">Groups</a></li>
+                        <li class="mb-2"><a href="documentation.html#asset-endpoints" class="text-decoration-none">Assets</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Stay Updated</h5>
+                    <p class="opacity-75">Get notified about API updates and new features.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+                        <button class="btn btn-modern-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="opacity-75 mb-0">&copy; 2025 Roblox API Hub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="opacity-75 mb-0">Powered by GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/github-pages-api.js"></script>
+    <script>
+        // API Explorer functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // User API tab functionality
+            const userEndpointSelect = document.querySelector('.user-endpoint-select');
+            const userIdInput = document.querySelector('.user-id-input');
+            const userKeywordInput = document.querySelector('.user-keyword-input');
+            const userSendRequest = document.querySelector('.user-send-request');
+            const userResult = document.querySelector('.user-result');
+            
+            // Toggle input fields based on selected endpoint
+            userEndpointSelect.addEventListener('change', function() {
+                const endpoint = this.value;
+                
+                // Hide all inputs first
+                userIdInput.classList.add('d-none');
+                userKeywordInput.classList.add('d-none');
+                
+                // Show relevant inputs based on endpoint
+                if (endpoint === 'getUser' || endpoint === 'getFriends') {
+                    userIdInput.classList.remove('d-none');
+                } else if (endpoint === 'searchUsers') {
+                    userKeywordInput.classList.remove('d-none');
+                }
+            });
+            
+            // Handle send request
+            userSendRequest.addEventListener('click', async function() {
+                const endpoint = userEndpointSelect.value;
+                let result;
+                
+                userResult.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+                
+                try {
+                    if (endpoint === 'getUser') {
+                        const userId = userIdInput.querySelector('input').value;
+                        result = await BloxAPI.users.getUser(userId);
+                    } else if (endpoint === 'searchUsers') {
+                        const keyword = userKeywordInput.querySelector('input').value;
+                        result = await BloxAPI.users.searchUsers(keyword);
+                    } else if (endpoint === 'getFriends') {
+                        const userId = userIdInput.querySelector('input').value;
+                        result = await BloxAPI.friends.getFriends(userId);
+                    }
+                    
+                    // Display result
+                    userResult.innerHTML = `<pre class="json-result">${JSON.stringify(result, null, 2)}</pre>`;
+                } catch (error) {
+                    userResult.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
