@@ -232,6 +232,76 @@
         </div>
     </div>
 
+    <!-- External Integrations section -->
+    <div class="container mt-5 pt-4" id="external-integrations">
+        <div class="gradient-header text-center">
+            <h2 class="fw-bold mb-3">External Integrations</h2>
+            <p class="opacity-80 mb-0">Seamless connections with other Roblox-related services</p>
+        </div>
+        
+        <div class="row mt-4 g-4">
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3" style="background: linear-gradient(135deg, #ffcc00, #ff6600);">
+                            <i class="bi bi-graph-up-arrow fs-1 text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">RoliMon's Integration</h5>
+                        <p class="card-text opacity-75">Access item values, price history, player inventory worths, and trending data from RoliMon's.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#external-rolimon" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3" style="background: linear-gradient(135deg, #33ccff, #3366ff);">
+                            <i class="bi bi-currency-exchange fs-1 text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Rblx Trade</h5>
+                        <p class="card-text opacity-75">Get trade listings, player reputation, and calculate trade values with Rblx.Trade integration.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#external-rblx-trade" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3" style="background: linear-gradient(135deg, #00cc99, #009966);">
+                            <i class="bi bi-arrow-left-right fs-1 text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Roliverse</h5>
+                        <p class="card-text opacity-75">Access trading activity, market trends, and demand indexes from the Roliverse platform.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#external-roliverse" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3" style="background: linear-gradient(135deg, #ff6699, #cc3366);">
+                            <i class="bi bi-shield-check fs-1 text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Rblx Values</h5>
+                        <p class="card-text opacity-75">Check item stability, projected status, and see rising/falling market items from Rblx Values.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#external-rblx-values" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Getting Started section with modern styling -->
     <div class="container mt-5 pt-4" id="getting-started">
         <div class="gradient-header text-center">
@@ -252,6 +322,9 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="curl-tab" data-bs-toggle="tab" data-bs-target="#curl" type="button" role="tab" aria-controls="curl" aria-selected="false">cURL</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="integrations-tab" data-bs-toggle="tab" data-bs-target="#integrations" type="button" role="tab" aria-controls="integrations" aria-selected="false">Integrations</button>
                             </li>
                         </ul>
                         
@@ -381,6 +454,71 @@ curl -X GET "http://localhost:5000/api/users/search?keyword=builderman&limit=5"
                                     <div class="code-block" id="curl-game-code">
 # Get detailed game information
 curl -X GET http://localhost:5000/api/games/1234567890/details
+</div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="integrations" role="tabpanel" aria-labelledby="integrations-tab">
+                                <h6 class="mb-3">RoliMon's Integration Example:</h6>
+                                <div class="code-block-wrapper">
+                                    <button class="copy-btn" data-code-target="rolimon-code">Copy</button>
+                                    <div class="code-block" id="rolimon-code">
+import requests
+
+# Get item value and details from RoliMon's
+response = requests.get('http://localhost:5000/api/external/rolimon/items/1365767')
+item_data = response.json()
+
+print(f"Item Name: {item_data['data']['name']}")
+print(f"Current Value: {item_data['data']['value']}")
+print(f"RAP: {item_data['data']['rap']}")
+print(f"Value Trend: {item_data['data']['trend']}")
+</div>
+                                </div>
+                                
+                                <h6 class="mt-4 mb-3">Rblx.Trade Integration Example:</h6>
+                                <div class="code-block-wrapper">
+                                    <button class="copy-btn" data-code-target="rblx-trade-code">Copy</button>
+                                    <div class="code-block" id="rblx-trade-code">
+import requests
+
+# Calculate trade value using Rblx.Trade
+data = {
+    "offer_items": [1365767, 31101391],  # Offering Dominus Frigidus and Dominus Empyreus
+    "request_items": [1028606, 617605]   # Requesting Classic ROBLOX Fedora and Clockwork's Headphones
+}
+
+response = requests.post('http://localhost:5000/api/external/rblx-trade/trade-calculator', json=data)
+calculation = response.json()
+
+print(f"Offering Total Value: {calculation['data']['offer_value']}")
+print(f"Requesting Total Value: {calculation['data']['request_value']}")
+print(f"Value Difference: {calculation['data']['value_difference']}")
+print(f"Trade Recommendation: {calculation['data']['recommendation']}")
+</div>
+                                </div>
+                                
+                                <h6 class="mt-4 mb-3">Market Trends from Roliverse:</h6>
+                                <div class="code-block-wrapper">
+                                    <button class="copy-btn" data-code-target="roliverse-code">Copy</button>
+                                    <div class="code-block" id="roliverse-code">
+import requests
+
+# Get market trends from Roliverse
+params = {
+    "item_type": "limited",
+    "time_period": "week"
+}
+response = requests.get('http://localhost:5000/api/external/roliverse/market/trends', params=params)
+trends = response.json()
+
+print("Top Rising Items This Week:")
+for item in trends['data']['rising_items'][:5]:
+    print(f"{item['name']}: +{item['percentage_change']}% (Current Value: {item['value']})")
+
+print("\nTop Falling Items This Week:")
+for item in trends['data']['falling_items'][:5]:
+    print(f"{item['name']}: {item['percentage_change']}% (Current Value: {item['value']})")
 </div>
                                 </div>
                             </div>
