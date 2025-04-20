@@ -33,31 +33,11 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    {% if current_user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ current_user.username }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ url_for('auth.create_api_key') }}">Create API Key</a></li>
-                                {% if current_user.is_admin %}
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="/admin">Admin Panel</a></li>
-                                {% endif %}
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/auth/login' %}active{% endif %}" href="{{ url_for('auth.login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/auth/register' %}active{% endif %}" href="{{ url_for('auth.register') }}">Register</a>
-                        </li>
-                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/example/bloxapi">
+                            <i data-feather="github"></i> GitHub
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -92,7 +72,7 @@
             </div>
             <hr>
             <div class="text-center">
-                <p>&copy; {% now 'Y' %} BloxAPI. All rights reserved.</p>
+                <p>&copy; 2025 BloxAPI. All rights reserved.</p>
             </div>
         </div>
     </footer>

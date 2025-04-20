@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; }
+    .primary { fill: #007bff; }
+    .secondary { fill: #6f42c1; }
+  </style>
+  
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#007bff" stroke-width="5" />
+  
+  <!-- Inner elements -->
+  <g transform="translate(100, 100)">
+    <!-- 3D Cube representation -->
+    <g transform="rotate(45)">
+      <!-- Front face -->
+      <rect x="-30" y="-30" width="60" height="60" fill="#007bff" opacity="0.8" />
+      
+      <!-- Side face -->
+      <path d="M -30,-30 L -15,-45 L 45,-45 L 30,-30 Z" fill="#6f42c1" opacity="0.9" />
+      
+      <!-- Top face -->
+      <path d="M -30,-30 L -15,-45 L 45,-45 L 30,-30 Z" fill="#6f42c1" opacity="0.7" />
+      
+      <!-- API text -->
+      <text x="0" y="10" class="logo-text" font-size="24" text-anchor="middle" fill="white">API</text>
+    </g>
+    
+    <!-- Circular elements -->
+    <circle cx="40" cy="-40" r="15" class="secondary" opacity="0.8" />
+    <circle cx="-40" cy="40" r="15" class="primary" opacity="0.8" />
+  </g>
+  
+  <!-- BLOX text -->
+  <text x="100" y="155" class="logo-text" font-size="20" text-anchor="middle" fill="#007bff">BLOXAPI</text>
+</svg>

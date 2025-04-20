@@ -2,8 +2,6 @@ import os
 import logging
 from flask import Flask, jsonify, g
 from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.exceptions import HTTPException
 from datetime import datetime
@@ -17,39 +15,8 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key")
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
-# Database configuration - SQLite file-based
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bloxapi.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    "pool_recycle": 300,
-    "pool_pre_ping": True,
-}
-
-# Initialize extensions
-db = SQLAlchemy(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'auth.login'
-
-# User loader for Flask-Login
-@login_manager.user_loader
-def load_user(user_id):
-    from models import User
-    return User.query.get(int(user_id))
-
-# Инициализация таблиц базы данных
-with app.app_context():
-    db.create_all()
-
 # Create Flask-RESTful API
 api = Api(app)
-
-# Регистрация маршрутов авторизации
-try:
-    from routes.auth import auth_bp, initialize_auth_routes
-    app.register_blueprint(auth_bp, url_prefix='/auth')
-    initialize_auth_routes(api)
-except ImportError:
-    logger.warning("Auth routes not imported. Authentication will not be available.")
 
 # Import routes after app is created to avoid circular imports
 from routes.users import UserResource, UserBatchResource, UserSearchResource
