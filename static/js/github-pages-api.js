@@ -220,6 +220,106 @@ const BloxAPI = {
          */
         async getExchangeRate() {
             return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.economy}/currency/exchange-rate`);
+        },
+        
+        /**
+         * Get resellers of a limited asset
+         * @param {number} assetId - The Roblox asset ID
+         * @param {number} limit - Maximum number of results
+         * @returns {Promise<Object>} - Asset resellers data
+         */
+        async getAssetResellers(assetId, limit = 10) {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.economy}/assets/${assetId}/resellers?limit=${limit}`);
+        },
+        
+        /**
+         * Get resale data for a limited asset
+         * @param {number} assetId - The Roblox asset ID
+         * @returns {Promise<Object>} - Asset resale data
+         */
+        async getAssetResaleData(assetId) {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.economy}/assets/${assetId}/resale-data`);
+        },
+        
+        /**
+         * Get a group's revenue summary
+         * @param {number} groupId - The Roblox group ID
+         * @returns {Promise<Object>} - Group revenue summary
+         */
+        async getGroupRevenue(groupId) {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.economy}/groups/${groupId}/revenue`);
+        }
+    },
+    
+    /**
+     * Analytics API Methods
+     */
+    analytics: {
+        /**
+         * Get analytics for a game
+         * @param {number} universeId - The Roblox universe ID
+         * @param {string} metricType - The type of metric (e.g., "visits", "revenue", "concurrent", etc.)
+         * @param {string} timeFrame - Time frame for analytics (e.g., "past1day", "past7days", "past30days")
+         * @returns {Promise<Object>} - Game analytics
+         */
+        async getGameAnalytics(universeId, metricType, timeFrame = "past30days") {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.develop}/universes/${universeId}/analytics/${metricType}?timeFrame=${timeFrame}`);
+        },
+        
+        /**
+         * Get playtime analytics for a game
+         * @param {number} universeId - The Roblox universe ID
+         * @param {string} startTime - Start time for analytics (format: "YYYY-MM-DD")
+         * @param {string} endTime - End time for analytics (format: "YYYY-MM-DD")
+         * @returns {Promise<Object>} - Game playtime analytics
+         */
+        async getGamePlaytime(universeId, startTime, endTime) {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.develop}/universes/${universeId}/analytics/playtime?startTime=${startTime}&endTime=${endTime}`);
+        }
+    },
+    
+    /**
+     * Notifications API Methods
+     */
+    notifications: {
+        /**
+         * Get user's notifications
+         * @returns {Promise<Object>} - User's notifications
+         */
+        async getNotifications() {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.users}/notifications`);
+        },
+        
+        /**
+         * Get counts of user's notifications by type
+         * @returns {Promise<Object>} - Notification counts
+         */
+        async getNotificationCounts() {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.users}/notifications/counts`);
+        }
+    },
+    
+    /**
+     * Chat API Methods
+     */
+    chat: {
+        /**
+         * Get user's chat conversations
+         * @param {number} limit - Maximum number of results
+         * @returns {Promise<Object>} - User's chat conversations
+         */
+        async getConversations(limit = 100) {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.friends}/chat/conversations?limit=${limit}`);
+        },
+        
+        /**
+         * Get messages from a chat conversation
+         * @param {number} conversationId - The conversation ID
+         * @param {number} limit - Maximum number of results
+         * @returns {Promise<Object>} - Chat messages
+         */
+        async getMessages(conversationId, limit = 100) {
+            return await BloxAPI.makeRequest(`${BloxAPI.baseUrls.friends}/chat/conversations/${conversationId}/messages?limit=${limit}`);
         }
     },
 
