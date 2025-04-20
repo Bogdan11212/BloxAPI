@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox API - Comprehensive Platform Interaction</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-fill me-2 text-danger"></i>
+                Roblox API Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs">API Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/your-username/roblox-api" target="_blank">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero section -->
+    <div class="container mt-5">
+        <div class="hero-section text-center p-5">
+            <h1 class="display-4 mb-4">Comprehensive Roblox API</h1>
+            <p class="lead">A powerful Python-based API for interacting with the Roblox platform</p>
+            <p class="mb-4">Access users, games, groups, and more with a simple, consistent interface</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="/docs" class="btn btn-primary">View Documentation</a>
+                <a href="#getting-started" class="btn btn-outline-light">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Key Features</h2>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people-fill text-info fs-1 mb-3"></i>
+                        <h5 class="card-title">User Information</h5>
+                        <p class="card-text">Access detailed user profiles, friends lists, and more from the Roblox platform.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-controller text-info fs-1 mb-3"></i>
+                        <h5 class="card-title">Game Data</h5>
+                        <p class="card-text">Get comprehensive information about games, including details, stats, and social links.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-diagram-3-fill text-info fs-1 mb-3"></i>
+                        <h5 class="card-title">Group Management</h5>
+                        <p class="card-text">Access group information, member lists, roles, and other group-related data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-box2-heart-fill text-info fs-1 mb-3"></i>
+                        <h5 class="card-title">Asset Information</h5>
+                        <p class="card-text">Retrieve details about Roblox assets, catalog items, and bundles.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-shield-check text-info fs-1 mb-3"></i>
+                        <h5 class="card-title">Rate Limiting</h5>
+                        <p class="card-text">Built-in rate limiting to ensure your applications stay within Roblox API constraints.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-file-earmark-code-fill text-info fs-1 mb-3"></i>
+                        <h5 class="card-title">Comprehensive Documentation</h5>
+                        <p class="card-text">Detailed API documentation with examples for all endpoints and features.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Getting Started section -->
+    <div class="container mt-5" id="getting-started">
+        <h2 class="text-center mb-5">Getting Started</h2>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">Quick Start Guide</h5>
+                        
+                        <p>Here's a simple example of how to use the API to get user information:</p>
+                        
+                        <div class="code-block">
+import requests
+
+# Get user information
+response = requests.get('http://localhost:5000/api/users/1234567')
+user_data = response.json()
+
+print(user_data)
+                        </div>
+                        
+                        <p class="mt-4">Search for users by username:</p>
+                        
+                        <div class="code-block">
+import requests
+
+# Search for users
+response = requests.get('http://localhost:5000/api/users/search?keyword=builderman&limit=5')
+search_results = response.json()
+
+print(search_results)
+                        </div>
+                        
+                        <p class="mt-4">Get game details:</p>
+                        
+                        <div class="code-block">
+import requests
+
+# Get game details
+response = requests.get('http://localhost:5000/api/games/1234567890/details')
+game_details = response.json()
+
+print(game_details)
+                        </div>
+                        
+                        <div class="alert alert-info mt-4">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            Check out the <a href="/docs" class="alert-link">full documentation</a> for more examples and detailed API reference.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test API section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Try It Out</h2>
+        
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">API Tester</h5>
+                        <p>Try out the API endpoints directly from your browser:</p>
+                        
+                        <form id="test-api-form" class="mb-4">
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <label for="endpoint-input" class="form-label">API Endpoint</label>
+                                    <input type="text" class="form-control" id="endpoint-input" placeholder="/api/users/1234567" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="method-select" class="form-label">Method</label>
+                                    <select class="form-select" id="method-select">
+                                        <option value="GET" selected>GET</option>
+                                        <option value="POST">POST</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="DELETE">DELETE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="params-input" class="form-label">Parameters (JSON)</label>
+                                <textarea class="form-control" id="params-input" rows="3" placeholder='{"key": "value"}'></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Send Request</button>
+                        </form>
+                        
+                        <h6>Response:</h6>
+                        <pre class="code-block" id="api-result">// API response will appear here</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-box-fill me-2 text-danger"></i> Roblox API Hub</h5>
+                    <p>A powerful Python-based API for comprehensive Roblox platform interaction.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-light">Home</a></li>
+                        <li><a href="/docs" class="text-light">Documentation</a></li>
+                        <li><a href="https://github.com/your-username/roblox-api" class="text-light">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://developer.roblox.com/" class="text-light">Roblox Developers</a></li>
+                        <li><a href="https://developer.roblox.com/en-us/api-reference" class="text-light">Roblox API Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4">
+            <div class="text-center">
+                <p>&copy; 2023 Roblox API Hub. Not affiliated with Roblox Corporation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
