@@ -704,29 +704,138 @@ def get_game_passes(game_id, limit=50):
 @with_rate_limit
 def get_group_info(group_id):
     """Get information about a specific group"""
-    response = requests.get(f"{GROUPS_API_BASE}/groups/{group_id}")
-    return handle_roblox_response(response)
+    # Проверка корректности ID группы
+    try:
+        group_id_int = int(group_id)
+        if group_id_int <= 0:
+            logger.error(f"Invalid group ID: {group_id}")
+            raise RobloxAPIError(400, f"Invalid group ID: {group_id}. Group ID must be a positive integer.")
+    except ValueError:
+        logger.error(f"Invalid group ID format: {group_id}")
+        raise RobloxAPIError(400, f"Invalid group ID format: {group_id}. Group ID must be a positive integer.")
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GROUPS_API_BASE}/groups/{group_id}",
+                timeout=CONNECTION_TIMEOUT,
+                headers={
+                    "Accept": "application/json",
+                    "User-Agent": "BloxAPI/1.0"
+                }
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for group info: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_group_members(group_id, limit=100):
     """Get members of a specific group"""
-    response = requests.get(
-        f"{GROUPS_API_BASE}/groups/{group_id}/users", 
-        params={"limit": limit}
-    )
-    return handle_roblox_response(response)
+    # Валидация лимита
+    try:
+        limit_int = int(limit)
+        if limit_int <= 0:
+            limit = 100  # используем значение по умолчанию при недопустимом значении
+        elif limit_int > 100:
+            limit = 100  # Roblox API ограничивает максимальное количество
+    except ValueError:
+        limit = 100  # при ошибке используем значение по умолчанию
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GROUPS_API_BASE}/groups/{group_id}/users", 
+                params={"limit": limit},
+                timeout=CONNECTION_TIMEOUT,
+                headers={"Accept": "application/json"}
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for group members: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_group_roles(group_id):
     """Get roles in a specific group"""
-    response = requests.get(f"{GROUPS_API_BASE}/groups/{group_id}/roles")
-    return handle_roblox_response(response)
+    # Проверка корректности ID группы
+    try:
+        group_id_int = int(group_id)
+        if group_id_int <= 0:
+            logger.error(f"Invalid group ID: {group_id}")
+            raise RobloxAPIError(400, f"Invalid group ID: {group_id}. Group ID must be a positive integer.")
+    except ValueError:
+        logger.error(f"Invalid group ID format: {group_id}")
+        raise RobloxAPIError(400, f"Invalid group ID format: {group_id}. Group ID must be a positive integer.")
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GROUPS_API_BASE}/groups/{group_id}/roles",
+                timeout=CONNECTION_TIMEOUT,
+                headers={"Accept": "application/json"}
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for group roles: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 @with_rate_limit
 def get_user_groups(user_id):
     """Get groups that a user is a member of"""
-    response = requests.get(f"{GROUPS_API_BASE}/users/{user_id}/groups")
-    return handle_roblox_response(response)
+    # Проверка корректности ID пользователя
+    try:
+        user_id_int = int(user_id)
+        if user_id_int <= 0:
+            logger.error(f"Invalid user ID: {user_id}")
+            raise RobloxAPIError(400, f"Invalid user ID: {user_id}. User ID must be a positive integer.")
+    except ValueError:
+        logger.error(f"Invalid user ID format: {user_id}")
+        raise RobloxAPIError(400, f"Invalid user ID format: {user_id}. User ID must be a positive integer.")
+    
+    # Real API call with retries
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            response = requests.get(
+                f"{GROUPS_API_BASE}/users/{user_id}/groups",
+                timeout=CONNECTION_TIMEOUT,
+                headers={"Accept": "application/json"}
+            )
+            return handle_roblox_response(response)
+        except requests.exceptions.RequestException as e:
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error(f"Max retries reached for user groups: {str(e)}")
+                raise RobloxAPIError(500, f"Error connecting to Roblox API: {str(e)}")
+            
+            wait_time = RETRY_BACKOFF * (2 ** (retries - 1))
+            logger.warning(f"Retrying Roblox API call in {wait_time} seconds...")
+            time.sleep(wait_time)
 
 # Friends-related API calls
 @with_rate_limit

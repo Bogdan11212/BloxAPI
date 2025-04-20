@@ -32,12 +32,13 @@
 ## 🌟 Features
 
 - **Complete Platform Coverage**: Access virtually every aspect of the Roblox platform
+- **Always Live Data**: Every request connects directly to Roblox's real API
 - **User-Friendly Endpoints**: Clean, consistent, and well-documented API endpoints
 - **Modern UI**: Interactive documentation and API explorer
 - **Cross-Platform Support**: Use with any programming language via standard HTTP requests
-- **Rate Limiting**: Built-in protection against hitting Roblox API limits
-- **Error Handling**: Comprehensive error reporting and logging
-- **External Service Integrations**: Connect with RoliMon's, Rblx.Trade, and other trading services
+- **Advanced Rate Limiting**: Built-in protection against hitting Roblox API limits
+- **Robust Error Handling**: Comprehensive error reporting, retries and logging
+- **External Service Integrations**: Connect with RoliMon's, Rblx.Trade, Roliverse and Rblx Values
 
 ## 💻 Installation
 
@@ -191,6 +192,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Chat**: Messaging system integration
 - **And more!**
 
+## 🔧 Recent Improvements
+
+### API Reliability Enhancements
+- **Removed Demo Mode**: All endpoints now connect directly to the real Roblox API for authentic data
+- **Fixed Critical Endpoints**: Addressed issues with User Search, User Friends, Game Details, and other crucial endpoints
+- **Enhanced Error Handling**: Implemented comprehensive error detection, reporting and recovery
+- **Intelligent Retries**: Added automatic retry mechanism with exponential backoff for transient network issues
+- **Input Validation**: Added proper parameter validation and sanitization to prevent errors
+- **Improved Logging**: Enhanced logging for better troubleshooting and monitoring
+- **API Standardization**: Ensured consistent response formats across all endpoints
+
+### External Integrations
+- **RoliMon's Integration**: Complete overhaul of item value tracking endpoints
+- **Rblx.Trade Connection**: Improved trade advertisement and player reputation endpoints
+- **Roliverse API**: Added new endpoints for market trends and demand insights
+- **Rblx Values API**: Added support for item stability metrics and projected status
+
 ## 🔧 JavaScript Client Library
 
 BloxAPI includes a JavaScript library for browser-based applications, making it easy to integrate with web projects:
@@ -206,11 +224,21 @@ BloxAPI.users.getUser(1234567)
   });
 ```
 
-## 🔄 Rate Limiting
+## 🔄 Rate Limiting and Error Handling
 
-BloxAPI implements rate limiting to ensure fair usage of resources:
+BloxAPI implements advanced rate limiting and error handling to ensure reliable and fair usage:
+
+### Rate Limiting
 - 60 requests per minute for standard usage
 - Responses include rate limit headers for monitoring usage
+- Built-in handling of Roblox API rate limits with automatic retries
+
+### Error Handling
+- Automatic retries for transient network errors (up to 3 attempts with exponential backoff)
+- Detailed error messages with HTTP status codes and contextual information
+- Consistent error response format across all endpoints
+- Special handling for common error scenarios (e.g., resource not found, invalid parameters)
+- Detailed logging for troubleshooting
 
 ## 📞 Contact
 
