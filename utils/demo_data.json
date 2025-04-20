@@ -1,0 +1,235 @@
+{
+  "rolimon": {
+    "item_details": {
+      "1365767": {
+        "name": "Dominus Frigidus",
+        "acronym": "DF",
+        "rap": 40230000,
+        "value": 43450000,
+        "demand": 9,
+        "trend": "rising",
+        "projected": false,
+        "rare": true,
+        "hyped": false,
+        "volatility": 0.12,
+        "updated_at": "2025-04-20T18:35:04Z"
+      },
+      "1028606": {
+        "name": "Classic ROBLOX Fedora",
+        "acronym": "CRF",
+        "rap": 14782400,
+        "value": 15500000,
+        "demand": 8,
+        "trend": "stable",
+        "projected": false,
+        "rare": true,
+        "hyped": false,
+        "volatility": 0.05,
+        "updated_at": "2025-04-20T19:12:22Z"
+      },
+      "617605": {
+        "name": "Clockwork's Headphones",
+        "acronym": "CW",
+        "rap": 10600000,
+        "value": 11200000,
+        "demand": 7,
+        "trend": "stable",
+        "projected": false,
+        "rare": false,
+        "hyped": false,
+        "volatility": 0.08,
+        "updated_at": "2025-04-20T17:45:30Z"
+      }
+    },
+    "player_rap": {
+      "1234567": {
+        "rap": 152450000,
+        "updated_at": "2025-04-20T20:10:12Z"
+      }
+    }
+  },
+  "rblx_trade": {
+    "trade_calculator": {
+      "offer_value": 74450000,
+      "request_value": 26700000,
+      "value_difference": 47750000,
+      "is_profitable": true,
+      "is_fair": false,
+      "recommendation": "Decline - Items you're offering are worth significantly more",
+      "timestamp": "2025-04-20T20:15:45Z"
+    },
+    "player_reputation": {
+      "1234567": {
+        "score": 8.5,
+        "total_trades": 138,
+        "completed_trades": 124,
+        "cancelled_trades": 14,
+        "positive_reviews": 112,
+        "negative_reviews": 9,
+        "neutral_reviews": 3,
+        "trusted_trader": true,
+        "updated_at": "2025-04-19T12:40:22Z"
+      }
+    }
+  },
+  "roliverse": {
+    "market_trends": {
+      "period": "week",
+      "type": "limited",
+      "rising_items": [
+        {
+          "id": 1365767,
+          "name": "Dominus Frigidus",
+          "value": 43450000,
+          "percentage_change": 8.2
+        },
+        {
+          "id": 1031429,
+          "name": "Dominus Aureus",
+          "value": 39500000,
+          "percentage_change": 6.8
+        },
+        {
+          "id": 21070012,
+          "name": "Dominus Venari",
+          "value": 33780000,
+          "percentage_change": 5.4
+        },
+        {
+          "id": 493933400,
+          "name": "Ice Valk",
+          "value": 28450000,
+          "percentage_change": 4.9
+        },
+        {
+          "id": 1335900,
+          "name": "Sparkle Time Fedora",
+          "value": 25900000,
+          "percentage_change": 4.7
+        }
+      ],
+      "falling_items": [
+        {
+          "id": 585851867,
+          "name": "America's Fedora",
+          "value": 15500000,
+          "percentage_change": -3.8
+        },
+        {
+          "id": 74891470,
+          "name": "Dominus Rex",
+          "value": 75000000,
+          "percentage_change": -2.9
+        },
+        {
+          "id": 658831150,
+          "name": "Green Sparkle Time Fedora",
+          "value": 18750000,
+          "percentage_change": -2.6
+        },
+        {
+          "id": 11748356,
+          "name": "Clockwork's Shades",
+          "value": 8900000,
+          "percentage_change": -2.1
+        },
+        {
+          "id": 9549352,
+          "name": "Memorious",
+          "value": 3400000,
+          "percentage_change": -1.8
+        }
+      ],
+      "overall_market_change": 1.2,
+      "total_items_analyzed": 342,
+      "timestamp": "2025-04-20T00:00:00Z"
+    },
+    "demand_indexes": {
+      "1365767": {
+        "demand_index": 9.2,
+        "demand_category": "Very High",
+        "trading_volume": 4.3,
+        "stability_score": 8.5,
+        "updated_at": "2025-04-20T15:30:00Z"
+      }
+    }
+  },
+  "rblx_values": {
+    "rising_items": {
+      "items": [
+        {
+          "id": 1365767,
+          "name": "Dominus Frigidus",
+          "value_change": 1200000,
+          "time_period": "week"
+        },
+        {
+          "id": 1031429,
+          "name": "Dominus Aureus",
+          "value_change": 950000,
+          "time_period": "week"
+        },
+        {
+          "id": 21070012,
+          "name": "Dominus Venari",
+          "value_change": 780000,
+          "time_period": "week"
+        },
+        {
+          "id": 493933400,
+          "name": "Ice Valk",
+          "value_change": 650000,
+          "time_period": "week"
+        },
+        {
+          "id": 1335900,
+          "name": "Sparkle Time Fedora",
+          "value_change": 600000,
+          "time_period": "week"
+        },
+        {
+          "id": 31101391,
+          "name": "Dominus Empyreus",
+          "value_change": 580000,
+          "time_period": "week"
+        },
+        {
+          "id": 1285307,
+          "name": "Dominus Messor",
+          "value_change": 520000,
+          "time_period": "week"
+        },
+        {
+          "id": 21433562,
+          "name": "Blue Sparkle Time Fedora",
+          "value_change": 490000,
+          "time_period": "week"
+        },
+        {
+          "id": 250395631,
+          "name": "Purple Sparkle Time Fedora",
+          "value_change": 450000,
+          "time_period": "week"
+        },
+        {
+          "id": 1245543,
+          "name": "Dominus Infernus",
+          "value_change": 430000,
+          "time_period": "week"
+        }
+      ],
+      "updated_at": "2025-04-20T00:00:00Z"
+    },
+    "item_projected": {
+      "1365767": {
+        "is_projected": false
+      },
+      "1028606": {
+        "is_projected": false
+      },
+      "617605": {
+        "is_projected": false
+      }
+    }
+  }
+}
