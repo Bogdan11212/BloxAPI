@@ -170,7 +170,7 @@
             </div>
         </div>
         
-        <!-- Additional Features Row -->
+        <!-- Additional Features Row 1 -->
         <div class="row g-4 mt-2">
             <div class="col-md-3 mb-4">
                 <div class="glass-card h-100">
@@ -227,6 +227,69 @@
                         <p class="card-text opacity-75">Send and receive messages between Roblox users through your applications.</p>
                         <div class="mt-auto pt-3">
                             <a href="/docs#chat" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Features Row 2 -->
+        <div class="row g-4 mt-2">
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-calendar-event fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Events API</h5>
+                        <p class="card-text opacity-75">Track and access event notifications for users, games, and groups.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#events" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-shield-check fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Moderation API</h5>
+                        <p class="card-text opacity-75">Check content moderation status, filter text, and manage safety settings.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#moderation" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-bar-chart-line fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Statistics API</h5>
+                        <p class="card-text opacity-75">Access detailed game statistics including playtime, retention, and demographics.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#statistics" class="btn btn-sm btn-outline-light">View Endpoints</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-server fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Servers API</h5>
+                        <p class="card-text opacity-75">Manage game servers, access instance details, and monitor server statistics.</p>
+                        <div class="mt-auto pt-3">
+                            <a href="/docs#servers" class="btn btn-sm btn-outline-light">View Endpoints</a>
                         </div>
                     </div>
                 </div>
@@ -574,6 +637,21 @@ for item in trends['data']['falling_items'][:5]:
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="events-api-tab" data-bs-toggle="tab" data-bs-target="#events-api" type="button" role="tab" aria-controls="events-api" aria-selected="false">
+                                <i class="bi bi-calendar-event me-1"></i> Events API
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="moderation-api-tab" data-bs-toggle="tab" data-bs-target="#moderation-api" type="button" role="tab" aria-controls="moderation-api" aria-selected="false">
+                                <i class="bi bi-shield me-1"></i> Moderation API
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="statistics-api-tab" data-bs-toggle="tab" data-bs-target="#statistics-api" type="button" role="tab" aria-controls="statistics-api" aria-selected="false">
+                                <i class="bi bi-bar-chart me-1"></i> Statistics API
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
                             <button class="nav-link" id="custom-api-tab" data-bs-toggle="tab" data-bs-target="#custom-api" type="button" role="tab" aria-controls="custom-api" aria-selected="false">
                                 <i class="bi bi-code-slash me-1"></i> Custom
                             </button>
@@ -693,6 +771,164 @@ for item in trends['data']['falling_items'][:5]:
                             
                             <h6 class="mb-2"><i class="bi bi-arrow-return-right me-1"></i> Response:</h6>
                             <div class="request-result group-result">
+                                <div class="text-center text-secondary p-4">
+                                    <i class="bi bi-arrow-clockwise me-1"></i> Response will appear here
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Events API Tab -->
+                        <div class="tab-pane fade" id="events-api" role="tabpanel" aria-labelledby="events-api-tab">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Endpoint</label>
+                                        <select class="form-select events-endpoint-select">
+                                            <option value="/api/events/users/{user_id}">User Events</option>
+                                            <option value="/api/events/games/{universe_id}">Game Events</option>
+                                            <option value="/api/events/groups/{group_id}">Group Events</option>
+                                            <option value="/api/events/history/{entity_type}/{entity_id}">Entity Event History</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 events-user-id-input">
+                                        <label class="form-label">User ID</label>
+                                        <input type="text" class="form-control" placeholder="123456789" value="1234567">
+                                    </div>
+                                    <div class="mb-3 events-game-id-input d-none">
+                                        <label class="form-label">Game ID</label>
+                                        <input type="text" class="form-control" placeholder="1234567890">
+                                    </div>
+                                    <div class="mb-3 events-group-id-input d-none">
+                                        <label class="form-label">Group ID</label>
+                                        <input type="text" class="form-control" placeholder="123456">
+                                    </div>
+                                    <div class="mb-3 events-entity-input d-none">
+                                        <label class="form-label">Entity Type</label>
+                                        <select class="form-control">
+                                            <option value="user">User</option>
+                                            <option value="game">Game</option>
+                                            <option value="group">Group</option>
+                                        </select>
+                                        <label class="form-label mt-2">Entity ID</label>
+                                        <input type="text" class="form-control" placeholder="123456">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end mb-4">
+                                <button type="button" class="btn btn-modern-primary events-send-request">
+                                    <i class="bi bi-send me-1"></i> Send Request
+                                </button>
+                            </div>
+                            
+                            <h6 class="mb-2"><i class="bi bi-arrow-return-right me-1"></i> Response:</h6>
+                            <div class="request-result events-result">
+                                <div class="text-center text-secondary p-4">
+                                    <i class="bi bi-arrow-clockwise me-1"></i> Response will appear here
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Moderation API Tab -->
+                        <div class="tab-pane fade" id="moderation-api" role="tabpanel" aria-labelledby="moderation-api-tab">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Endpoint</label>
+                                        <select class="form-select moderation-endpoint-select">
+                                            <option value="/api/moderation/content/{content_type}/{content_id}">Content Moderation Status</option>
+                                            <option value="/api/moderation/users/{user_id}/history">User Moderation History</option>
+                                            <option value="/api/moderation/assets/{asset_id}">Asset Moderation Check</option>
+                                            <option value="/api/moderation/text">Text Moderation Check</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 moderation-content-input">
+                                        <label class="form-label">Content Type</label>
+                                        <select class="form-control mb-2">
+                                            <option value="asset">Asset</option>
+                                            <option value="game">Game</option>
+                                            <option value="user">User</option>
+                                            <option value="group">Group</option>
+                                        </select>
+                                        <label class="form-label">Content ID</label>
+                                        <input type="text" class="form-control" placeholder="123456789">
+                                    </div>
+                                    <div class="mb-3 moderation-user-id-input d-none">
+                                        <label class="form-label">User ID</label>
+                                        <input type="text" class="form-control" placeholder="123456789">
+                                    </div>
+                                    <div class="mb-3 moderation-asset-id-input d-none">
+                                        <label class="form-label">Asset ID</label>
+                                        <input type="text" class="form-control" placeholder="123456789">
+                                    </div>
+                                    <div class="mb-3 moderation-text-input d-none">
+                                        <label class="form-label">Text to Check</label>
+                                        <textarea class="form-control" rows="3" placeholder="Enter text to check..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end mb-4">
+                                <button type="button" class="btn btn-modern-primary moderation-send-request">
+                                    <i class="bi bi-send me-1"></i> Send Request
+                                </button>
+                            </div>
+                            
+                            <h6 class="mb-2"><i class="bi bi-arrow-return-right me-1"></i> Response:</h6>
+                            <div class="request-result moderation-result">
+                                <div class="text-center text-secondary p-4">
+                                    <i class="bi bi-arrow-clockwise me-1"></i> Response will appear here
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Statistics API Tab -->
+                        <div class="tab-pane fade" id="statistics-api" role="tabpanel" aria-labelledby="statistics-api-tab">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Endpoint</label>
+                                        <select class="form-select statistics-endpoint-select">
+                                            <option value="/api/statistics/games/{universe_id}/universe">Game Universe Stats</option>
+                                            <option value="/api/statistics/games/{universe_id}/playtime">Game Playtime Stats</option>
+                                            <option value="/api/statistics/games/{universe_id}/retention">Game Retention Stats</option>
+                                            <option value="/api/statistics/games/{universe_id}/devices">Game Device Stats</option>
+                                            <option value="/api/statistics/games/{universe_id}/demographics">Game Demographic Stats</option>
+                                            <option value="/api/statistics/games/trending">Trending Games</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 statistics-game-id-input">
+                                        <label class="form-label">Universe ID</label>
+                                        <input type="text" class="form-control" placeholder="1234567890" value="1234567890">
+                                    </div>
+                                    <div class="mb-3 statistics-params-input">
+                                        <label class="form-label">Date Range (Optional)</label>
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                <input type="date" class="form-control" placeholder="Start Date">
+                                            </div>
+                                            <div class="col">
+                                                <input type="date" class="form-control" placeholder="End Date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end mb-4">
+                                <button type="button" class="btn btn-modern-primary statistics-send-request">
+                                    <i class="bi bi-send me-1"></i> Send Request
+                                </button>
+                            </div>
+                            
+                            <h6 class="mb-2"><i class="bi bi-arrow-return-right me-1"></i> Response:</h6>
+                            <div class="request-result statistics-result">
                                 <div class="text-center text-secondary p-4">
                                     <i class="bi bi-arrow-clockwise me-1"></i> Response will appear here
                                 </div>

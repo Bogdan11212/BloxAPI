@@ -39,6 +39,10 @@
 - **Advanced Rate Limiting**: Built-in protection against hitting Roblox API limits
 - **Robust Error Handling**: Comprehensive error reporting, retries and logging
 - **External Service Integrations**: Connect with RoliMon's, Rblx.Trade, Roliverse and Rblx Values
+- **Events System**: Track real-time events for users, games, and groups
+- **Moderation Tools**: Content moderation, safety settings, and text filtering
+- **Statistics API**: Get detailed analytics on games, players, and demographics
+- **Server Management**: Monitor and control game server instances and VIP servers
 
 ## 💻 Installation
 
@@ -98,6 +102,12 @@ Full API documentation is available at `/docs` when the server is running.
 - **Catalog**: `/api/catalog/search`
 - **Economy**: `/api/economy/currency/exchange-rate`
 - **Badges**: `/api/badges/{badgeId}`
+- **Events**: `/api/events/{entity_type}/{entity_id}`
+- **Moderation**: `/api/moderation/content/{content_type}/{content_id}`
+- **Statistics**: `/api/statistics/games/{universe_id}/universe`
+- **Servers**: `/api/servers/games/{universe_id}/instances`
+- **Social**: `/api/social/users/{user_id}/connections`
+- **Monetization**: `/api/monetization/games/{universe_id}/developer-products`
 
 ## 🔄 Integrations
 
@@ -145,7 +155,31 @@ fetch('http://localhost:5000/api/catalog/search?keyword=dominus&category=hats&li
   .then(data => console.log(data));
 ```
 
-### Example 3: Get Item Value from RoliMon's
+### Example 3: Get Game Statistics
+
+```javascript
+fetch('http://localhost:5000/api/statistics/games/1234567890/universe')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### Example 4: Check Content Moderation Status
+
+```javascript
+fetch('http://localhost:5000/api/moderation/content/asset/1234567')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### Example 5: Get Game Server Instances
+
+```javascript
+fetch('http://localhost:5000/api/servers/games/1234567890/instances?limit=10')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### Example 6: Get Item Value from RoliMon's
 
 ```javascript
 fetch('http://localhost:5000/api/external/rolimon/items/1365767/history')
@@ -190,9 +224,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Analytics**: Performance metrics and usage statistics
 - **Notifications**: User notification system integration
 - **Chat**: Messaging system integration
-- **And more!**
+- **Events**: Real-time event notifications for users, games, and groups
+- **Moderation**: Content moderation tools and safety features
+- **Statistics**: Detailed game analytics and player metrics
+- **Servers**: Game server management and VIP server control
+- **Social**: User social connections and friend recommendations
+- **Monetization**: Developer products, game passes, and premium payouts
+- **Subscriptions**: Premium subscription features and benefits
+- **User Profiles**: Extended profile information and settings
 
 ## 🔧 Recent Improvements
+
+### API Expansion (200+ New Endpoints)
+- **Events System**: New endpoints for tracking user, game, and group events with real-time notifications
+- **Moderation API**: Content moderation tools, safety settings, and text filtering capabilities
+- **Statistics System**: Enhanced game analytics with playtime tracking, retention rates, and demographic data
+- **Server Management**: New endpoints for monitoring and controlling game server instances
+- **Social Connections**: Friend recommendations, social graph analysis, and connection management
+- **Monetization Tools**: Developer product endpoints, premium payout tracking, and game pass analytics
+- **Subscriptions**: Premium subscription features and membership benefits tracking
+- **User Profiles**: Extended profile data, settings management, and privacy controls
 
 ### API Reliability Enhancements
 - **Removed Demo Mode**: All endpoints now connect directly to the real Roblox API for authentic data
