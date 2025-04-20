@@ -4,6 +4,7 @@ from marshmallow import Schema, fields, ValidationError, validate
 class PaginationSchema(Schema):
     """Pagination parameters schema"""
     limit = fields.Integer(validate=validate.Range(min=1, max=100), default=10)
+    max_rows = fields.Integer(validate=validate.Range(min=1, max=100), default=25)  # Альтернативный параметр для некоторых API
     cursor = fields.String(default=None)
 
 class SearchSchema(Schema):

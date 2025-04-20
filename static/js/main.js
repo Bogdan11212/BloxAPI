@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.events-send-request').addEventListener('click', function() {
             const selectedEndpoint = document.querySelector('.events-endpoint-select').value;
             let endpoint = selectedEndpoint;
-            let params = {max_rows: 10};
+            let params = {max_rows: 10, limit: 10};  // Добавляем оба параметра для совместимости
             
             // Replace parameters in endpoint and prepare request
             if (endpoint.includes('users')) {
