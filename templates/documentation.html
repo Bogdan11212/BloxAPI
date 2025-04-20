@@ -85,6 +85,34 @@
                         <a href="#catalog-categories" class="list-group-item list-group-item-action">Get Categories</a>
                         <a href="#catalog-search" class="list-group-item list-group-item-action">Search Catalog</a>
                     </div>
+                    
+                    <h6 class="mb-2">Avatar Endpoints</h6>
+                    <div class="list-group mb-4">
+                        <a href="#user-avatar" class="list-group-item list-group-item-action">Get User Avatar</a>
+                        <a href="#user-avatar-meta" class="list-group-item list-group-item-action">Get Avatar Metadata</a>
+                        <a href="#user-outfits" class="list-group-item list-group-item-action">Get User Outfits</a>
+                    </div>
+                    
+                    <h6 class="mb-2">Economy Endpoints</h6>
+                    <div class="list-group mb-4">
+                        <a href="#asset-resellers" class="list-group-item list-group-item-action">Get Asset Resellers</a>
+                        <a href="#asset-resale-data" class="list-group-item list-group-item-action">Get Resale Data</a>
+                        <a href="#user-transactions" class="list-group-item list-group-item-action">Get User Transactions</a>
+                    </div>
+                    
+                    <h6 class="mb-2">Badge Endpoints</h6>
+                    <div class="list-group mb-4">
+                        <a href="#game-badges" class="list-group-item list-group-item-action">Get Game Badges</a>
+                        <a href="#badge-info" class="list-group-item list-group-item-action">Get Badge Info</a>
+                        <a href="#user-badges" class="list-group-item list-group-item-action">Get User Badges</a>
+                    </div>
+                    
+                    <h6 class="mb-2">Chat & Notifications</h6>
+                    <div class="list-group mb-4">
+                        <a href="#chat-conversations" class="list-group-item list-group-item-action">Get Conversations</a>
+                        <a href="#chat-messages" class="list-group-item list-group-item-action">Get Messages</a>
+                        <a href="#notifications" class="list-group-item list-group-item-action">Get Notifications</a>
+                    </div>
                 </div>
             </div>
 
@@ -190,6 +218,7 @@
                 <!-- User Endpoints -->
                 <div class="endpoint-section" id="user-endpoints">
                     <h2 class="endpoint-title">User Endpoints</h2>
+                    <p class="lead">These endpoints provide access to Roblox user information and allow you to search for users.</p>
                     
                     <div class="endpoint-card" id="user-info">
                         <div class="endpoint-card-header">
@@ -532,6 +561,153 @@ GET /api/games?user_id=1234567&limit=10
                 </div>
 
                 <!-- Group Endpoints -->
+                <!-- Avatar Endpoints -->
+                <div class="endpoint-section" id="avatar-endpoints">
+                    <h2 class="endpoint-title">Avatar Endpoints</h2>
+                    <p class="lead">These endpoints provide access to Roblox avatar information and outfit management.</p>
+                    
+                    <div class="endpoint-card" id="user-avatar">
+                        <div class="endpoint-card-header">
+                            <span class="method-badge get-method">GET</span>
+                            <span class="endpoint-url">/api/users/{user_id}/avatar</span>
+                        </div>
+                        <div class="endpoint-card-body">
+                            <p class="endpoint-description">Returns information about a user's avatar, including their equipped items, body colors, and scales.</p>
+                            
+                            <h5 class="section-title">Path Parameters</h5>
+                            <table class="table table-dark table-hover parameter-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>user_id</td>
+                                        <td>integer</td>
+                                        <td>The Roblox user ID</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <h5 class="section-title">Example Response</h5>
+                            <div class="code-block">
+{
+  "success": true,
+  "data": {
+    "scales": {
+      "height": 1.0,
+      "width": 1.0,
+      "head": 1.0,
+      "depth": 1.0,
+      "proportion": 0.0,
+      "bodyType": 0.0
+    },
+    "playerAvatarType": "R15",
+    "bodyColors": {
+      "headColorId": 24,
+      "torsoColorId": 1003,
+      "rightArmColorId": 24,
+      "leftArmColorId": 24,
+      "rightLegColorId": 1001,
+      "leftLegColorId": 1001
+    },
+    "assets": [
+      {
+        "id": 5785985,
+        "name": "Rusty Tetramino of Competence",
+        "assetType": {
+          "id": 8,
+          "name": "Hat"
+        }
+      }
+    ],
+    "defaultShirtApplied": false,
+    "defaultPantsApplied": false,
+    "emotes": []
+  }
+}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-card" id="user-avatar-meta">
+                        <div class="endpoint-card-header">
+                            <span class="method-badge get-method">GET</span>
+                            <span class="endpoint-url">/api/users/{user_id}/avatar/meta</span>
+                        </div>
+                        <div class="endpoint-card-body">
+                            <p class="endpoint-description">Returns metadata about a user's avatar, including avatar type and wear limits.</p>
+                            
+                            <h5 class="section-title">Path Parameters</h5>
+                            <table class="table table-dark table-hover parameter-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>user_id</td>
+                                        <td>integer</td>
+                                        <td>The Roblox user ID</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-card" id="user-outfits">
+                        <div class="endpoint-card-header">
+                            <span class="method-badge get-method">GET</span>
+                            <span class="endpoint-url">/api/users/{user_id}/outfits</span>
+                        </div>
+                        <div class="endpoint-card-body">
+                            <p class="endpoint-description">Returns a user's saved outfits.</p>
+                            
+                            <h5 class="section-title">Path Parameters</h5>
+                            <table class="table table-dark table-hover parameter-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>user_id</td>
+                                        <td>integer</td>
+                                        <td>The Roblox user ID</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <h5 class="section-title">Query Parameters</h5>
+                            <table class="table table-dark table-hover parameter-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>limit</td>
+                                        <td>integer</td>
+                                        <td>Maximum number of results to return (default: 25)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="endpoint-section" id="group-endpoints">
                     <h2 class="endpoint-title">Group Endpoints</h2>
                     
