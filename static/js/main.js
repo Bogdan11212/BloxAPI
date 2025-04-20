@@ -208,6 +208,155 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Events API Tab
+    if (document.querySelector('.events-endpoint-select')) {
+        // Handle Events API Endpoint selection change
+        document.querySelector('.events-endpoint-select').addEventListener('change', function() {
+            const selectedEndpoint = this.value;
+            
+            // Hide all input fields first
+            document.querySelector('.events-user-id-input').classList.add('d-none');
+            document.querySelector('.events-game-id-input').classList.add('d-none');
+            document.querySelector('.events-group-id-input').classList.add('d-none');
+            document.querySelector('.events-entity-input').classList.add('d-none');
+            
+            // Show relevant input fields based on selected endpoint
+            if (selectedEndpoint.includes('users')) {
+                document.querySelector('.events-user-id-input').classList.remove('d-none');
+            } else if (selectedEndpoint.includes('games')) {
+                document.querySelector('.events-game-id-input').classList.remove('d-none');
+            } else if (selectedEndpoint.includes('groups')) {
+                document.querySelector('.events-group-id-input').classList.remove('d-none');
+            } else if (selectedEndpoint.includes('history')) {
+                document.querySelector('.events-entity-input').classList.remove('d-none');
+            }
+        });
+        
+        // Handle Events API Send Request button
+        document.querySelector('.events-send-request').addEventListener('click', function() {
+            const selectedEndpoint = document.querySelector('.events-endpoint-select').value;
+            let endpoint = selectedEndpoint;
+            let params = {max_rows: 10};
+            
+            // Replace parameters in endpoint and prepare request
+            if (endpoint.includes('users')) {
+                const userId = document.querySelector('.events-user-id-input input').value.trim();
+                endpoint = endpoint.replace('{user_id}', userId);
+            } else if (endpoint.includes('games')) {
+                const universeId = document.querySelector('.events-game-id-input input').value.trim();
+                endpoint = endpoint.replace('{universe_id}', universeId);
+            } else if (endpoint.includes('groups')) {
+                const groupId = document.querySelector('.events-group-id-input input').value.trim();
+                endpoint = endpoint.replace('{group_id}', groupId);
+            } else if (endpoint.includes('history')) {
+                const entityType = document.querySelector('.events-entity-input select').value.trim();
+                const entityId = document.querySelector('.events-entity-input input').value.trim();
+                endpoint = endpoint.replace('{entity_type}', entityType).replace('{entity_id}', entityId);
+            }
+            
+            makeGetRequest(endpoint, params, '.events-result');
+        });
+    }
+    
+    // Moderation API Tab
+    if (document.querySelector('.moderation-endpoint-select')) {
+        // Handle Moderation API Endpoint selection change
+        document.querySelector('.moderation-endpoint-select').addEventListener('change', function() {
+            const selectedEndpoint = this.value;
+            
+            // Hide all input fields first
+            document.querySelector('.moderation-content-input').classList.add('d-none');
+            document.querySelector('.moderation-user-id-input').classList.add('d-none');
+            document.querySelector('.moderation-asset-id-input').classList.add('d-none');
+            document.querySelector('.moderation-text-input').classList.add('d-none');
+            
+            // Show relevant input fields based on selected endpoint
+            if (selectedEndpoint.includes('content')) {
+                document.querySelector('.moderation-content-input').classList.remove('d-none');
+            } else if (selectedEndpoint.includes('users')) {
+                document.querySelector('.moderation-user-id-input').classList.remove('d-none');
+            } else if (selectedEndpoint.includes('assets')) {
+                document.querySelector('.moderation-asset-id-input').classList.remove('d-none');
+            } else if (selectedEndpoint.includes('text')) {
+                document.querySelector('.moderation-text-input').classList.remove('d-none');
+            }
+        });
+        
+        // Handle Moderation API Send Request button
+        document.querySelector('.moderation-send-request').addEventListener('click', function() {
+            const selectedEndpoint = document.querySelector('.moderation-endpoint-select').value;
+            let endpoint = selectedEndpoint;
+            let params = {};
+            
+            // Handle different endpoints
+            if (endpoint.includes('content')) {
+                const contentType = document.querySelector('.moderation-content-input select').value.trim();
+                const contentId = document.querySelector('.moderation-content-input input').value.trim();
+                endpoint = endpoint.replace('{content_type}', contentType).replace('{content_id}', contentId);
+                makeGetRequest(endpoint, params, '.moderation-result');
+            } else if (endpoint.includes('users')) {
+                const userId = document.querySelector('.moderation-user-id-input input').value.trim();
+                endpoint = endpoint.replace('{user_id}', userId);
+                makeGetRequest(endpoint, params, '.moderation-result');
+            } else if (endpoint.includes('assets')) {
+                const assetId = document.querySelector('.moderation-asset-id-input input').value.trim();
+                endpoint = endpoint.replace('{asset_id}', assetId);
+                makeGetRequest(endpoint, params, '.moderation-result');
+            } else if (endpoint.includes('text')) {
+                const text = document.querySelector('.moderation-text-input textarea').value.trim();
+                makePostRequest(endpoint, {text: text}, '.moderation-result');
+            }
+        });
+    }
+    
+    // Statistics API Tab
+    if (document.querySelector('.statistics-endpoint-select')) {
+        // Handle Statistics API Endpoint selection change
+        document.querySelector('.statistics-endpoint-select').addEventListener('change', function() {
+            const selectedEndpoint = this.value;
+            
+            // Hide/Show Universe ID input based on selected endpoint
+            if (selectedEndpoint.includes('trending')) {
+                document.querySelector('.statistics-game-id-input').classList.add('d-none');
+            } else {
+                document.querySelector('.statistics-game-id-input').classList.remove('d-none');
+            }
+            
+            // Hide/Show date range based on selected endpoint
+            if (selectedEndpoint.includes('playtime') || selectedEndpoint.includes('retention')) {
+                document.querySelector('.statistics-params-input').classList.remove('d-none');
+            } else {
+                document.querySelector('.statistics-params-input').classList.add('d-none');
+            }
+        });
+        
+        // Handle Statistics API Send Request button
+        document.querySelector('.statistics-send-request').addEventListener('click', function() {
+            const selectedEndpoint = document.querySelector('.statistics-endpoint-select').value;
+            let endpoint = selectedEndpoint;
+            let params = {};
+            
+            // Replace parameters in endpoint and prepare request
+            if (!endpoint.includes('trending')) {
+                const universeId = document.querySelector('.statistics-game-id-input input').value.trim();
+                endpoint = endpoint.replace('{universe_id}', universeId);
+                
+                // Add date range parameters if needed
+                if (endpoint.includes('playtime') || endpoint.includes('retention')) {
+                    const dateInputs = document.querySelectorAll('.statistics-params-input input');
+                    if (dateInputs[0].value) params.start_time = dateInputs[0].value;
+                    if (dateInputs[1].value) params.end_time = dateInputs[1].value;
+                }
+            } else {
+                // Add trending filters
+                params.category = 'all';
+                params.limit = 10;
+            }
+            
+            makeGetRequest(endpoint, params, '.statistics-result');
+        });
+    }
+    
     // Custom API Test Form
     const customApiForm = document.getElementById('custom-api-form');
     if (customApiForm) {
