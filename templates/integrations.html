@@ -529,6 +529,126 @@ GET /api/external/rblx-values/market/rising?limit=10
                     <!-- Python Examples -->
                     <div class="tab-pane fade show active" id="python-examples" role="tabpanel" aria-labelledby="python-tab">
                         <div class="accordion" id="pythonExamplesAccordion">
+                            <!-- New API Examples -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pythonEventsAPI" aria-expanded="true" aria-controls="pythonEventsAPI">
+                                        Events API Example
+                                    </button>
+                                </h2>
+                                <div id="pythonEventsAPI" class="accordion-collapse collapse show" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-events-code">Copy</button>
+                                            <div class="code-block" id="python-events-code">
+import requests
+
+# Get user events
+user_id = 1234567
+response = requests.get(f'https://api.example.com/api/events/users/{user_id}', 
+                         params={'max_rows': 10, 'event_types': 'friend,group,game'})
+events_data = response.json()
+
+print(f"User Events: {len(events_data['data']['events'])}")
+for event in events_data['data']['events']:
+    print(f"Event Type: {event['type']}")
+    print(f"Event Time: {event['created']}")
+    print(f"Event Details: {event['details']}")
+    print("---")
+
+# Get game events
+universe_id = 1234567890
+response = requests.get(f'https://api.example.com/api/events/games/{universe_id}', 
+                         params={'max_rows': 5, 'event_types': 'server,moderation,player'})
+game_events = response.json()
+
+print(f"Game Events: {len(game_events['data']['events'])}")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pythonStatisticsAPI" aria-expanded="false" aria-controls="pythonStatisticsAPI">
+                                        Statistics API Example
+                                    </button>
+                                </h2>
+                                <div id="pythonStatisticsAPI" class="accordion-collapse collapse" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-statistics-code">Copy</button>
+                                            <div class="code-block" id="python-statistics-code">
+import requests
+from datetime import datetime, timedelta
+
+# Get game universe statistics
+universe_id = 1234567890
+response = requests.get(f'https://api.example.com/api/statistics/games/{universe_id}/universe')
+stats_data = response.json()
+
+print(f"Active Players: {stats_data['data']['concurrent_players']}")
+print(f"Total Visits: {stats_data['data']['total_visits']}")
+print(f"Favorites: {stats_data['data']['favorites']}")
+print(f"Likes: {stats_data['data']['likes']}")
+print(f"Dislikes: {stats_data['data']['dislikes']}")
+
+# Get game playtime statistics
+today = datetime.now().strftime("%Y-%m-%d")
+week_ago = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+
+response = requests.get(f'https://api.example.com/api/statistics/games/{universe_id}/playtime', 
+                         params={'start_time': week_ago, 'end_time': today})
+playtime_data = response.json()
+
+print(f"Average Session Time: {playtime_data['data']['avg_session_time']} minutes")
+print(f"Total Playtime: {playtime_data['data']['total_playtime']} hours")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pythonModerationAPI" aria-expanded="false" aria-controls="pythonModerationAPI">
+                                        Moderation API Example
+                                    </button>
+                                </h2>
+                                <div id="pythonModerationAPI" class="accordion-collapse collapse" data-bs-parent="#pythonExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="python-moderation-code">Copy</button>
+                                            <div class="code-block" id="python-moderation-code">
+import requests
+
+# Check content moderation status
+content_type = "asset"
+content_id = 1234567
+response = requests.get(f'https://api.example.com/api/moderation/content/{content_type}/{content_id}')
+moderation_data = response.json()
+
+print(f"Content Status: {moderation_data['data']['status']}")
+print(f"Is Moderated: {moderation_data['data']['is_moderated']}")
+print(f"Last Review: {moderation_data['data']['last_review_date']}")
+
+# Check text for policy violations
+text_to_check = "Hello, would you like to play a game?"
+response = requests.post('https://api.example.com/api/moderation/text', 
+                         json={'text': text_to_check})
+text_check = response.json()
+
+print(f"Text Safe: {text_check['data']['is_safe']}")
+if not text_check['data']['is_safe']:
+    print("Flagged Content:")
+    for flag in text_check['data']['flags']:
+        print(f"- {flag['reason']}: {flag['severity']}")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pythonRolimonExample" aria-expanded="true" aria-controls="pythonRolimonExample">
@@ -693,7 +813,167 @@ for item in rising['data']['items']:
                         <div class="accordion" id="javascriptExamplesAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jsRolimonExample" aria-expanded="true" aria-controls="jsRolimonExample">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jsEventsAPI" aria-expanded="true" aria-controls="jsEventsAPI">
+                                        Events API Example
+                                    </button>
+                                </h2>
+                                <div id="jsEventsAPI" class="accordion-collapse collapse show" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-events-code">Copy</button>
+                                            <div class="code-block" id="js-events-code">
+// Get user events
+const userId = 1234567;
+const params = new URLSearchParams({
+  max_rows: 10,
+  event_types: 'friend,group,game'
+});
+
+fetch(`https://api.example.com/api/events/users/${userId}?${params}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`User Events: ${data.data.events.length}`);
+    data.data.events.forEach(event => {
+      console.log(`Event Type: ${event.type}`);
+      console.log(`Event Time: ${event.created}`);
+      console.log(`Event Details: ${JSON.stringify(event.details)}`);
+      console.log('---');
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Get game events
+const universeId = 1234567890;
+const gameParams = new URLSearchParams({
+  max_rows: 5,
+  event_types: 'server,moderation,player'
+});
+
+fetch(`https://api.example.com/api/events/games/${universeId}?${gameParams}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Game Events: ${data.data.events.length}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsStatisticsAPI" aria-expanded="false" aria-controls="jsStatisticsAPI">
+                                        Statistics API Example
+                                    </button>
+                                </h2>
+                                <div id="jsStatisticsAPI" class="accordion-collapse collapse" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-statistics-code">Copy</button>
+                                            <div class="code-block" id="js-statistics-code">
+// Get game universe statistics
+const universeId = 1234567890;
+
+fetch(`https://api.example.com/api/statistics/games/${universeId}/universe`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Active Players: ${data.data.concurrent_players}`);
+    console.log(`Total Visits: ${data.data.total_visits}`);
+    console.log(`Favorites: ${data.data.favorites}`);
+    console.log(`Likes: ${data.data.likes}`);
+    console.log(`Dislikes: ${data.data.dislikes}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Get game playtime statistics
+const today = new Date().toISOString().split('T')[0];
+const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+
+const playtimeParams = new URLSearchParams({
+  start_time: weekAgo,
+  end_time: today
+});
+
+fetch(`https://api.example.com/api/statistics/games/${universeId}/playtime?${playtimeParams}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Average Session Time: ${data.data.avg_session_time} minutes`);
+    console.log(`Total Playtime: ${data.data.total_playtime} hours`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsModerationAPI" aria-expanded="false" aria-controls="jsModerationAPI">
+                                        Moderation API Example
+                                    </button>
+                                </h2>
+                                <div id="jsModerationAPI" class="accordion-collapse collapse" data-bs-parent="#javascriptExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="js-moderation-code">Copy</button>
+                                            <div class="code-block" id="js-moderation-code">
+// Check content moderation status
+const contentType = "asset";
+const contentId = 1234567;
+
+fetch(`https://api.example.com/api/moderation/content/${contentType}/${contentId}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Content Status: ${data.data.status}`);
+    console.log(`Is Moderated: ${data.data.is_moderated}`);
+    console.log(`Last Review: ${data.data.last_review_date}`);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Check text for policy violations
+const textToCheck = "Hello, would you like to play a game?";
+
+fetch('https://api.example.com/api/moderation/text', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ text: textToCheck })
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Text Safe: ${data.data.is_safe}`);
+    if (!data.data.is_safe) {
+      console.log('Flagged Content:');
+      data.data.flags.forEach(flag => {
+        console.log(`- ${flag.reason}: ${flag.severity}`);
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsRolimonExample" aria-expanded="false" aria-controls="jsRolimonExample">
                                         RoliMon's Integration
                                     </button>
                                 </h2>
@@ -895,7 +1175,93 @@ fetch('https://api.example.com/api/external/rblx-values/market/rising?limit=10')
                         <div class="accordion" id="curlExamplesAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#curlRolimonExample" aria-expanded="true" aria-controls="curlRolimonExample">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#curlEventsAPI" aria-expanded="true" aria-controls="curlEventsAPI">
+                                        Events API Example
+                                    </button>
+                                </h2>
+                                <div id="curlEventsAPI" class="accordion-collapse collapse show" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-events-code">Copy</button>
+                                            <div class="code-block" id="curl-events-code">
+# Get user events
+curl -X GET "https://api.example.com/api/events/users/1234567?max_rows=10&event_types=friend,group,game"
+
+# Get game events
+curl -X GET "https://api.example.com/api/events/games/1234567890?max_rows=5&event_types=server,moderation,player"
+
+# Get group events
+curl -X GET "https://api.example.com/api/events/groups/1234567?max_rows=15"
+
+# Get entity event history
+curl -X GET "https://api.example.com/api/events/history/user/1234567?max_rows=20"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curlStatisticsAPI" aria-expanded="false" aria-controls="curlStatisticsAPI">
+                                        Statistics API Example
+                                    </button>
+                                </h2>
+                                <div id="curlStatisticsAPI" class="accordion-collapse collapse" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-statistics-code">Copy</button>
+                                            <div class="code-block" id="curl-statistics-code">
+# Get game universe statistics
+curl -X GET "https://api.example.com/api/statistics/games/1234567890/universe"
+
+# Get game playtime statistics (with date range)
+curl -X GET "https://api.example.com/api/statistics/games/1234567890/playtime?start_time=2025-04-13&end_time=2025-04-20"
+
+# Get game retention stats
+curl -X GET "https://api.example.com/api/statistics/games/1234567890/retention"
+
+# Get game device stats
+curl -X GET "https://api.example.com/api/statistics/games/1234567890/devices"
+
+# Get trending games
+curl -X GET "https://api.example.com/api/statistics/games/trending?category=all&limit=10"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curlModerationAPI" aria-expanded="false" aria-controls="curlModerationAPI">
+                                        Moderation API Example
+                                    </button>
+                                </h2>
+                                <div id="curlModerationAPI" class="accordion-collapse collapse" data-bs-parent="#curlExamplesAccordion">
+                                    <div class="accordion-body">
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" data-code-target="curl-moderation-code">Copy</button>
+                                            <div class="code-block" id="curl-moderation-code">
+# Check content moderation status
+curl -X GET "https://api.example.com/api/moderation/content/asset/1234567"
+
+# Get user moderation history
+curl -X GET "https://api.example.com/api/moderation/users/1234567/history"
+
+# Check text for policy violations
+curl -X POST "https://api.example.com/api/moderation/text" \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Hello, would you like to play a game?"}'
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curlRolimonExample" aria-expanded="false" aria-controls="curlRolimonExample">
                                         RoliMon's Integration
                                     </button>
                                 </h2>
