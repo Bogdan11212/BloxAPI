@@ -191,6 +191,11 @@ def documentation():
     from flask import render_template
     return render_template('documentation.html')
 
+@app.route('/integrations')
+def integrations():
+    from flask import render_template
+    return render_template('integrations.html')
+
 # Error handling
 @app.errorhandler(HTTPException)
 def handle_http_exception(e):
