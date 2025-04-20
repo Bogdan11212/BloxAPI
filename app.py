@@ -1,10 +1,9 @@
 import os
 import logging
-from flask import Flask, jsonify, g
+from flask import Flask, jsonify
 from flask_restful import Api
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.exceptions import HTTPException
-from datetime import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
