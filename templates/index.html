@@ -36,11 +36,17 @@
                         <a class="nav-link" href="/docs"><i class="bi bi-file-earmark-text-fill me-1"></i> API Documentation</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#pricing"><i class="bi bi-tag-fill me-1"></i> Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison"><i class="bi bi-bar-chart-fill me-1"></i> Comparison</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#api-explorer"><i class="bi bi-code-square me-1"></i> API Explorer</a>
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="https://github.com/your-username/roblox-api" target="_blank" class="btn btn-sm btn-outline-light">
+                    <a href="https://github.com/Bogdan11212/BloxAPI" target="_blank" class="btn btn-sm btn-outline-light">
                         <i class="bi bi-github me-1"></i> GitHub
                     </a>
                 </div>
@@ -158,6 +164,69 @@
                         <p class="card-text opacity-75">Detailed API documentation with interactive examples for all endpoints and features.</p>
                         <div class="mt-auto pt-3">
                             <a href="/docs" class="btn btn-sm btn-outline-light">Explore Docs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Features Row -->
+        <div class="row g-4 mt-2">
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-graph-up-arrow fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Analytics</h5>
+                        <p class="card-text opacity-75">Track usage metrics and performance data for your Roblox integrations.</p>
+                        <div class="mt-auto pt-3">
+                            <span class="badge bg-info">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-currency-exchange fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Economy Data</h5>
+                        <p class="card-text opacity-75">Access Robux transactions, sales data, and marketplace analytics.</p>
+                        <div class="mt-auto pt-3">
+                            <span class="badge bg-info">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-bell-fill fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Notifications</h5>
+                        <p class="card-text opacity-75">Integration with Roblox notification system for real-time updates.</p>
+                        <div class="mt-auto pt-3">
+                            <span class="badge bg-info">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="glass-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper mb-3">
+                            <i class="bi bi-chat-dots-fill fs-1" style="color: var(--primary-accent);"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Messaging API</h5>
+                        <p class="card-text opacity-75">Send and receive messages between Roblox users through your applications.</p>
+                        <div class="mt-auto pt-3">
+                            <span class="badge bg-info">Coming Soon</span>
                         </div>
                     </div>
                 </div>
@@ -336,6 +405,235 @@ curl -X GET http://localhost:5000/api/games/1234567890/details
         </div>
     </div>
 
+    <!-- Pricing Plans section -->
+    <div class="container mt-5 pt-4" id="pricing">
+        <div class="gradient-header text-center">
+            <h2 class="fw-bold mb-3">Pricing Plans</h2>
+            <p class="opacity-80 mb-0">Choose the right plan for your project needs</p>
+        </div>
+        
+        <div class="row mt-4 g-4">
+            <div class="col-md-4">
+                <div class="glass-card h-100 border-start border-4 border-success">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold">Free</h3>
+                            <div class="price-tag d-flex align-items-center justify-content-center my-4">
+                                <span class="display-4 fw-bold">$0</span>
+                                <span class="fs-5 ms-2 text-muted">/month</span>
+                            </div>
+                            <p class="text-muted">Perfect for hobbyists and small projects</p>
+                        </div>
+                        
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>1,000 API calls per day</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Standard endpoints access</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Rate limiting at 60 calls/min</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-x-circle-fill text-danger me-2"></i>
+                                <span class="text-muted">Premium endpoints</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-x-circle-fill text-danger me-2"></i>
+                                <span class="text-muted">Analytics dashboard</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="d-grid mt-4">
+                            <a href="#api-explorer" class="btn btn-outline-success">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="glass-card h-100 border-start border-4 border-primary position-relative transform-scale-up" style="z-index: 1;">
+                    <div class="position-absolute top-0 start-50 translate-middle">
+                        <span class="badge bg-primary px-3 py-2 rounded-pill">POPULAR</span>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold">Pro</h3>
+                            <div class="price-tag d-flex align-items-center justify-content-center my-4">
+                                <span class="display-4 fw-bold">$19</span>
+                                <span class="fs-5 ms-2 text-muted">/month</span>
+                            </div>
+                            <p class="text-muted">Ideal for growing applications</p>
+                        </div>
+                        
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>50,000 API calls per day</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>All standard endpoints</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Rate limiting at 120 calls/min</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Basic analytics dashboard</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Email support</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary">Choose Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="glass-card h-100 border-start border-4 border-info">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold">Enterprise</h3>
+                            <div class="price-tag d-flex align-items-center justify-content-center my-4">
+                                <span class="display-4 fw-bold">$99</span>
+                                <span class="fs-5 ms-2 text-muted">/month</span>
+                            </div>
+                            <p class="text-muted">For large-scale applications</p>
+                        </div>
+                        
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Unlimited API calls</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>All endpoints including premium</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Rate limiting at 300 calls/min</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Advanced analytics dashboard</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-outline-info">Contact Sales</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- API Comparison section -->
+    <div class="container mt-5 pt-4" id="comparison">
+        <div class="gradient-header text-center">
+            <h2 class="fw-bold mb-3">API Comparison</h2>
+            <p class="opacity-80 mb-0">See how BloxAPI compares to other solutions</p>
+        </div>
+        
+        <div class="glass-card mt-4">
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="min-width: 200px;">Features</th>
+                                <th scope="col" class="text-center">
+                                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BloxAPI Logo" height="30" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2030%2030%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%20focusable%3D%22false%22%3E%3Crect%20width%3D%2230%22%20height%3D%2230%22%20fill%3D%22%236366f1%22%3E%3C%2Frect%3E%3C%2Fsvg%3E'"><br>
+                                    <span class="fw-bold">BloxAPI</span>
+                                </th>
+                                <th scope="col" class="text-center">Competitor A</th>
+                                <th scope="col" class="text-center">Competitor B</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Free API Calls</td>
+                                <td class="text-center"><span class="badge bg-success">1,000/day</span></td>
+                                <td class="text-center"><span class="badge bg-warning">500/day</span></td>
+                                <td class="text-center"><span class="badge bg-danger">100/day</span></td>
+                            </tr>
+                            <tr>
+                                <td>Documentation Quality</td>
+                                <td class="text-center">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Interactive API Explorer</td>
+                                <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-4"></i></td>
+                                <td class="text-center"><i class="bi bi-x-circle-fill text-danger fs-4"></i></td>
+                                <td class="text-center"><i class="bi bi-dash-circle-fill text-warning fs-4"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Rate Limiting</td>
+                                <td class="text-center">60 calls/min</td>
+                                <td class="text-center">30 calls/min</td>
+                                <td class="text-center">20 calls/min</td>
+                            </tr>
+                            <tr>
+                                <td>Data Freshness</td>
+                                <td class="text-center">Real-time</td>
+                                <td class="text-center">5 min delay</td>
+                                <td class="text-center">15 min delay</td>
+                            </tr>
+                            <tr>
+                                <td>Support</td>
+                                <td class="text-center">Email & Discord</td>
+                                <td class="text-center">Email only</td>
+                                <td class="text-center">Ticket system</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Advanced API Explorer section -->
     <div class="container mt-5 pt-4" id="api-explorer">
         <div class="gradient-header text-center">
@@ -549,7 +847,7 @@ curl -X GET http://localhost:5000/api/games/1234567890/details
                         <li class="mb-2"><a href="/" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> Home</a></li>
                         <li class="mb-2"><a href="/docs" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> API Documentation</a></li>
                         <li class="mb-2"><a href="#api-explorer" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> API Explorer</a></li>
-                        <li><a href="https://github.com/your-username/roblox-api" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> GitHub</a></li>
+                        <li><a href="https://github.com/Bogdan11212/BloxAPI" class="text-light text-decoration-none opacity-75 hover-opacity-100"><i class="bi bi-chevron-right me-1 small"></i> GitHub</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -565,9 +863,9 @@ curl -X GET http://localhost:5000/api/games/1234567890/details
             <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-light opacity-75 small">© 2025 Roblox API Hub. Not affiliated with Roblox Corporation.</p>
                 <div class="social-links">
-                    <a href="#" class="text-light opacity-75 me-3"><i class="bi bi-github"></i></a>
-                    <a href="#" class="text-light opacity-75 me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-light opacity-75"><i class="bi bi-discord"></i></a>
+                    <a href="https://github.com/Bogdan11212/BloxAPI" target="_blank" class="text-light opacity-75 me-3"><i class="bi bi-github"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="text-light opacity-75 me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="https://discord.com" target="_blank" class="text-light opacity-75"><i class="bi bi-discord"></i></a>
                 </div>
             </div>
         </div>
