@@ -21,7 +21,7 @@ class RobloxAPIError(Exception):
 logger = logging.getLogger(__name__)
 
 # Demo mode - For development and testing
-DEMO_MODE = True
+DEMO_MODE = False
 
 # =================================================
 # Events API Functions
