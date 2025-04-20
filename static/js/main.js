@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.moderation-send-request').addEventListener('click', function() {
             const selectedEndpoint = document.querySelector('.moderation-endpoint-select').value;
             let endpoint = selectedEndpoint;
-            let params = {};
+            let params = {max_rows: 10, limit: 10}; // Добавляем оба параметра для совместимости
             
             // Handle different endpoints
             if (endpoint.includes('content')) {
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.statistics-send-request').addEventListener('click', function() {
             const selectedEndpoint = document.querySelector('.statistics-endpoint-select').value;
             let endpoint = selectedEndpoint;
-            let params = {};
+            let params = {max_rows: 10, limit: 10}; // Добавляем оба параметра для совместимости
             
             // Replace parameters in endpoint and prepare request
             if (!endpoint.includes('trending')) {
@@ -350,7 +350,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Add trending filters
                 params.category = 'all';
-                params.limit = 10;
             }
             
             makeGetRequest(endpoint, params, '.statistics-result');
