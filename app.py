@@ -219,6 +219,85 @@ from routes.user_content import (
     UserContentEngagementResource
 )
 
+# Import physics modules
+from routes.physics import (
+    PhysicsSettingsResource, PhysicsPerformanceStatsResource,
+    PhysicsCollisionGroupsResource, PhysicsConstraintsResource,
+    PhysicsMaterialsResource, PhysicsPropertiesResource,
+    PhysicsJointsResource, PhysicsAssemblyResource,
+    PhysicsSimulationResource, PhysicsRaycastResource,
+    PhysicsVolumeResource, PhysicsParticleEmittersResource,
+    PhysicsExplosionsResource, PhysicsForcesResource
+)
+
+# Import education modules
+from routes.education import (
+    EducationProviderResource, EducationProviderDetailsResource,
+    EducationCurriculumResource, EducationCourseResource,
+    EducationLessonResource, EducationProgressResource,
+    EducationAssignmentResource, EducationAssignmentDetailsResource,
+    EducationClassResource, EducationClassRosterResource,
+    EducationEnrollmentResource, EducationCertificateResource,
+    EducationCertificateDetailsResource, EducationProjectResource,
+    EducationProjectDetailsResource, EducationResourcesResource,
+    EducationResourceDetailsResource, EducationStandardsResource,
+    EducationStandardDetailsResource
+)
+
+# Import metaverse modules
+from routes.metaverse import (
+    MetaverseEnvironmentsResource, MetaverseEnvironmentDetailsResource,
+    MetaversePortalsResource, MetaversePortalDetailsResource,
+    MetaverseAvatarsResource, MetaverseAvatarDetailsResource,
+    MetaverseObjectsResource, MetaverseObjectDetailsResource,
+    MetaverseEventsResource, MetaverseEventDetailsResource,
+    MetaverseEnvironmentStateResource, MetaverseInteractionsResource,
+    MetaverseInteractionDetailsResource, MetaversePerformanceResource,
+    MetaverseUserPresenceResource, MetaverseUserPresenceHistoryResource,
+    MetaverseMapResource, MetaverseNavMeshResource,
+    MetaversePathfindingResource
+)
+
+# Import VR/AR modules
+from routes.vr import (
+    VrCompatibleGamesResource, VrGameDetailsResource,
+    VrDeviceCompatibilityResource, VrControlsResource,
+    VrSettingsResource, VrPlaytimeResource,
+    VrPerformanceResource, VrEventsResource,
+    VrEventDetailsResource, VrTutorialsResource,
+    VrTutorialDetailsResource, ArCompatibleGamesResource,
+    ArGameDetailsResource, ArDeviceCompatibilityResource,
+    ArControlsResource, ArSettingsResource,
+    ArPlaytimeResource
+)
+
+# Import cloud modules
+from routes.cloud import (
+    CloudServicesResource, CloudServiceDetailsResource,
+    CloudStorageResource, CloudStorageItemResource,
+    CloudDatabaseResource, CloudDatabaseTablesResource,
+    CloudDatabaseTableDetailsResource, CloudFunctionsResource,
+    CloudFunctionDetailsResource, CloudFunctionLogsResource,
+    CloudFunctionMetricsResource, CloudMessagingResource,
+    CloudMessagingTopicsResource, CloudMessagingTopicDetailsResource,
+    CloudMessagingSubscriptionsResource, CloudMessagingSubscriptionDetailsResource,
+    CloudAnalyticsResource, CloudAnalyticsEventTypesResource,
+    CloudAnalyticsEventDetailsResource
+)
+
+# Import UGC modules
+from routes.ugc import (
+    UgcCreatorsResource, UgcCreatorDetailsResource,
+    UgcCreatorItemsResource, UgcCreatorStatsResource,
+    UgcItemsResource, UgcItemDetailsResource,
+    UgcItemStatsResource, UgcItemReviewsResource,
+    UgcItemCommentsResource, UgcItemSalesResource,
+    UgcItemOwnersResource, UgcItemSimilarResource,
+    UgcItemFavoritesResource, UgcItemVersionsResource,
+    UgcItemVersionDetailsResource, UgcCategoriesResource,
+    UgcCategoryDetailsResource, UgcTrendingItemsResource
+)
+
 # Register API routes
 api.add_resource(UserResource, '/api/users/<int:user_id>')
 api.add_resource(UserBatchResource, '/api/users')
