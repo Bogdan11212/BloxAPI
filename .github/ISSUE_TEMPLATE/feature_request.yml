@@ -1,83 +1,100 @@
 name: Feature Request
-description: Suggest an idea for BloxAPI
+description: Suggest an idea for this project
 title: "[Feature]: "
-labels: ["enhancement"]
+labels: ["enhancement", "triage"]
 assignees:
-  - Bogdan11212
+  - octocat
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for suggesting a new feature for BloxAPI!
+        Thanks for taking the time to suggest a new feature! Please fill out this form as completely as possible.
   - type: textarea
     id: problem
     attributes:
-      label: Is your feature request related to a problem?
-      description: A clear and concise description of what the problem is.
-      placeholder: I'm frustrated when [...]
+      label: Problem Statement
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: I'm always frustrated when [...]
     validations:
-      required: false
+      required: true
   - type: textarea
     id: solution
     attributes:
-      label: Describe the solution you'd like
-      description: A clear and concise description of what you want to happen.
-      placeholder: I would like BloxAPI to [...]
+      label: Proposed Solution
+      description: Describe the solution you'd like to see implemented.
+      placeholder: |
+        A clear and concise description of what you want to happen.
+        
+        If possible, describe the API interface you envision.
     validations:
       required: true
   - type: textarea
     id: alternatives
     attributes:
-      label: Describe alternatives you've considered
-      description: A clear and concise description of any alternative solutions or features you've considered.
-      placeholder: I have tried using [...]
+      label: Alternative Solutions
+      description: Describe any alternative solutions or features you've considered.
+      placeholder: |
+        A clear and concise description of any alternative solutions or features you've considered.
+    validations:
+      required: false
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: Implementation Ideas
+      description: If you have any ideas about how this could be implemented, please share them here.
+      placeholder: |
+        I think this could be implemented by extending the X class to support Y...
+    validations:
+      required: false
+  - type: textarea
+    id: code-example
+    attributes:
+      label: Example Code Usage
+      description: If applicable, show an example of how you would use this feature in code.
+      render: python
+      placeholder: |
+        # Example of how the feature might be used
+        from bloxapi import BloxAPI
+        
+        api = BloxAPI()
+        result = api.new_feature(param1="value", param2=123)
+        print(result)
     validations:
       required: false
   - type: dropdown
-    id: priority
+    id: importance
     attributes:
-      label: Priority
+      label: Importance
       description: How important is this feature to you?
       options:
-        - Low - Nice to have
-        - Medium - Would improve usability
-        - High - Critical functionality missing
+        - Nice to have
+        - Important
+        - Critical
     validations:
       required: true
   - type: dropdown
-    id: api_category
+    id: scope
     attributes:
-      label: API Category
-      description: Which part of the API does this feature relate to?
+      label: Feature Scope
+      description: What part of the project would this feature affect?
+      multiple: true
       options:
-        - Users API
-        - Games API
-        - Groups API
-        - Assets API
-        - Catalog API
-        - Economy API
-        - Badges API
-        - Events API
-        - Moderation API
-        - Statistics API
-        - Servers API
-        - Social API
-        - Monetization API
-        - Other/General
+        - Core API
+        - Documentation
+        - CLI
+        - Performance
+        - Security
+        - Error Handling
+        - Configuration
+        - Compatibility
+        - Other
     validations:
       required: true
-  - type: textarea
-    id: context
-    attributes:
-      label: Additional context
-      description: Add any other context or screenshots about the feature request here.
-    validations:
-      required: false
   - type: checkboxes
     id: terms
     attributes:
       label: Code of Conduct
-      description: By submitting this feature request, you agree to follow our Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/your-username/bloxapi/blob/main/CODE_OF_CONDUCT.md)
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true

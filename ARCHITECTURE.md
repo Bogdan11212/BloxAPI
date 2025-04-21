@@ -1,96 +1,158 @@
 # BloxAPI Architecture
 
-This document provides an overview of the BloxAPI architecture, design patterns, and key components.
+This document describes the high-level architecture of BloxAPI and introduces some core concepts.
 
-## System Overview
+## Table of Contents
 
-BloxAPI is a comprehensive REST API for interacting with the Roblox platform. It provides a clean, well-documented interface to access Roblox data, functionality, and services.
+- [Architecture Overview](#architecture-overview)
+- [Core Components](#core-components)
+- [Data Flow](#data-flow)
+- [API Structure](#api-structure)
+- [Error Handling](#error-handling)
+- [Caching Strategy](#caching-strategy)
+- [Database Schema](#database-schema)
+- [Security Considerations](#security-considerations)
+- [Performance Optimizations](#performance-optimizations)
+- [Deployment Architecture](#deployment-architecture)
 
-![Architecture Diagram](docs/images/architecture.svg)
+## Architecture Overview
+
+BloxAPI is designed as a modern REST API service that provides a comprehensive interface to the Roblox platform. It follows a modular architecture with clear separation of concerns:
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  Client Apps    │────▶│  BloxAPI        │────▶│  Roblox APIs    │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+                               │   ▲
+                               │   │
+                               ▼   │
+                        ┌─────────────────┐
+                        │                 │
+                        │  Database &     │
+                        │  Cache Layer    │
+                        │                 │
+                        └─────────────────┘
+```
 
 ## Core Components
 
-### 1. API Layer
+BloxAPI consists of several core components:
 
-The API layer handles incoming HTTP requests, authentication, rate limiting, and response formatting. It is built using Flask and Flask-RESTful.
+1. **API Layer**: Flask-based REST API endpoints organized by functionality
+2. **Resource Managers**: Classes that handle specific Roblox resource types
+3. **Authentication Service**: Handles token management and user authentication
+4. **Cache Manager**: Provides efficient caching for API responses
+5. **Rate Limiter**: Ensures compliance with Roblox API rate limits
+6. **Logging Service**: Comprehensive logging for debugging and monitoring
+7. **Error Handler**: Standardized error responses and exception handling
+8. **HTTP Client**: Optimized client for making requests to Roblox APIs
+9. **Data Models**: Structured data objects for internal API representation
+10. **Configuration System**: Environment-based configuration management
 
-Key files:
-- `main.py`: Application entry point
-- `app.py`: Flask application setup, error handlers, and middleware
-- `routes/*.py`: API endpoint definitions organized by category
+## Data Flow
 
-### 2. Service Layer
+The typical data flow through the system:
 
-The service layer contains the business logic and coordinates communication with the Roblox API and other external services.
+1. Client application makes a request to a BloxAPI endpoint
+2. Request is authenticated and validated
+3. Rate limiting is checked
+4. Cache is queried for existing response
+5. If cache miss, request is forwarded to Roblox API
+6. Response is processed, transformed, and cached
+7. Standardized response is returned to client
 
-Key files:
-- `services/*.py`: Service classes for each API category
+## API Structure
 
-### 3. Data Access Layer
+BloxAPI's endpoints are organized into logical categories that mirror Roblox's own API structure:
 
-The data access layer encapsulates the details of communicating with the Roblox API and other external services. It handles request formatting, error handling, and response parsing.
+- `/api/users/*` - User-related operations
+- `/api/games/*` - Game/experience operations
+- `/api/assets/*` - Asset operations
+- `/api/economy/*` - Economy-related operations
+- `/api/groups/*` - Group-related operations
+- and so on...
 
-Key files:
-- `clients/*.py`: API client implementations
-- `models/*.py`: Data models and schemas
-
-### 4. Utility Layer
-
-The utility layer provides common functionality used throughout the application, such as request signing, rate limiting, caching, and logging.
-
-Key files:
-- `utils/*.py`: Utility functions and classes
-
-## Request Flow
-
-1. An HTTP request is received by the API layer
-2. The request is validated and authenticated
-3. Rate limiting is applied
-4. The request is routed to the appropriate service in the service layer
-5. The service calls the data access layer to communicate with the Roblox API
-6. The response is formatted and returned to the client
-
-## Design Patterns
-
-BloxAPI uses the following design patterns:
-
-- **Repository Pattern**: The data access layer abstracts the details of communicating with external APIs
-- **Service Pattern**: Business logic is encapsulated in service classes
-- **Factory Pattern**: Used to create client instances with the appropriate configuration
-- **Adapter Pattern**: Used to adapt between different API interfaces
-- **Decorator Pattern**: Used for cross-cutting concerns like rate limiting and caching
+Each endpoint follows RESTful conventions with appropriate HTTP methods (GET, POST, PUT, DELETE) and standardized response formats.
 
 ## Error Handling
 
 BloxAPI implements a comprehensive error handling strategy:
 
-1. All external API calls are wrapped in try-catch blocks
-2. Errors are logged with appropriate context
-3. Retries are attempted for transient failures
-4. User-friendly error messages are returned to the client
-5. HTTP status codes are mapped appropriately
-
-## Rate Limiting
-
-Rate limiting is implemented at multiple levels:
-
-1. Client-side rate limiting prevents hitting Roblox API limits
-2. Server-side rate limiting prevents abuse of the BloxAPI service
-3. Intelligent retry mechanisms with exponential backoff
+- All errors return appropriate HTTP status codes
+- Error responses follow a consistent JSON format:
+  ```json
+  {
+    "success": false,
+    "error": {
+      "code": "ERROR_CODE",
+      "message": "Human-readable error message",
+      "details": {}
+    }
+  }
+  ```
+- Common error scenarios are handled gracefully with retries where appropriate
+- Unexpected errors are logged for debugging but present friendly messages to users
 
 ## Caching Strategy
 
-BloxAPI implements a multi-level caching strategy:
+The caching strategy balances performance with data freshness:
 
-1. In-memory caching for frequently accessed data
-2. Redis-based distributed caching for horizontal scaling
-3. Cache invalidation based on TTL and explicit invalidation events
+- Responses are cached based on resource type and frequency of change
+- Cache TTLs (Time To Live) vary by endpoint:
+  - User profiles: 1 hour
+  - Game details: 15 minutes
+  - Asset information: 24 hours
+  - Real-time data (e.g., presence): 30 seconds
+- Cache invalidation occurs on relevant update operations
+- Redis is used as the primary cache backend
+- Memory cache is used as a fallback for high-frequency requests
 
-## Development Guidelines
+## Database Schema
 
-1. Follow the established architecture and design patterns
-2. Document all code with docstrings
-3. Write unit tests for all new functionality
-4. Use type hints for better IDE support and code quality
-5. Follow PEP 8 style guidelines
-6. Update this document when making significant architectural changes
+BloxAPI uses a relational database with the following main tables:
+
+- `users` - Stores user information and authentication details
+- `api_keys` - Stores API keys for client applications
+- `rate_limits` - Tracks API usage for rate limiting
+- `audit_logs` - Records significant system events
+- `cache_metadata` - Stores metadata about cached resources
+
+## Security Considerations
+
+Security is a core concern for BloxAPI:
+
+- All API endpoints require authentication
+- HTTPS is enforced for all connections
+- API keys are hashed before storage
+- Rate limiting prevents abuse
+- Input validation prevents injection attacks
+- Regular security audits are conducted
+- No sensitive Roblox credentials are stored
+
+## Performance Optimizations
+
+BloxAPI is optimized for performance:
+
+- Connection pooling for database and external API calls
+- Batch processing for multi-item operations
+- Asynchronous processing for non-blocking operations
+- Efficient caching reduces load on Roblox APIs
+- Response compression reduces bandwidth usage
+- Database query optimization with proper indexing
+- Background task processing for long-running operations
+
+## Deployment Architecture
+
+BloxAPI is designed for flexible deployment:
+
+- Containerized deployment with Docker
+- Horizontal scaling for high availability
+- Database replication for redundancy
+- Multiple deployment targets supported:
+  - Self-hosted (Docker Compose)
+  - Cloud platforms (AWS, GCP, Azure)
+  - PaaS providers (Heroku, Render, Vercel)
+- CI/CD pipeline for automated testing and deployment
+- Blue/green deployment for zero-downtime updates

@@ -1,81 +1,46 @@
-<p align="center">
-  <img src="generated-icon.png" alt="BloxAPI Logo" width="200" height="200"/>
-</p>
-
-<h1 align="center">BloxAPI</h1>
-<p align="center">A comprehensive Python-based Roblox API integration toolkit</p>
-
-<p align="center">
-  <a href="https://github.com/your-username/bloxapi/actions"><img src="https://github.com/your-username/bloxapi/workflows/Python%20Tests/badge.svg" alt="Tests"></a>
-  <a href="https://hub.docker.com/r/username/bloxapi"><img src="https://img.shields.io/docker/pulls/username/bloxapi.svg" alt="Docker Pulls"></a>
-  <a href="https://pypi.org/project/bloxapi/"><img src="https://img.shields.io/pypi/v/bloxapi.svg" alt="PyPI Version"></a>
-  <a href="https://github.com/your-username/bloxapi/blob/main/LICENSE"><img src="https://img.shields.io/github/license/your-username/bloxapi.svg" alt="License"></a>
-  <a href="https://discord.gg/bloxapi"><img src="https://img.shields.io/discord/123456789.svg?label=Discord&logo=discord&color=7289DA" alt="Discord"></a>
-  <a href="https://github.com/your-username/bloxapi/issues"><img src="https://img.shields.io/github/issues/your-username/bloxapi.svg" alt="GitHub Issues"></a>
-</p>
-
-<p align="center">
-  <a href="#key-features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#documentation">Documentation</a> •
-  <a href="#examples">Examples</a> •
-  <a href="#deploy">Deploy</a> •
-  <a href="#roadmap">Roadmap</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#license">License</a>
-</p>
-
-<p align="center">
-  <img src="docs/images/api-screenshot.png" alt="BloxAPI Screenshot">
-</p>
-
-## Key Features
-
 <div align="center">
-  <img src="docs/images/features.svg" alt="Features" width="100" height="100"/>
+  <img src="docs/images/logo.png" alt="BloxAPI Logo" width="200"/>
+  <h1>BloxAPI</h1>
+  <p>A comprehensive Python-based Roblox API integration toolkit</p>
+  
+  [![Python Tests](https://github.com/your-username/bloxapi/actions/workflows/python-tests.yml/badge.svg)](https://github.com/your-username/bloxapi/actions/workflows/python-tests.yml)
+  [![Docker](https://github.com/your-username/bloxapi/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/your-username/bloxapi/actions/workflows/docker-publish.yml)
+  [![License](https://img.shields.io/github/license/your-username/bloxapi)](LICENSE)
+  [![PyPI version](https://img.shields.io/pypi/v/bloxapi.svg)](https://pypi.org/project/bloxapi/)
+  [![Python Version](https://img.shields.io/pypi/pyversions/bloxapi)](https://pypi.org/project/bloxapi/)
+  [![Documentation Status](https://readthedocs.org/projects/bloxapi/badge/?version=latest)](https://bloxapi.readthedocs.io/en/latest/?badge=latest)
+  [![codecov](https://codecov.io/gh/your-username/bloxapi/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/bloxapi)
 </div>
 
-BloxAPI is a powerful, flexible toolkit for interacting with the Roblox platform programmatically:
+## 🚀 Features
 
-- **Complete Platform Coverage**: Access all major Roblox APIs, including users, games, assets, badges, catalog, economy, social, and more.
-- **Smart Caching**: Automatic caching mechanisms to reduce API calls and avoid rate limits.
-- **Robust Error Handling**: Comprehensive error handling with custom exceptions and detailed error messages.
-- **Rate Limiting**: Built-in rate limiting to prevent your application from being throttled.
-- **Type Safety**: Type hints throughout the codebase for better IDE support and code quality.
-- **Multiple Languages**: Client libraries available for Python, JavaScript, C#, and Java.
-- **Customizable**: Easy to extend and customize for your specific needs.
-- **Well Documented**: Comprehensive documentation with examples and API references.
-- **Production Ready**: Used in production by numerous applications and services.
+BloxAPI provides a robust interface to the Roblox platform with:
 
-## Installation
+- **Comprehensive Endpoint Coverage** - Access all major Roblox API endpoints through a simple, unified interface
+- **Intelligent Rate Limiting** - Automatic handling of Roblox API rate limits with queuing and retries
+- **Efficient Caching** - Configurable multi-level caching system to minimize API calls
+- **Robust Error Handling** - Detailed error reporting and automatic retries for transient failures
+- **Type Hints & Documentation** - Fully typed API with comprehensive documentation
+- **Async & Sync Support** - Both synchronous and asynchronous interfaces
+- **Extensible Design** - Easy to extend for custom use cases
+- **Cross-Platform** - Works on Windows, macOS, and Linux
 
-<div align="center">
-  <img src="docs/images/installation.svg" alt="Installation" width="100" height="100"/>
-</div>
-
-### Using pip
+## 📦 Installation
 
 ```bash
+# Using pip
 pip install bloxapi
-```
 
-### From source
+# Using poetry
+poetry add bloxapi
 
-```bash
+# From source
 git clone https://github.com/your-username/bloxapi.git
 cd bloxapi
 pip install -e .
 ```
 
-### Using Docker
-
-```bash
-docker pull username/bloxapi:latest
-docker run -p 5000:5000 username/bloxapi:latest
-```
-
-## Quick Start
+## 🛠️ Quick Start
 
 ```python
 from bloxapi import BloxAPI
@@ -83,143 +48,239 @@ from bloxapi import BloxAPI
 # Initialize the client
 api = BloxAPI()
 
-# Get information about a user
-user = api.users.get_user(1)
-print(f"Username: {user.name}")
+# Get user information
+user = api.users.get_by_username("Builderman")
+print(f"User ID: {user.id}")
+print(f"Display Name: {user.display_name}")
 
-# Search for games
-games = api.games.search("Natural Disaster")
-for game in games:
-    print(f"Game: {game.name}, Visits: {game.visits}")
+# Get game details
+game = api.games.get_details(920587237)
+print(f"Game Name: {game.name}")
+print(f"Player Count: {game.playing}")
 
-# Get asset information
-asset = api.assets.get_asset(1818)
-print(f"Asset: {asset.name}, Type: {asset.asset_type}")
+# Get user's inventory
+inventory = api.inventory.get_collectibles(user.id)
+for item in inventory:
+    print(f"{item.name} (Asset ID: {item.asset_id})")
 ```
 
-## Documentation
+## 🔍 Usage Examples
 
-<div align="center">
-  <img src="docs/images/documentation.svg" alt="Documentation" width="100" height="100"/>
-</div>
-
-### API Endpoints
-
-BloxAPI provides access to the following Roblox API categories:
-
-| Category | Description | Endpoints |
-|----------|-------------|-----------|
-| Users | User profiles, search, and authentication | `/api/users/...` |
-| Games | Game details, analytics, and servers | `/api/games/...` |
-| Assets | Asset details and ownership | `/api/assets/...` |
-| Badges | Badge information and awards | `/api/badges/...` |
-| Catalog | Item catalog and marketplace | `/api/catalog/...` |
-| Economy | Currency, transactions, and purchases | `/api/economy/...` |
-| Groups | Group information and membership | `/api/groups/...` |
-| Friends | Friend relationships and requests | `/api/friends/...` |
-| Chat | Chat and messaging functionality | `/api/chat/...` |
-| Avatars | Avatar customization and outfits | `/api/avatars/...` |
-| Presence | User online status and activity | `/api/presence/...` |
-| Analytics | Various analytics data | `/api/analytics/...` |
-
-### Architecture
-
-BloxAPI follows a clean, layered architecture designed for flexibility and extensibility. For a detailed overview of the system architecture, please see [ARCHITECTURE.md](ARCHITECTURE.md).
-
-### Configuration
-
-BloxAPI can be configured through environment variables or a configuration file:
+### Working with Users
 
 ```python
-# Configure through environment variables
-# BLOXAPI_BASE_URL=https://api.roblox.com
-# BLOXAPI_API_KEY=your_api_key
-# BLOXAPI_CACHE_TTL=3600
+# Get multiple users by IDs
+users = api.users.get_users([1, 156, 123456])
 
-# or through the API
-from bloxapi import BloxAPI
+# Check online status
+presence = api.presence.get_user_presence(user.id)
+print(f"Is online: {presence.is_online}")
+print(f"Last location: {presence.last_location}")
 
+# Get user's friends
+friends = api.friends.get_friends(user.id)
+for friend in friends:
+    print(f"{friend.display_name} (User ID: {friend.id})")
+```
+
+### Working with Games
+
+```python
+# Search for games
+games = api.games.search(keyword="simulator", sort_by="most_played")
+
+# Get game badges
+badges = api.badges.get_game_badges(game.id)
+for badge in badges:
+    print(f"{badge.name} - {badge.description}")
+
+# Get game analytics (requires game ownership)
+analytics = api.analytics.get_game_analytics(game.id, "player_retention")
+```
+
+### Working with Groups
+
+```python
+# Get group information
+group = api.groups.get_group(4199740)
+print(f"Group Name: {group.name}")
+print(f"Member Count: {group.member_count}")
+
+# Get group members
+members = api.groups.get_group_members(group.id, role="Admin")
+
+# Join a group
+api.groups.join_group(group.id)
+```
+
+## 🔌 Advanced Features
+
+### Authentication
+
+```python
+# Authenticate with cookies
+api = BloxAPI(cookies={".ROBLOSECURITY": "your_cookie_here"})
+
+# Authenticate with API key (for developer endpoints)
+api = BloxAPI(api_key="your_api_key_here")
+
+# Get authenticated user info
+me = api.users.get_authenticated_user()
+```
+
+### Rate Limiting
+
+```python
+# Configure rate limits
 api = BloxAPI(
-    base_url="https://api.roblox.com",
-    api_key="your_api_key",
-    cache_ttl=3600,
-    user_agent="My App/1.0"
+    rate_limit=True,
+    max_requests=100,
+    rate_limit_window=60  # seconds
 )
 ```
 
-## Examples
-
-<div align="center">
-  <img src="docs/images/code-examples.svg" alt="Code Examples" width="100" height="100"/>
-</div>
-
-### Python Examples
-
-Basic usage examples are available in [examples/python/basic_usage.py](examples/python/basic_usage.py).
-For advanced usage, see [examples/python/advanced_usage.py](examples/python/advanced_usage.py).
+### Caching
 
 ```python
-# Getting a user's information
-user_info = api.users.get_user(1)
-
-# Searching for users
-search_results = api.users.search_users("Roblox", limit=5)
-
-# Getting game information
-game_info = api.games.get_game(189707)  # Natural Disaster Survival
-
-# Getting game analytics
-analytics = api.analytics.get_game_analytics(189707, "visits", time_frame="past30days")
+# Configure caching
+api = BloxAPI(
+    cache=True,
+    cache_expire={
+        "users": 3600,  # 1 hour for users
+        "games": 300,   # 5 minutes for games
+        "default": 1800 # 30 minutes default
+    },
+    cache_backend="redis",
+    redis_url="redis://localhost:6379/0"
+)
 ```
 
-### JavaScript Examples
+### Asynchronous Usage
 
-For JavaScript examples, see:
-- [examples/javascript/basic_usage.js](examples/javascript/basic_usage.js)
-- [examples/javascript/advanced_usage.js](examples/javascript/advanced_usage.js)
+```python
+import asyncio
+from bloxapi.async_client import AsyncBloxAPI
 
-### Other Languages
+async def main():
+    api = AsyncBloxAPI()
+    
+    # Fetch multiple resources concurrently
+    user, game = await asyncio.gather(
+        api.users.get_by_username("Builderman"),
+        api.games.get_details(920587237)
+    )
+    
+    print(f"User: {user.display_name}, Game: {game.name}")
 
-Examples are also available for:
-- C#: [examples/csharp/BloxApiClient.cs](examples/csharp/BloxApiClient.cs)
-- Java: [examples/java/BloxApiClient.java](examples/java/BloxApiClient.java)
+# Run the async function
+asyncio.run(main())
+```
 
-## Deploy
+## 🌐 API Reference
 
-You can deploy your own instance of BloxAPI to various hosting platforms:
+Visit our [API Reference](https://bloxapi.readthedocs.io/en/latest/api_reference.html) for complete documentation of all available methods and parameters.
 
-[![Deploy to Replit](https://replit.com/badge/github/your-username/bloxapi)](https://replit.com/github/your-username/bloxapi)
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/your-username/bloxapi)
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/your-username/bloxapi)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/bloxapi)
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/your-username/bloxapi)
+## 🏗️ Architecture
 
-## Roadmap
+For a detailed overview of the project architecture, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-- [ ] WebSocket support for real-time updates
-- [ ] GraphQL API support
-- [ ] OAuth2 authentication flow
-- [ ] Enhanced economy features
-- [ ] Expanded analytics capabilities
-- [ ] Mobile SDK support
+## 🤝 Contributing
 
-## Contributing
+Contributions are welcome! Please check out our [Contributing Guide](CONTRIBUTING.md) for guidelines.
 
-We welcome contributions to BloxAPI! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute.
+## 🔐 Security
 
-## Security
+For information on reporting security vulnerabilities, see our [Security Policy](SECURITY.md).
 
-For security concerns, please see our [Security Policy](SECURITY.md).
+## 📱 Integrations
 
-## License
+BloxAPI seamlessly integrates with popular web frameworks and tools:
+
+### Flask Integration
+
+```python
+from flask import Flask
+from bloxapi.integrations.flask import init_bloxapi
+
+app = Flask(__name__)
+api = init_bloxapi(app)
+
+@app.route('/user/<username>')
+def get_user(username):
+    user = api.users.get_by_username(username)
+    return {
+        "id": user.id,
+        "displayName": user.display_name,
+        "avatar": user.avatar_url
+    }
+```
+
+### Django Integration
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    # ...
+    'bloxapi.integrations.django',
+]
+
+BLOXAPI_CONFIG = {
+    'cache': True,
+    'rate_limit': True,
+}
+
+# views.py
+from django.http import JsonResponse
+from bloxapi.integrations.django import get_api
+
+def user_profile(request, username):
+    api = get_api()
+    user = api.users.get_by_username(username)
+    return JsonResponse({
+        "id": user.id,
+        "displayName": user.display_name,
+    })
+```
+
+## 📊 Deployment Options
+
+<div align="center">
+  <a href="https://heroku.com/deploy?template=https://github.com/your-username/bloxapi">
+    <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="32">
+  </a>
+  <a href="https://render.com/deploy?repo=https://github.com/your-username/bloxapi">
+    <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="32">
+  </a>
+  <a href="https://railway.app/new/template?template=https://github.com/your-username/bloxapi">
+    <img src="https://railway.app/button.svg" alt="Deploy on Railway" height="32">
+  </a>
+  <a href="https://vercel.com/new/clone?repository-url=https://github.com/your-username/bloxapi">
+    <img src="https://vercel.com/button" alt="Deploy with Vercel" height="32">
+  </a>
+  <a href="https://app.netlify.com/start/deploy?repository=https://github.com/your-username/bloxapi">
+    <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="32">
+  </a>
+</div>
+
+## 🐳 Docker
+
+```bash
+# Pull the image
+docker pull ghcr.io/your-username/bloxapi:latest
+
+# Run the container
+docker run -p 5000:5000 -e SECRET_KEY=your_secret_key ghcr.io/your-username/bloxapi:latest
+
+# Using Docker Compose
+docker-compose up -d
+```
+
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgements
-
-- Thanks to the Roblox API community for their ongoing support and contributions.
-- Special thanks to all the contributors who have helped make this project possible.
-
 ---
 
-<p align="center">Made with ❤️ by the BloxAPI Team</p>
+<div align="center">
+  <sub>Built with ❤️ by the BloxAPI team</sub>
+</div>
