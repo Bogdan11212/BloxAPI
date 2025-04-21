@@ -1,17 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-            <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#3b82f6" />
-                    <stop offset="100%" stop-color="#2563eb" />
-                </linearGradient>
-            </defs>
-            <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#grad1)" />
-            <rect x="25" y="25" width="20" height="50" rx="4" fill="white" opacity="0.9" />
-            <rect x="55" y="25" width="20" height="50" rx="4" fill="white" opacity="0.9" />
-            <rect x="30" y="35" width="10" height="5" rx="1" fill="#3b82f6" />
-            <rect x="30" y="45" width="10" height="5" rx="1" fill="#3b82f6" />
-            <rect x="30" y="55" width="10" height="5" rx="1" fill="#3b82f6" />
-            <rect x="60" y="35" width="10" height="5" rx="1" fill="#3b82f6" />
-            <rect x="60" y="45" width="10" height="5" rx="1" fill="#3b82f6" />
-            <rect x="60" y="55" width="10" height="5" rx="1" fill="#3b82f6" />
-        </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><linearGradient id="grad1" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#2563eb"/></linearGradient></defs><rect width="80" height="80" x="10" y="10" fill="url(#grad1)" rx="8"/><rect width="20" height="50" x="25" y="25" fill="#fff" opacity=".9" rx="4"/><rect width="20" height="50" x="55" y="25" fill="#fff" opacity=".9" rx="4"/><rect width="10" height="5" x="30" y="35" fill="#3b82f6" rx="1"/><rect width="10" height="5" x="30" y="45" fill="#3b82f6" rx="1"/><rect width="10" height="5" x="30" y="55" fill="#3b82f6" rx="1"/><rect width="10" height="5" x="60" y="35" fill="#3b82f6" rx="1"/><rect width="10" height="5" x="60" y="45" fill="#3b82f6" rx="1"/><rect width="10" height="5" x="60" y="55" fill="#3b82f6" rx="1"/></svg>
