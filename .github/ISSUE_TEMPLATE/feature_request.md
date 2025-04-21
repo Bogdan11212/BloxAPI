@@ -4,27 +4,19 @@ about: Suggest an idea for this project
 title: "[FEATURE]"
 labels: enhancement
 assignees: ''
-
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Problem Statement
+A clear and concise description of what problem this feature would solve. Ex. I'm always frustrated when [...]
 
-**Describe the solution you'd like**
+## Proposed Solution
 A clear and concise description of what you want to happen.
 
-**Describe alternatives you've considered**
+## Alternative Solutions
 A clear and concise description of any alternative solutions or features you've considered.
 
-**Possible implementation approach**
-If you have ideas on how this might be implemented, please share them here.
+## Example Implementation
+If you can, provide an example of how this feature might be implemented or used.
 
-**API design**
-If applicable, provide an example of how the API would look with this feature:
-```
-GET /api/new-feature
-Response: { "data": "..." }
-```
-
-**Additional context**
+## Additional Context
 Add any other context or screenshots about the feature request here.

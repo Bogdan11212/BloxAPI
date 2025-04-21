@@ -4,29 +4,33 @@ about: Create a report to help us improve
 title: "[BUG]"
 labels: bug
 assignees: ''
-
 ---
 
-**Describe the bug**
+## Bug Description
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+## To Reproduce
 Steps to reproduce the behavior:
-1. Call API endpoint '...'
-2. With parameters '....'
-3. See error
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-**Expected behavior**
+## Expected behavior
 A clear and concise description of what you expected to happen.
 
-**Error Response**
-If applicable, include the full error response you received.
+## Screenshots
+If applicable, add screenshots to help explain your problem.
 
-**Environment (please complete the following information):**
-- API Version: [e.g. 1.0.0]
-- Programming Language: [e.g. Python, JavaScript]
-- Library/Framework: [e.g. Requests, Fetch API]
-- OS: [e.g. Windows, macOS, Linux]
+## Environment
+ - OS: [e.g. Windows, macOS, Linux]
+ - Python Version: [e.g. 3.9.5]
+ - BloxAPI Version: [e.g. 2.1.0]
+ - Installation Method: [e.g. pip, from source, Docker]
+ - Browser (if applicable): [e.g. chrome, safari]
 
-**Additional context**
+## Additional Context
 Add any other context about the problem here.
+
+## Possible Solution
+If you have suggestions on how to fix the issue, please describe here.
