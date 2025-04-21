@@ -1,21 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Documentation Icon</title>
-    <defs>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="documentationGradient">
-            <stop stop-color="#FF5252" offset="0%"></stop>
-            <stop stop-color="#FF1744" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#1E293B" x="0" y="0" width="200" height="200" rx="20"></rect>
-        <g transform="translate(40, 40)">
-            <path d="M100,20 L40,20 C35.581722,20 32,23.581722 32,28 L32,100 C32,104.418278 35.581722,108 40,108 L100,108 C104.418278,108 108,104.418278 108,100 L108,28 C108,23.581722 104.418278,20 100,20 Z" fill="url(#documentationGradient)" fill-rule="nonzero"></path>
-            <path d="M92,50 L48,50 C46.8954305,50 46,50.8954305 46,52 C46,53.1045695 46.8954305,54 48,54 L92,54 C93.1045695,54 94,53.1045695 94,52 C94,50.8954305 93.1045695,50 92,50 Z" fill="#FFFFFF" fill-rule="nonzero"></path>
-            <path d="M92,64 L48,64 C46.8954305,64 46,64.8954305 46,66 C46,67.1045695 46.8954305,68 48,68 L92,68 C93.1045695,68 94,67.1045695 94,66 C94,64.8954305 93.1045695,64 92,64 Z" fill="#FFFFFF" fill-rule="nonzero"></path>
-            <path d="M92,78 L48,78 C46.8954305,78 46,78.8954305 46,80 C46,81.1045695 46.8954305,82 48,82 L92,82 C93.1045695,82 94,81.1045695 94,80 C94,78.8954305 93.1045695,78 92,78 Z" fill="#FFFFFF" fill-rule="nonzero"></path>
-            <path d="M70,92 L48,92 C46.8954305,92 46,92.8954305 46,94 C46,95.1045695 46.8954305,96 48,96 L70,96 C71.1045695,96 72,95.1045695 72,94 C72,92.8954305 71.1045695,92 70,92 Z" fill="#FFFFFF" fill-rule="nonzero"></path>
-            <path d="M92,36 L48,36 C46.8954305,36 46,36.8954305 46,38 C46,39.1045695 46.8954305,40 48,40 L92,40 C93.1045695,40 94,39.1045695 94,38 C94,36.8954305 93.1045695,36 92,36 Z" fill="#FFFFFF" fill-rule="nonzero"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f59e0b" />
+                    <stop offset="100%" stop-color="#d97706" />
+                </linearGradient>
+            </defs>
+            <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#grad3)" />
+            <rect x="25" y="25" width="50" height="7" rx="3.5" fill="white" opacity="0.9" />
+            <rect x="25" y="37" width="40" height="3" rx="1.5" fill="white" opacity="0.7" />
+            <rect x="25" y="44" width="45" height="3" rx="1.5" fill="white" opacity="0.7" />
+            <rect x="25" y="51" width="35" height="3" rx="1.5" fill="white" opacity="0.7" />
+            <rect x="25" y="63" width="20" height="12" rx="2" fill="white" opacity="0.9" />
+            <rect x="50" y="63" width="20" height="12" rx="2" fill="white" opacity="0.9" />
+        </svg>

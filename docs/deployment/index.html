@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloxAPI Deployment Options</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #4f46e5;
+            border-bottom: 2px solid #4f46e5;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #7c3aed;
+            margin-top: 30px;
+        }
+        a {
+            color: #4f46e5;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .platform-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .platform-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            width: calc(50% - 15px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .platform-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 600px) {
+            .platform-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>BloxAPI Deployment Options</h1>
+    <p>BloxAPI can be deployed to various platforms with minimal configuration. Choose the platform that best fits your needs.</p>
+    
+    <div class="platform-list">
+        <div class="platform-card">
+            <h2>Heroku</h2>
+            <p>Deploy BloxAPI to Heroku with one click.</p>
+            <a href="heroku.html">View Heroku deployment guide →</a>
+        </div>
+        <div class="platform-card">
+            <h2>Render</h2>
+            <p>Deploy BloxAPI to Render with one click.</p>
+            <a href="render.html">View Render deployment guide →</a>
+        </div>
+        <div class="platform-card">
+            <h2>Railway</h2>
+            <p>Deploy BloxAPI to Railway with one click.</p>
+            <a href="railway.html">View Railway deployment guide →</a>
+        </div>
+        <div class="platform-card">
+            <h2>Vercel</h2>
+            <p>Deploy BloxAPI to Vercel with one click.</p>
+            <a href="vercel.html">View Vercel deployment guide →</a>
+        </div>
+        <div class="platform-card">
+            <h2>Netlify</h2>
+            <p>Deploy BloxAPI to Netlify with one click.</p>
+            <a href="netlify.html">View Netlify deployment guide →</a>
+        </div>
+    </div>
+    
+    <h2>General Deployment Requirements</h2>
+    <ul>
+        <li><strong>Python 3.7+</strong> - BloxAPI requires Python 3.7 or higher</li>
+        <li><strong>PostgreSQL database</strong> - For storing user data and analytics</li>
+        <li><strong>Environment Variables</strong> - API keys and configuration settings</li>
+    </ul>
+    
+    <h2>Environment Variables</h2>
+    <p>The following environment variables should be configured regardless of deployment platform:</p>
+    <ul>
+        <li><code>SECRET_KEY</code> - A secret key for secure session handling</li>
+        <li><code>DATABASE_URL</code> - PostgreSQL connection string</li>
+        <li><code>ROBLOX_API_KEY</code> - Your Roblox API key (optional)</li>
+        <li><code>REDIS_URL</code> - Redis connection string (optional, for caching)</li>
+    </ul>
+</body>
+</html>

@@ -1,21 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Features Icon</title>
-    <defs>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="featuresGradient">
-            <stop stop-color="#FF5252" offset="0%"></stop>
-            <stop stop-color="#FF1744" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#1E293B" x="0" y="0" width="200" height="200" rx="20"></rect>
-        <g transform="translate(25, 25)">
-            <path d="M75,0 L75,30 C75,37.7319865 69.1045695,44 62,44 L30,44 L0,74 L0,30 C0,13.4314575 13.4314575,0 30,0 L75,0 Z" transform="translate(37.5, 37)" fill="url(#featuresGradient)" fill-rule="nonzero"></path>
-            <path d="M120,65 L120,95 C120,102.731986 114.104569,109 107,109 L75,109 L45,139 L45,95 C45,78.4314575 58.4314575,65 75,65 L120,65 Z" fill="#3B82F6" fill-rule="nonzero"></path>
-            <path d="M150,30 L150,60 C150,67.7319865 144.104569,74 137,74 L105,74 L75,104 L75,60 C75,43.4314575 88.4314575,30 105,30 L150,30 Z" fill="#10B981" fill-rule="nonzero"></path>
-            <path d="M60,55 L35,80 M35,55 L60,80" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M135,50 L125,60 L115,50" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M90,90 L100,90 M90,100 L100,100 M90,110 L100,110" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ec4899" />
+                    <stop offset="100%" stop-color="#db2777" />
+                </linearGradient>
+            </defs>
+            <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#grad4)" />
+            <circle cx="35" cy="35" r="10" fill="white" opacity="0.9" />
+            <circle cx="65" cy="35" r="10" fill="white" opacity="0.9" />
+            <circle cx="35" cy="65" r="10" fill="white" opacity="0.9" />
+            <circle cx="65" cy="65" r="10" fill="white" opacity="0.9" />
+            <circle cx="35" cy="35" r="5" fill="#ec4899" />
+            <circle cx="65" cy="35" r="5" fill="#ec4899" />
+            <circle cx="35" cy="65" r="5" fill="#ec4899" />
+            <circle cx="65" cy="65" r="5" fill="#ec4899" />
+        </svg>
