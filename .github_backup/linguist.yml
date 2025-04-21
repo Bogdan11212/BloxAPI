@@ -1,0 +1,43 @@
+# Override Linguist language detection for specific files or directories
+# https://github.com/github/linguist#using-gitattributes
+
+# Mark generated files as vendored to exclude them from language statistics
+vendored:
+  - "**/*.min.js"
+  - "static/js/lib/**"
+  - "static/css/lib/**"
+  - "docs/generated/**"
+
+# Mark files as documentation
+documentation:
+  - "docs/**"
+  - "*.md"
+  - "LICENSE"
+  - "CODE_OF_CONDUCT.md"
+  - "CONTRIBUTING.md"
+  - "SECURITY.md"
+  - "ARCHITECTURE.md"
+
+# Mark files as generated to exclude them from language statistics
+generated:
+  - "**/*.pb.go"
+  - "**/*.pb.js"
+  - "**/*.generated.*"
+  - "utils/demo_data.json"
+  - "utils/roblox_demo_data.json"
+
+# Override detected language
+# (e.g., mark .jinja files as Jinja2 instead of HTML)
+overrides:
+  - type: language
+    extensions:
+      - ".jinja"
+      - ".jinja2"
+    language: "Jinja"
+  - type: language
+    path: "pyproject.toml"
+    language: "TOML"
+  - type: language
+    extensions:
+      - ".sql"
+    language: "SQL"

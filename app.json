@@ -1,0 +1,66 @@
+{
+  "name": "BloxAPI",
+  "description": "A comprehensive Python-based Roblox API integration toolkit",
+  "keywords": ["python", "roblox", "api", "flask", "rest"],
+  "website": "https://github.com/your-username/bloxapi",
+  "repository": "https://github.com/your-username/bloxapi",
+  "logo": "https://raw.githubusercontent.com/your-username/bloxapi/main/docs/images/logo.png",
+  "success_url": "/",
+  "env": {
+    "SECRET_KEY": {
+      "description": "A secret key for Flask session encryption",
+      "generator": "secret"
+    },
+    "FLASK_ENV": {
+      "description": "Flask environment (development or production)",
+      "value": "production"
+    },
+    "CACHE_TYPE": {
+      "description": "Type of cache to use (memcached, redis, etc.)",
+      "value": "simple"
+    },
+    "CACHE_TIMEOUT": {
+      "description": "Cache timeout in seconds",
+      "value": "3600"
+    },
+    "RATE_LIMIT_ENABLED": {
+      "description": "Enable rate limiting",
+      "value": "true"
+    },
+    "RATE_LIMIT_DEFAULT": {
+      "description": "Default rate limit (requests per minute)",
+      "value": "60"
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level",
+      "value": "INFO"
+    },
+    "DISABLE_EXTERNAL_REQUESTS": {
+      "description": "Disable external requests to Roblox API (for testing)",
+      "value": "false",
+      "required": false
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    },
+    {
+      "plan": "papertrail:choklad"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "scripts": {
+    "postdeploy": "python -c 'from app import db; db.create_all()'"
+  }
+}

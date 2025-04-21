@@ -1,0 +1,59 @@
+services:
+  # A web service with Python backend
+  - type: web
+    name: bloxapi
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: CACHE_TYPE
+        value: simple
+      - key: CACHE_TIMEOUT
+        value: 3600
+      - key: RATE_LIMIT_ENABLED
+        value: true
+      - key: RATE_LIMIT_DEFAULT
+        value: 60
+      - key: LOG_LEVEL
+        value: INFO
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bloxapi-db
+          property: connectionString
+      
+  # A scheduled job to clear cache every day
+  - type: cron
+    name: bloxapi-cache-cleaner
+    env: python
+    schedule: "0 0 * * *"  # midnight every day
+    buildCommand: pip install -r requirements.txt
+    startCommand: python scripts/clear_cache.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bloxapi-db
+          property: connectionString
+
+databases:
+  - name: bloxapi-db
+    plan: free
+    databaseName: bloxapi
+    user: bloxapi
+
+# Redirects for documentation and API requests
+routes:
+  - type: redirect
+    source: /
+    destination: /docs
+  - type: rewrite
+    source: /api/*
+    destination: /api/$1
