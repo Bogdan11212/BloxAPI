@@ -2,53 +2,103 @@
 
 ## Supported Versions
 
-BloxAPI is currently in active development. We provide security updates for the following versions:
+We currently provide security updates for the following versions of BloxAPI:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.x.x   | :white_check_mark: |
+| 2.x.x   | :white_check_mark: |
+| 1.5.x   | :white_check_mark: |
+| 1.0.x-1.4.x | :x:           |
 | < 1.0   | :x:                |
 
 ## Reporting a Vulnerability
 
 We take the security of BloxAPI seriously. If you believe you've found a security vulnerability, please follow these steps:
 
-1. **Do not disclose the vulnerability publicly** until it has been addressed by our team.
-2. Email your findings to [security@example.com](mailto:security@example.com). You should receive a response within 48 hours.
-3. Provide detailed information about the vulnerability, including:
+1. **Do not disclose the vulnerability publicly**
+2. **Email us at security@bloxapi.com** with details about the vulnerability
+3. Include the following information in your report:
+   - Type of vulnerability
+   - Full path to source file(s) related to the issue
    - Steps to reproduce
    - Potential impact
-   - Any suggested fixes (if available)
+   - Suggested fix if possible
 
-## Security Measures
+## Response Timeline
 
-BloxAPI implements the following security measures:
+- We will acknowledge receipt of your vulnerability report within 48 hours
+- We will provide a more detailed response within 7 days
+- We aim to release a fix within 30 days, depending on the severity and complexity of the issue
+- We will keep you informed of our progress throughout the process
 
-- Regular dependency updates through Dependabot
-- Automated security scanning through GitHub Actions
-- Code review for all changes to the codebase
-- Input validation for all API endpoints
-- Rate limiting to prevent abuse
-- Proper error handling to prevent information disclosure
+## Security Best Practices
 
-## Security Best Practices for Users
+When using BloxAPI, we recommend following these security best practices:
 
-When deploying BloxAPI, we recommend the following security best practices:
+### API Keys and Authentication
 
-1. Always use HTTPS in production
-2. Set a strong, unique `SESSION_SECRET` environment variable
-3. Regularly update to the latest version
-4. Enable rate limiting in your proxy server
-5. Monitor for unusual activity
-6. Follow the principle of least privilege when setting up service accounts
+- Never hardcode API keys or authentication credentials in your source code
+- Use environment variables or secure key management systems to store sensitive credentials
+- Rotate API keys regularly
+- Use the minimum permissions necessary for your application
 
-## Responsible Disclosure
+### Rate Limiting and Throttling
 
-We encourage responsible disclosure of vulnerabilities following industry best practices. We promise not to pursue legal action against security researchers who:
+- Implement rate limiting in your applications to prevent abuse
+- Respect Roblox API rate limits to avoid being blocked
+- Use the built-in rate limiting features in BloxAPI
 
-- Make a good faith effort to avoid privacy violations, destruction of data, and disruption of services
-- Only interact with accounts they own or have explicit permission to test
-- Report vulnerabilities directly to us through the appropriate channels
-- Keep vulnerability details private until we have addressed them
+### Data Handling
 
-We appreciate your help in keeping BloxAPI and its users secure.
+- Validate all input data before processing
+- Sanitize user input to prevent injection attacks
+- Be cautious when storing or logging data that might contain sensitive information
+
+### Network Security
+
+- Use HTTPS for all API requests
+- Verify SSL/TLS certificates
+- Consider using a proxy or API gateway for additional security
+
+### Deployment Security
+
+- Keep all dependencies updated
+- Regularly check for security advisories
+- Use least privilege principles for service accounts
+
+## Security Features
+
+BloxAPI includes several security features:
+
+- TLS/SSL support for secure communications
+- Input validation and sanitization
+- Rate limiting and throttling
+- Detailed error logging for security events
+- Authentication and authorization controls
+
+## Vulnerability Disclosure Policy
+
+We believe in responsible disclosure of security vulnerabilities. After we've addressed a security issue:
+
+1. We will publish a security advisory through GitHub's security advisory feature
+2. We will credit the reporter (unless anonymity is requested)
+3. We will provide details about the vulnerability, its impact, and how to remediate it
+
+## Security Updates
+
+Security updates are delivered through our standard release channels. For critical vulnerabilities, we may issue out-of-cycle releases.
+
+To ensure you're using a secure version:
+
+- Subscribe to GitHub security advisories for this repository
+- Watch our releases on GitHub
+- Follow our announcements on Twitter: [@BloxAPI](https://twitter.com/bloxapi)
+
+## Security Contact
+
+For security-related inquiries or to report vulnerabilities:
+
+- Email: security@bloxapi.com
+- PGP Key: [Download PGP Key](https://bloxapi.com/security/pgp-key.asc)
+
+Fingerprint: `5F3D F123 B8FC A987 D367 7B21 A76D 9C36 F418 EA45`

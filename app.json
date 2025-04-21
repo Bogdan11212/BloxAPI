@@ -1,36 +1,66 @@
 {
   "name": "BloxAPI",
   "description": "A comprehensive Python-based Roblox API integration toolkit",
-  "repository": "https://github.com/Bogdan11212/BloxAPI",
-  "keywords": ["python", "flask", "api", "roblox", "gaming", "platform"],
-  "success_url": "/docs",
+  "keywords": ["python", "roblox", "api", "flask", "rest"],
+  "website": "https://github.com/your-username/bloxapi",
+  "repository": "https://github.com/your-username/bloxapi",
+  "logo": "https://raw.githubusercontent.com/your-username/bloxapi/main/docs/images/logo.png",
+  "success_url": "/",
   "env": {
-    "SESSION_SECRET": {
-      "description": "A secret key for session encryption",
+    "SECRET_KEY": {
+      "description": "A secret key for Flask session encryption",
       "generator": "secret"
     },
-    "DATABASE_URL": {
-      "description": "URL for the PostgreSQL database",
-      "value": "postgresql://postgres:postgres@localhost:5432/bloxapi"
+    "FLASK_ENV": {
+      "description": "Flask environment (development or production)",
+      "value": "production"
+    },
+    "CACHE_TYPE": {
+      "description": "Type of cache to use (memcached, redis, etc.)",
+      "value": "simple"
+    },
+    "CACHE_TIMEOUT": {
+      "description": "Cache timeout in seconds",
+      "value": "3600"
+    },
+    "RATE_LIMIT_ENABLED": {
+      "description": "Enable rate limiting",
+      "value": "true"
+    },
+    "RATE_LIMIT_DEFAULT": {
+      "description": "Default rate limit (requests per minute)",
+      "value": "60"
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level",
+      "value": "INFO"
+    },
+    "DISABLE_EXTERNAL_REQUESTS": {
+      "description": "Disable external requests to Roblox API (for testing)",
+      "value": "false",
+      "required": false
     }
   },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    },
+    {
+      "plan": "papertrail:choklad"
+    }
+  ],
   "buildpacks": [
     {
       "url": "heroku/python"
     }
   ],
-  "addons": [
-    {
-      "plan": "heroku-postgresql:hobby-dev"
-    }
-  ],
-  "scripts": {
-    "postdeploy": "python setup_database.py"
-  },
   "formation": {
     "web": {
       "quantity": 1,
       "size": "free"
     }
+  },
+  "scripts": {
+    "postdeploy": "python -c 'from app import db; db.create_all()'"
   }
 }

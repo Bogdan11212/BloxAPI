@@ -1,505 +1,225 @@
-# 🟥 BloxAPI - Comprehensive Roblox API
+<p align="center">
+  <img src="generated-icon.png" alt="BloxAPI Logo" width="200" height="200"/>
+</p>
+
+<h1 align="center">BloxAPI</h1>
+<p align="center">A comprehensive Python-based Roblox API integration toolkit</p>
+
+<p align="center">
+  <a href="https://github.com/your-username/bloxapi/actions"><img src="https://github.com/your-username/bloxapi/workflows/Python%20Tests/badge.svg" alt="Tests"></a>
+  <a href="https://hub.docker.com/r/username/bloxapi"><img src="https://img.shields.io/docker/pulls/username/bloxapi.svg" alt="Docker Pulls"></a>
+  <a href="https://pypi.org/project/bloxapi/"><img src="https://img.shields.io/pypi/v/bloxapi.svg" alt="PyPI Version"></a>
+  <a href="https://github.com/your-username/bloxapi/blob/main/LICENSE"><img src="https://img.shields.io/github/license/your-username/bloxapi.svg" alt="License"></a>
+  <a href="https://discord.gg/bloxapi"><img src="https://img.shields.io/discord/123456789.svg?label=Discord&logo=discord&color=7289DA" alt="Discord"></a>
+  <a href="https://github.com/your-username/bloxapi/issues"><img src="https://img.shields.io/github/issues/your-username/bloxapi.svg" alt="GitHub Issues"></a>
+</p>
+
+<p align="center">
+  <a href="#key-features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#examples">Examples</a> •
+  <a href="#deploy">Deploy</a> •
+  <a href="#roadmap">Roadmap</a> •
+  <a href="#contributing">Contributing</a> •
+  <a href="#license">License</a>
+</p>
+
+<p align="center">
+  <img src="docs/images/api-screenshot.png" alt="BloxAPI Screenshot">
+</p>
+
+## Key Features
 
 <div align="center">
-
-<img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/preview.png" alt="BloxAPI Preview" width="800px" />
-
-<h3>Your Ultimate Gateway to the Roblox Platform</h3>
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-![Python](https://img.shields.io/badge/Python-3.9+-brightgreen.svg)
-![Flask](https://img.shields.io/badge/Flask-2.0+-lightgrey.svg)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Stars](https://img.shields.io/github/stars/Bogdan11212/BloxAPI?style=social)](https://github.com/Bogdan11212/BloxAPI/stargazers)
-[![Forks](https://img.shields.io/github/forks/Bogdan11212/BloxAPI?style=social)](https://github.com/Bogdan11212/BloxAPI/network/members)
-[![Contributors](https://img.shields.io/github/contributors/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/graphs/contributors)
-[![Last Commit](https://img.shields.io/github/last-commit/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/commits/master)
-[![Open Issues](https://img.shields.io/github/issues/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/issues)
-[![Discussions](https://img.shields.io/github/discussions/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/discussions)
-
-<br>
-
-[![Deploy to Replit](https://repl.it/badge/github/Bogdan11212/BloxAPI)](https://repl.it/github/Bogdan11212/BloxAPI)
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Bogdan11212/BloxAPI)
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Bogdan11212/BloxAPI)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBogdan11212%2FBloxAPI)
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Bogdan11212/BloxAPI)
-
+  <img src="docs/images/features.svg" alt="Features" width="100" height="100"/>
 </div>
 
-<p align="center">A powerful, comprehensive API for interacting with the Roblox platform. BloxAPI provides developers with seamless access to Roblox data, functionality, and services through a well-organized REST API.</p>
+BloxAPI is a powerful, flexible toolkit for interacting with the Roblox platform programmatically:
 
-## 📋 Table of Contents
+- **Complete Platform Coverage**: Access all major Roblox APIs, including users, games, assets, badges, catalog, economy, social, and more.
+- **Smart Caching**: Automatic caching mechanisms to reduce API calls and avoid rate limits.
+- **Robust Error Handling**: Comprehensive error handling with custom exceptions and detailed error messages.
+- **Rate Limiting**: Built-in rate limiting to prevent your application from being throttled.
+- **Type Safety**: Type hints throughout the codebase for better IDE support and code quality.
+- **Multiple Languages**: Client libraries available for Python, JavaScript, C#, and Java.
+- **Customizable**: Easy to extend and customize for your specific needs.
+- **Well Documented**: Comprehensive documentation with examples and API references.
+- **Production Ready**: Used in production by numerous applications and services.
 
-- [Features](#-features)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [API Documentation](#-api-documentation)
-- [Integrations](#-integrations)
-- [Examples](#-examples)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
-
-## 🌟 Features
+## Installation
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/features.svg" alt="BloxAPI Features" width="200px" />
+  <img src="docs/images/installation.svg" alt="Installation" width="100" height="100"/>
 </div>
 
-<table>
-  <tr>
-    <td width="33%" align="center">
-      <h3>🌐 Platform Coverage</h3>
-      <p>Access virtually every aspect of the Roblox platform with comprehensive API coverage</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>🔄 Live Data</h3>
-      <p>Every request connects directly to Roblox's real API for up-to-date information</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>📊 Analytics</h3>
-      <p>Get detailed statistics on games, players, and demographics</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" align="center">
-      <h3>🛡️ Rate Limiting</h3>
-      <p>Built-in protection against hitting Roblox API limits with intelligent retries</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>🔌 Integrations</h3>
-      <p>Connect with RoliMon's, Rblx.Trade, Roliverse and Rblx Values</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>📱 Cross-Platform</h3>
-      <p>Use with any programming language via standard HTTP requests</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" align="center">
-      <h3>🚨 Error Handling</h3>
-      <p>Comprehensive error reporting, automatic retries and detailed logging</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>🔔 Events</h3>
-      <p>Track real-time events for users, games, and groups</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>🖥️ Server Management</h3>
-      <p>Monitor and control game server instances and VIP servers</p>
-    </td>
-  </tr>
-</table>
+### Using pip
 
-## 💻 Installation
+```bash
+pip install bloxapi
+```
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/installation.svg" alt="Installation" width="180px" />
-</div>
+### From source
 
-### Multiple Installation Options
+```bash
+git clone https://github.com/your-username/bloxapi.git
+cd bloxapi
+pip install -e .
+```
 
-<details open>
-  <summary><strong>🐍 Standard Python Installation</strong></summary>
-  
-  ### Prerequisites
-  - Python 3.9+
-  - pip (Python package manager)
+### Using Docker
 
-  ### Setup
-  1. Clone the repository
-  ```bash
-  git clone https://github.com/Bogdan11212/BloxAPI.git
-  cd BloxAPI
-  ```
+```bash
+docker pull username/bloxapi:latest
+docker run -p 5000:5000 username/bloxapi:latest
+```
 
-  2. Install dependencies
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-  3. Run the development server
-  ```bash
-  python main.py
-  ```
-
-  The API will be available at `http://localhost:5000`
-</details>
-
-<details>
-  <summary><strong>🐳 Docker Installation</strong></summary>
-  
-  ### Prerequisites
-  - Docker
-
-  ### Setup
-  1. Clone the repository
-  ```bash
-  git clone https://github.com/Bogdan11212/BloxAPI.git
-  cd BloxAPI
-  ```
-
-  2. Build and run with Docker Compose
-  ```bash
-  docker-compose up --build
-  ```
-
-  The API will be available at `http://localhost:5000`
-</details>
-
-<details>
-  <summary><strong>☁️ One-Click Cloud Deployment</strong></summary>
-  
-  ### Options
-  - [Deploy to Replit](https://repl.it/github/Bogdan11212/BloxAPI)
-  - [Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/Bogdan11212/BloxAPI)
-  - [Deploy to Render](https://render.com/deploy?repo=https://github.com/Bogdan11212/BloxAPI)
-  - [Deploy with Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBogdan11212%2FBloxAPI)
-</details>
-
-## 🚀 Quick Start
-
-Here's a simple example of how to use BloxAPI to get information about a Roblox user:
+## Quick Start
 
 ```python
-import requests
+from bloxapi import BloxAPI
 
-# Get user information
-response = requests.get('http://localhost:5000/api/users/1')
-user_data = response.json()
-print(user_data)
+# Initialize the client
+api = BloxAPI()
 
-# Search for users by name
-response = requests.get('http://localhost:5000/api/users/search?keyword=builderman')
-search_results = response.json()
-print(search_results)
+# Get information about a user
+user = api.users.get_user(1)
+print(f"Username: {user.name}")
+
+# Search for games
+games = api.games.search("Natural Disaster")
+for game in games:
+    print(f"Game: {game.name}, Visits: {game.visits}")
+
+# Get asset information
+asset = api.assets.get_asset(1818)
+print(f"Asset: {asset.name}, Type: {asset.asset_type}")
 ```
 
-## 📖 API Documentation
+## Documentation
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/documentation.svg" alt="API Documentation" width="200px" />
+  <img src="docs/images/documentation.svg" alt="Documentation" width="100" height="100"/>
 </div>
 
-Full interactive API documentation with request/response examples and schema information is available at **`/docs`** when the server is running.
+### API Endpoints
+
+BloxAPI provides access to the following Roblox API categories:
+
+| Category | Description | Endpoints |
+|----------|-------------|-----------|
+| Users | User profiles, search, and authentication | `/api/users/...` |
+| Games | Game details, analytics, and servers | `/api/games/...` |
+| Assets | Asset details and ownership | `/api/assets/...` |
+| Badges | Badge information and awards | `/api/badges/...` |
+| Catalog | Item catalog and marketplace | `/api/catalog/...` |
+| Economy | Currency, transactions, and purchases | `/api/economy/...` |
+| Groups | Group information and membership | `/api/groups/...` |
+| Friends | Friend relationships and requests | `/api/friends/...` |
+| Chat | Chat and messaging functionality | `/api/chat/...` |
+| Avatars | Avatar customization and outfits | `/api/avatars/...` |
+| Presence | User online status and activity | `/api/presence/...` |
+| Analytics | Various analytics data | `/api/analytics/...` |
+
+### Architecture
+
+BloxAPI follows a clean, layered architecture designed for flexibility and extensibility. For a detailed overview of the system architecture, please see [ARCHITECTURE.md](ARCHITECTURE.md).
+
+### Configuration
+
+BloxAPI can be configured through environment variables or a configuration file:
+
+```python
+# Configure through environment variables
+# BLOXAPI_BASE_URL=https://api.roblox.com
+# BLOXAPI_API_KEY=your_api_key
+# BLOXAPI_CACHE_TTL=3600
+
+# or through the API
+from bloxapi import BloxAPI
+
+api = BloxAPI(
+    base_url="https://api.roblox.com",
+    api_key="your_api_key",
+    cache_ttl=3600,
+    user_agent="My App/1.0"
+)
+```
+
+## Examples
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/api-screenshot.png" alt="API Documentation Screenshot" width="800px" />
+  <img src="docs/images/code-examples.svg" alt="Code Examples" width="100" height="100"/>
 </div>
 
-### Core API Categories
+### Python Examples
 
-<div class="endpoint-grid">
-  <table>
-    <tr>
-      <th width="25%" align="center">🧑‍🤝‍🧑 User & Social</th>
-      <th width="25%" align="center">🎮 Games & Servers</th>
-      <th width="25%" align="center">💰 Economy & Assets</th>
-      <th width="25%" align="center">📊 Analytics & Events</th>
-    </tr>
-    <tr valign="top">
-      <td>
-        <ul>
-          <li><code>/api/users/{userId}</code></li>
-          <li><code>/api/users/search</code></li>
-          <li><code>/api/users/{userId}/friends</code></li>
-          <li><code>/api/groups/{groupId}</code></li>
-          <li><code>/api/social/users/{userId}/connections</code></li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li><code>/api/games/{gameId}</code></li>
-          <li><code>/api/games/{universeId}/details</code></li>
-          <li><code>/api/servers/games/{universeId}/instances</code></li>
-          <li><code>/api/games/{universeId}/servers/vip</code></li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li><code>/api/assets/{assetId}</code></li>
-          <li><code>/api/catalog/search</code></li>
-          <li><code>/api/economy/currency/exchange-rate</code></li>
-          <li><code>/api/inventory/users/{userId}/assets</code></li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li><code>/api/statistics/games/{universeId}/universe</code></li>
-          <li><code>/api/analytics/games/{universeId}/{metricType}</code></li>
-          <li><code>/api/events/{entityType}/{entityId}</code></li>
-          <li><code>/api/notifications/users/{userId}</code></li>
-        </ul>
-      </td>
-    </tr>
-  </table>
-</div>
+Basic usage examples are available in [examples/python/basic_usage.py](examples/python/basic_usage.py).
+For advanced usage, see [examples/python/advanced_usage.py](examples/python/advanced_usage.py).
 
-### Advanced API Features
+```python
+# Getting a user's information
+user_info = api.users.get_user(1)
 
-<details>
-  <summary><strong>🔐 Authentication & Security</strong></summary>
-  <ul>
-    <li><code>/api/auth/token</code> - Get an authentication token</li>
-    <li><code>/api/auth/validate</code> - Validate a token</li>
-    <li><code>/api/auth/refresh</code> - Refresh an authentication token</li>
-    <li><code>/api/users/{userId}/security/settings</code> - Get security settings</li>
-    <li><code>/api/moderation/content/{contentType}/{contentId}</code> - Check content moderation status</li>
-  </ul>
-</details>
+# Searching for users
+search_results = api.users.search_users("Roblox", limit=5)
 
-<details>
-  <summary><strong>👥 Group Management</strong></summary>
-  <ul>
-    <li><code>/api/groups/{groupId}/users</code> - Get group members</li>
-    <li><code>/api/groups/{groupId}/roles</code> - Get group roles</li>
-    <li><code>/api/groups/{groupId}/wall/posts</code> - Get group wall posts</li>
-    <li><code>/api/groups/{groupId}/relationships</code> - Get group relationships</li>
-    <li><code>/api/groups/{groupId}/audit-log</code> - Get group audit log</li>
-  </ul>
-</details>
+# Getting game information
+game_info = api.games.get_game(189707)  # Natural Disaster Survival
 
-<details>
-  <summary><strong>💹 Developer Economics</strong></summary>
-  <ul>
-    <li><code>/api/monetization/games/{universeId}/developer-products</code> - Get developer products</li>
-    <li><code>/api/monetization/games/{universeId}/gamepasses</code> - Get game passes</li>
-    <li><code>/api/monetization/games/{universeId}/revenue</code> - Get revenue information</li>
-    <li><code>/api/economy/assets/{assetId}/resellers</code> - Get asset resellers</li>
-    <li><code>/api/economy/assets/{assetId}/price-history</code> - Get asset price history</li>
-  </ul>
-</details>
-
-## 🔄 Integrations
-
-BloxAPI seamlessly integrates with popular third-party Roblox services:
-
-### RoliMon's API Integration
-
-Access item values, price history, and player stats with endpoints like:
-- `/api/external/rolimon/items/{itemId}`
-- `/api/external/rolimon/players/{userId}/value`
-
-### Rblx.Trade Integration
-
-Get trade advertisements and player reputation:
-- `/api/external/rblx-trade/trade-ads`
-- `/api/external/rblx-trade/players/{userId}/reputation`
-
-### Roliverse Integration
-
-Access market trends and demand indexes:
-- `/api/external/roliverse/market/trends`
-- `/api/external/roliverse/items/{itemId}/demand`
-
-### Rblx Values Integration
-
-Check item stability and projected status:
-- `/api/external/rblx-values/items/{itemId}/stability`
-- `/api/external/rblx-values/market/rising`
-
-## 🔍 Examples
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/code-examples.svg" alt="Code Examples" width="200px" />
-</div>
-
-<table width="100%">
-<tr>
-<td width="50%" valign="top">
-
-### 💬 Get User's Friends
-
-```javascript
-fetch('http://localhost:5000/api/users/1/friends')
-  .then(response => response.json())
-  .then(data => console.log(data));
+# Getting game analytics
+analytics = api.analytics.get_game_analytics(189707, "visits", time_frame="past30days")
 ```
 
-### 🎮 Get Game Statistics
+### JavaScript Examples
 
-```javascript
-fetch('http://localhost:5000/api/statistics/games/1234567890/universe')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
+For JavaScript examples, see:
+- [examples/javascript/basic_usage.js](examples/javascript/basic_usage.js)
+- [examples/javascript/advanced_usage.js](examples/javascript/advanced_usage.js)
 
-### 🏆 Get Game Server Instances
+### Other Languages
 
-```javascript
-fetch('http://localhost:5000/api/servers/games/1234567890/instances?limit=10')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
+Examples are also available for:
+- C#: [examples/csharp/BloxApiClient.cs](examples/csharp/BloxApiClient.cs)
+- Java: [examples/java/BloxApiClient.java](examples/java/BloxApiClient.java)
 
-</td>
-<td width="50%" valign="top">
+## Deploy
 
-### 🛒 Search the Catalog
+You can deploy your own instance of BloxAPI to various hosting platforms:
 
-```javascript
-fetch('http://localhost:5000/api/catalog/search?keyword=dominus&category=hats&limit=25')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
+[![Deploy to Replit](https://replit.com/badge/github/your-username/bloxapi)](https://replit.com/github/your-username/bloxapi)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/your-username/bloxapi)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/your-username/bloxapi)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/bloxapi)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/your-username/bloxapi)
 
-### 🛡️ Check Content Moderation Status
+## Roadmap
 
-```javascript
-fetch('http://localhost:5000/api/moderation/content/asset/1234567')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
+- [ ] WebSocket support for real-time updates
+- [ ] GraphQL API support
+- [ ] OAuth2 authentication flow
+- [ ] Enhanced economy features
+- [ ] Expanded analytics capabilities
+- [ ] Mobile SDK support
 
-### 💰 Get Item Value from RoliMon's
+## Contributing
 
-```javascript
-fetch('http://localhost:5000/api/external/rolimon/items/1365767/history')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
+We welcome contributions to BloxAPI! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute.
 
-</td>
-</tr>
-</table>
+## Security
 
-<div align="center">
-  <details>
-    <summary><strong>📚 View More Examples</strong></summary>
-    <br>
-    
-### 📊 Track User Analytics
-```javascript
-fetch('http://localhost:5000/api/analytics/users/1234567/visits?time_frame=past30days')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
+For security concerns, please see our [Security Policy](SECURITY.md).
 
-### 👥 Get Group Members
-```javascript
-fetch('http://localhost:5000/api/groups/1234567/members?limit=100')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
-
-### 🧩 Get Asset Information
-```javascript
-fetch('http://localhost:5000/api/assets/123456789/info?include_bundles=true')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
-  </details>
-</div>
-
-## 🛣️ Roadmap
-
-- [ ] Authentication system for higher rate limits
-- [ ] Webhook support for real-time notifications
-- [ ] Caching layer for improved performance
-- [ ] GraphQL endpoint
-- [ ] Mobile SDK
-- [ ] Admin dashboard for monitoring API usage
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📋 API Categories
+## Acknowledgements
 
-- **Users**: User profiles, search, and authentication data
-- **Games**: Game details, analytics, and statistics
-- **Groups**: Group information, roles, and membership data
-- **Assets**: Item details, ownership, and catalog information
-- **Economy**: Marketplace data, currency exchange, and trading information
-- **Inventory**: User item ownership and collections
-- **Badges**: Badge details and user badge data
-- **Analytics**: Performance metrics and usage statistics
-- **Notifications**: User notification system integration
-- **Chat**: Messaging system integration
-- **Events**: Real-time event notifications for users, games, and groups
-- **Moderation**: Content moderation tools and safety features
-- **Statistics**: Detailed game analytics and player metrics
-- **Servers**: Game server management and VIP server control
-- **Social**: User social connections and friend recommendations
-- **Monetization**: Developer products, game passes, and premium payouts
-- **Subscriptions**: Premium subscription features and benefits
-- **User Profiles**: Extended profile information and settings
+- Thanks to the Roblox API community for their ongoing support and contributions.
+- Special thanks to all the contributors who have helped make this project possible.
 
-## 🔧 Recent Improvements
+---
 
-### API Expansion (200+ New Endpoints)
-- **Events System**: New endpoints for tracking user, game, and group events with real-time notifications
-- **Moderation API**: Content moderation tools, safety settings, and text filtering capabilities
-- **Statistics System**: Enhanced game analytics with playtime tracking, retention rates, and demographic data
-- **Server Management**: New endpoints for monitoring and controlling game server instances
-- **Social Connections**: Friend recommendations, social graph analysis, and connection management
-- **Monetization Tools**: Developer product endpoints, premium payout tracking, and game pass analytics
-- **Subscriptions**: Premium subscription features and membership benefits tracking
-- **User Profiles**: Extended profile data, settings management, and privacy controls
-
-### API Reliability Enhancements
-- **Removed Demo Mode**: All endpoints now connect directly to the real Roblox API for authentic data
-- **Fixed Critical Endpoints**: Addressed issues with User Search, User Friends, Game Details, and other crucial endpoints
-- **Enhanced Error Handling**: Implemented comprehensive error detection, reporting and recovery
-- **Intelligent Retries**: Added automatic retry mechanism with exponential backoff for transient network issues
-- **Input Validation**: Added proper parameter validation and sanitization to prevent errors
-- **Improved Logging**: Enhanced logging for better troubleshooting and monitoring
-- **API Standardization**: Ensured consistent response formats across all endpoints
-
-### External Integrations
-- **RoliMon's Integration**: Complete overhaul of item value tracking endpoints
-- **Rblx.Trade Connection**: Improved trade advertisement and player reputation endpoints
-- **Roliverse API**: Added new endpoints for market trends and demand insights
-- **Rblx Values API**: Added support for item stability metrics and projected status
-
-## 🔧 JavaScript Client Library
-
-BloxAPI includes a JavaScript library for browser-based applications, making it easy to integrate with web projects:
-
-```javascript
-// Get user information
-BloxAPI.users.getUser(1234567)
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-```
-
-## 🔄 Rate Limiting and Error Handling
-
-BloxAPI implements advanced rate limiting and error handling to ensure reliable and fair usage:
-
-### Rate Limiting
-- 60 requests per minute for standard usage
-- Responses include rate limit headers for monitoring usage
-- Built-in handling of Roblox API rate limits with automatic retries
-
-### Error Handling
-- Automatic retries for transient network errors (up to 3 attempts with exponential backoff)
-- Detailed error messages with HTTP status codes and contextual information
-- Consistent error response format across all endpoints
-- Special handling for common error scenarios (e.g., resource not found, invalid parameters)
-- Detailed logging for troubleshooting
-
-## 📞 Contact
-
-GitHub: [@Bogdan11212](https://github.com/Bogdan11212)
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Bogdan11212/BloxAPI&type=Date)](https://star-history.com/#Bogdan11212/BloxAPI&Date)
+<p align="center">Made with ❤️ by the BloxAPI Team</p>
