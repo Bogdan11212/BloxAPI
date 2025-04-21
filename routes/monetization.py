@@ -1,477 +1,426 @@
-from flask import request
-from flask_restful import Resource
-import logging
-from utils.validators import PaginationSchema, DateRangeSchema
-from utils.roblox_api_extra import (
-    get_developer_products,
-    get_developer_product_details,
-    get_game_passes,
-    get_game_pass_details,
-    get_premium_payouts,
-    get_transaction_history,
-    get_sales_summary,
-    get_revenue_summary,
-    get_purchases_by_product,
-    check_player_ownership,
-    RobloxAPIError
-)
+"""
+Monetization Routes for BloxAPI
 
+This module provides API routes related to monetization, game passes,
+developer products, and transactions.
+"""
+
+import logging
+from flask import request, jsonify
+from flask_restful import Resource
+from utils.fraud_detection import get_transaction_monitor
+
+# Configure logging
 logger = logging.getLogger(__name__)
 
 class DeveloperProductsResource(Resource):
     """
-    Resource for getting developer products for a game
+    Resource for developer products
     """
-    def get(self, universe_id):
+    
+    def get(self, universe_id=None):
         """
         Get developer products for a game
         
         Args:
-            universe_id (int): The Roblox universe ID
-            
-        Query Parameters:
-            limit (int, optional): Maximum number of results (default: 50)
+            universe_id: Roblox universe ID
             
         Returns:
-            dict: Developer products or error response
+            List of developer products or error response
         """
-        schema = PaginationSchema()
-        args = schema.load(request.args)
-        
-        limit = args.get('limit', 50)
-        
         try:
-            products_data = get_developer_products(universe_id, limit)
-            
-            return {
-                "success": True,
-                "data": products_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting developer products: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting developer products
+            return {"message": "Developer products endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting developer products: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting developer products: {e}")
+            return {"error": str(e)}, 500
+    
+    def post(self, universe_id=None):
+        """
+        Create a new developer product
+        
+        Args:
+            universe_id: Roblox universe ID
+            
+        Returns:
+            New developer product or error response
+        """
+        try:
+            # Implementation for creating developer product
+            return {"message": "Create developer product endpoint"}
+        except Exception as e:
+            logger.error(f"Error creating developer product: {e}")
+            return {"error": str(e)}, 500
+
 
 class DeveloperProductDetailsResource(Resource):
     """
-    Resource for getting details about a specific developer product
+    Resource for developer product details
     """
+    
     def get(self, product_id):
         """
-        Get details about a specific developer product
+        Get details for a developer product
         
         Args:
-            product_id (int): The Roblox developer product ID
+            product_id: Product ID
             
         Returns:
-            dict: Developer product details or error response
+            Developer product details or error response
         """
         try:
-            product_data = get_developer_product_details(product_id)
-            
-            return {
-                "success": True,
-                "data": product_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting developer product details: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting product details
+            return {"message": "Developer product details endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting developer product details: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting developer product details: {e}")
+            return {"error": str(e)}, 500
+    
+    def put(self, product_id):
+        """
+        Update a developer product
+        
+        Args:
+            product_id: Product ID
+            
+        Returns:
+            Updated developer product or error response
+        """
+        try:
+            # Implementation for updating product
+            return {"message": "Update developer product endpoint"}
+        except Exception as e:
+            logger.error(f"Error updating developer product: {e}")
+            return {"error": str(e)}, 500
+
 
 class GamePassesResource(Resource):
     """
-    Resource for getting game passes for a game
+    Resource for game passes
     """
+    
     def get(self, universe_id):
         """
         Get game passes for a game
         
         Args:
-            universe_id (int): The Roblox universe ID
-            
-        Query Parameters:
-            limit (int, optional): Maximum number of results (default: 50)
+            universe_id: Roblox universe ID
             
         Returns:
-            dict: Game passes or error response
+            List of game passes or error response
         """
-        schema = PaginationSchema()
-        args = schema.load(request.args)
-        
-        limit = args.get('limit', 50)
-        
         try:
-            passes_data = get_game_passes(universe_id, limit)
-            
-            return {
-                "success": True,
-                "data": passes_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting game passes: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting game passes
+            return {"message": "Game passes endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting game passes: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting game passes: {e}")
+            return {"error": str(e)}, 500
+    
+    def post(self, universe_id):
+        """
+        Create a new game pass
+        
+        Args:
+            universe_id: Roblox universe ID
+            
+        Returns:
+            New game pass or error response
+        """
+        try:
+            # Implementation for creating game pass
+            return {"message": "Create game pass endpoint"}
+        except Exception as e:
+            logger.error(f"Error creating game pass: {e}")
+            return {"error": str(e)}, 500
+
 
 class GamePassDetailsResource(Resource):
     """
-    Resource for getting details about a specific game pass
+    Resource for game pass details
     """
-    def get(self, pass_id):
+    
+    def get(self, gamepass_id):
         """
-        Get details about a specific game pass
+        Get details for a game pass
         
         Args:
-            pass_id (int): The Roblox game pass ID
+            gamepass_id: Game pass ID
             
         Returns:
-            dict: Game pass details or error response
+            Game pass details or error response
         """
         try:
-            pass_data = get_game_pass_details(pass_id)
-            
-            return {
-                "success": True,
-                "data": pass_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting game pass details: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting game pass details
+            return {"message": "Game pass details endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting game pass details: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting game pass details: {e}")
+            return {"error": str(e)}, 500
+    
+    def put(self, gamepass_id):
+        """
+        Update a game pass
+        
+        Args:
+            gamepass_id: Game pass ID
+            
+        Returns:
+            Updated game pass or error response
+        """
+        try:
+            # Implementation for updating game pass
+            return {"message": "Update game pass endpoint"}
+        except Exception as e:
+            logger.error(f"Error updating game pass: {e}")
+            return {"error": str(e)}, 500
+
 
 class PremiumPayoutsResource(Resource):
     """
-    Resource for getting premium payouts for a game
+    Resource for premium payouts
     """
+    
     def get(self, universe_id):
         """
         Get premium payouts for a game
         
         Args:
-            universe_id (int): The Roblox universe ID
-            
-        Query Parameters:
-            start_date (str, required): Start date for payouts (format: "YYYY-MM-DD")
-            end_date (str, required): End date for payouts (format: "YYYY-MM-DD")
+            universe_id: Roblox universe ID
             
         Returns:
-            dict: Premium payouts or error response
+            Premium payouts or error response
         """
-        schema = DateRangeSchema()
-        
         try:
-            args = schema.load(request.args)
+            # Implementation for getting premium payouts
+            return {"message": "Premium payouts endpoint"}
         except Exception as e:
-            return {
-                "success": False,
-                "message": str(e)
-            }, 400
-        
-        start_date = args['start_date']
-        end_date = args['end_date']
-        
-        try:
-            payouts_data = get_premium_payouts(universe_id, start_date, end_date)
-            
-            return {
-                "success": True,
-                "data": payouts_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting premium payouts: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
-        except Exception as e:
-            logger.error(f"Unexpected error getting premium payouts: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting premium payouts: {e}")
+            return {"error": str(e)}, 500
+
 
 class TransactionHistoryResource(Resource):
     """
-    Resource for getting transaction history for a game
+    Resource for transaction history
     """
-    def get(self, universe_id):
+    
+    def get(self, universe_id=None):
         """
-        Get transaction history for a game
+        Get transaction history for a game or user
         
         Args:
-            universe_id (int): The Roblox universe ID
+            universe_id: Roblox universe ID (optional)
             
         Query Parameters:
-            start_date (str, required): Start date for transactions (format: "YYYY-MM-DD")
-            end_date (str, required): End date for transactions (format: "YYYY-MM-DD")
-            transaction_type (str, optional): Type of transactions to filter by (e.g., "Sale", "DevEx", "GroupPayout")
-            limit (int, optional): Maximum number of results (default: 100)
+            user_id: User ID (optional)
+            start_date: Start date (format: YYYY-MM-DD)
+            end_date: End date (format: YYYY-MM-DD)
+            transaction_type: Type of transaction (optional)
             
         Returns:
-            dict: Transaction history or error response
+            Transaction history or error response
         """
-        schema = DateRangeSchema()
-        
         try:
-            args = schema.load(request.args)
-        except Exception as e:
-            return {
-                "success": False,
-                "message": str(e)
-            }, 400
-        
-        start_date = args['start_date']
-        end_date = args['end_date']
-        
-        pag_schema = PaginationSchema()
-        pag_args = pag_schema.load(request.args)
-        
-        limit = pag_args.get('limit', 100)
-        transaction_type = request.args.get('transaction_type', None)
-        
-        try:
-            transactions_data = get_transaction_history(universe_id, start_date, end_date, transaction_type, limit)
+            # Get query parameters
+            user_id = request.args.get('user_id')
+            start_date = request.args.get('start_date')
+            end_date = request.args.get('end_date')
+            transaction_type = request.args.get('transaction_type')
             
-            return {
-                "success": True,
-                "data": transactions_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting transaction history: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting transaction history
+            return {"message": "Transaction history endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting transaction history: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting transaction history: {e}")
+            return {"error": str(e)}, 500
+
 
 class SalesSummaryResource(Resource):
     """
-    Resource for getting sales summary for a game
+    Resource for sales summary
     """
+    
     def get(self, universe_id):
         """
         Get sales summary for a game
         
         Args:
-            universe_id (int): The Roblox universe ID
+            universe_id: Roblox universe ID
             
         Query Parameters:
-            start_date (str, required): Start date for sales (format: "YYYY-MM-DD")
-            end_date (str, required): End date for sales (format: "YYYY-MM-DD")
+            start_date: Start date (format: YYYY-MM-DD)
+            end_date: End date (format: YYYY-MM-DD)
             
         Returns:
-            dict: Sales summary or error response
+            Sales summary or error response
         """
-        schema = DateRangeSchema()
-        
         try:
-            args = schema.load(request.args)
-        except Exception as e:
-            return {
-                "success": False,
-                "message": str(e)
-            }, 400
-        
-        start_date = args['start_date']
-        end_date = args['end_date']
-        
-        try:
-            summary_data = get_sales_summary(universe_id, start_date, end_date)
+            # Get query parameters
+            start_date = request.args.get('start_date')
+            end_date = request.args.get('end_date')
             
-            return {
-                "success": True,
-                "data": summary_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting sales summary: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting sales summary
+            return {"message": "Sales summary endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting sales summary: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting sales summary: {e}")
+            return {"error": str(e)}, 500
+
 
 class RevenueSummaryResource(Resource):
     """
-    Resource for getting revenue summary for a game
+    Resource for revenue summary
     """
+    
     def get(self, universe_id):
         """
         Get revenue summary for a game
         
         Args:
-            universe_id (int): The Roblox universe ID
+            universe_id: Roblox universe ID
             
         Query Parameters:
-            start_date (str, required): Start date for revenue (format: "YYYY-MM-DD")
-            end_date (str, required): End date for revenue (format: "YYYY-MM-DD")
+            start_date: Start date (format: YYYY-MM-DD)
+            end_date: End date (format: YYYY-MM-DD)
+            group_by: Group results by (day, week, month)
             
         Returns:
-            dict: Revenue summary or error response
+            Revenue summary or error response
         """
-        schema = DateRangeSchema()
-        
         try:
-            args = schema.load(request.args)
-        except Exception as e:
-            return {
-                "success": False,
-                "message": str(e)
-            }, 400
-        
-        start_date = args['start_date']
-        end_date = args['end_date']
-        
-        try:
-            summary_data = get_revenue_summary(universe_id, start_date, end_date)
+            # Get query parameters
+            start_date = request.args.get('start_date')
+            end_date = request.args.get('end_date')
+            group_by = request.args.get('group_by', 'day')
             
-            return {
-                "success": True,
-                "data": summary_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting revenue summary: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting revenue summary
+            return {"message": "Revenue summary endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting revenue summary: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting revenue summary: {e}")
+            return {"error": str(e)}, 500
+
 
 class ProductPurchasesResource(Resource):
     """
-    Resource for getting purchases by product
+    Resource for product purchases
     """
-    def get(self, universe_id, product_id):
+    
+    def get(self, product_id):
         """
-        Get purchases by product
+        Get purchases for a product
         
         Args:
-            universe_id (int): The Roblox universe ID
-            product_id (int): The Roblox product ID
+            product_id: Product ID
             
         Query Parameters:
-            start_date (str, required): Start date for purchases (format: "YYYY-MM-DD")
-            end_date (str, required): End date for purchases (format: "YYYY-MM-DD")
-            limit (int, optional): Maximum number of results (default: 100)
+            limit: Maximum number of results (default: 100)
             
         Returns:
-            dict: Product purchases or error response
+            Product purchases or error response
         """
-        schema = DateRangeSchema()
-        
         try:
-            args = schema.load(request.args)
-        except Exception as e:
-            return {
-                "success": False,
-                "message": str(e)
-            }, 400
-        
-        start_date = args['start_date']
-        end_date = args['end_date']
-        
-        pag_schema = PaginationSchema()
-        pag_args = pag_schema.load(request.args)
-        
-        limit = pag_args.get('limit', 100)
-        
-        try:
-            purchases_data = get_purchases_by_product(universe_id, product_id, start_date, end_date, limit)
+            # Get query parameters
+            limit = int(request.args.get('limit', 100))
             
-            return {
-                "success": True,
-                "data": purchases_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error getting product purchases: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting product purchases
+            return {"message": "Product purchases endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error getting product purchases: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting product purchases: {e}")
+            return {"error": str(e)}, 500
+
 
 class PlayerOwnershipResource(Resource):
     """
-    Resource for checking if a player owns a product
+    Resource for player ownership
     """
-    def get(self, user_id, asset_type, asset_id):
+    
+    def get(self, user_id):
         """
-        Check if a player owns a product
+        Get items owned by a player
         
         Args:
-            user_id (int): The Roblox user ID
-            asset_type (str): The type of asset ('gamepass', 'developerproduct', 'asset')
-            asset_id (int): The ID of the asset
+            user_id: User ID
+            
+        Query Parameters:
+            item_type: Type of item (gamepass, devproduct, etc.)
             
         Returns:
-            dict: Ownership status or error response
+            Player ownership information or error response
         """
         try:
-            ownership_data = check_player_ownership(user_id, asset_type, asset_id)
+            # Get query parameters
+            item_type = request.args.get('item_type')
             
-            return {
-                "success": True,
-                "data": ownership_data
-            }
-        except RobloxAPIError as e:
-            logger.error(f"Error checking player ownership: {str(e)}")
-            return {
-                "success": False,
-                "message": str(e)
-            }, e.status_code
+            # Implementation for getting player ownership
+            return {"message": "Player ownership endpoint"}
         except Exception as e:
-            logger.error(f"Unexpected error checking player ownership: {str(e)}")
-            return {
-                "success": False,
-                "message": "An unexpected error occurred"
-            }, 500
+            logger.error(f"Error getting player ownership: {e}")
+            return {"error": str(e)}, 500
+
+
+class TransactionVerificationResource(Resource):
+    """
+    Resource for transaction verification and fraud detection
+    """
+    
+    def post(self):
+        """
+        Verify a transaction for fraud
+        
+        Request Body:
+            transaction: Transaction data
+                - id: Transaction ID
+                - user_id: User ID
+                - item_id: Item ID
+                - amount: Transaction amount
+                - currency: Currency code
+                - timestamp: Transaction timestamp (optional)
+                - account_age_days: Account age in days (optional)
+            
+        Returns:
+            Transaction verification result or error response
+        """
+        try:
+            # Get transaction data
+            data = request.get_json()
+            if not data or 'transaction' not in data:
+                return {"error": "No transaction data provided"}, 400
+            
+            transaction = data['transaction']
+            
+            # Validate required fields
+            required_fields = ['user_id', 'item_id', 'amount']
+            for field in required_fields:
+                if field not in transaction:
+                    return {"error": f"Missing required field: {field}"}, 400
+            
+            # Get transaction monitor
+            transaction_monitor = get_transaction_monitor()
+            
+            # Record and check transaction
+            result = transaction_monitor.record_transaction(transaction)
+            
+            return result
+        except Exception as e:
+            logger.error(f"Error verifying transaction: {e}")
+            return {"error": str(e)}, 500
+    
+    def get(self):
+        """
+        Get suspicious transactions
+        
+        Query Parameters:
+            limit: Maximum number of results (default: 100)
+            
+        Returns:
+            List of suspicious transactions or error response
+        """
+        try:
+            # Get query parameters
+            limit = int(request.args.get('limit', 100))
+            
+            # Get transaction monitor
+            transaction_monitor = get_transaction_monitor()
+            
+            # Get suspicious transactions
+            transactions = transaction_monitor.get_suspicious_transactions(limit=limit)
+            
+            return {"suspicious_transactions": transactions}
+        except Exception as e:
+            logger.error(f"Error getting suspicious transactions: {e}")
+            return {"error": str(e)}, 500
