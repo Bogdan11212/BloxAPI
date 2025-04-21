@@ -1,101 +1,105 @@
 """
 GraphQL Route for BloxAPI
 
-This module provides a GraphQL API endpoint for the BloxAPI.
-It uses the graphene library to define a schema and execute queries.
+This module provides a GraphQL API endpoint for more flexible querying
+of the BloxAPI data.
 """
 
-import json
 import logging
+import json
 from flask import request, jsonify
 from flask_restful import Resource
 from flask_graphql import GraphQLView
 from utils.graphql_schema import schema
-from utils.redis_cache import get_cache, cache_decorator
 
 # Configure logging
 logger = logging.getLogger(__name__)
 
 class GraphQLResource(Resource):
     """
-    GraphQL API endpoint for the BloxAPI
+    Resource for GraphQL API
     """
     
     def get(self):
         """
-        Handle GET requests for GraphQL (introspection)
+        Handle GET requests to the GraphQL endpoint
         
         Returns:
-            Response: GraphQL query result or error response
+            GraphQL query results or error response
         """
-        query = request.args.get('query')
-        variables = request.args.get('variables')
+        try:
+            # Parse query from GET parameters
+            query = request.args.get('query')
+            variables = request.args.get('variables')
+            
+            if variables:
+                try:
+                    variables = json.loads(variables)
+                except json.JSONDecodeError:
+                    return {"error": "Invalid variables JSON"}, 400
+            
+            if not query:
+                return {"error": "No GraphQL query provided"}, 400
+            
+            # Execute query
+            result = schema.execute(query, variable_values=variables)
+            
+            if result.errors:
+                # Log errors
+                for error in result.errors:
+                    logger.error(f"GraphQL error: {error}")
+                
+                # Return errors
+                errors = [str(error) for error in result.errors]
+                return {"errors": errors}, 400
+            
+            # Return data
+            return jsonify(result.data)
         
-        if variables:
-            try:
-                variables = json.loads(variables)
-            except json.JSONDecodeError:
-                return {"error": "Invalid variables JSON"}, 400
-        
-        return self._execute_query(query, variables)
+        except Exception as e:
+            logger.error(f"Error processing GraphQL query: {e}")
+            return {"error": str(e)}, 500
     
     def post(self):
         """
-        Handle POST requests for GraphQL queries
+        Handle POST requests to the GraphQL endpoint
         
         Returns:
-            Response: GraphQL query result or error response
+            GraphQL query results or error response
         """
-        # Get request JSON data
-        data = request.get_json()
-        
-        if not data:
-            return {"error": "No JSON data provided"}, 400
-        
-        query = data.get('query')
-        variables = data.get('variables')
-        
-        return self._execute_query(query, variables)
-    
-    @cache_decorator("graphql", ttl=300)  # Cache for 5 minutes
-    def _execute_query(self, query, variables=None):
-        """
-        Execute a GraphQL query and return the result
-        
-        Args:
-            query (str): GraphQL query
-            variables (dict, optional): Query variables
-            
-        Returns:
-            dict: Query result or error response
-        """
-        if not query:
-            return {"error": "No query provided"}, 400
-        
         try:
-            # Execute the query
-            result = schema.execute(query, variable_values=variables)
+            # Parse JSON data from request
+            data = request.get_json()
             
-            # Handle errors
+            if not data:
+                return {"error": "No JSON data provided"}, 400
+            
+            query = data.get('query')
+            variables = data.get('variables')
+            operation_name = data.get('operationName')
+            
+            if not query:
+                return {"error": "No GraphQL query provided"}, 400
+            
+            # Execute query
+            result = schema.execute(
+                query,
+                variable_values=variables,
+                operation_name=operation_name
+            )
+            
             if result.errors:
+                # Log errors
+                for error in result.errors:
+                    logger.error(f"GraphQL error: {error}")
+                
+                # Return errors
                 errors = [str(error) for error in result.errors]
-                logger.error(f"GraphQL query errors: {errors}")
-                return {
-                    "errors": errors,
-                    "data": result.data
-                }, 400
+                return {"errors": errors}, 400
             
-            # Return successful result
-            return {"data": result.data}
+            # Return data
+            return jsonify(result.data)
         
         except Exception as e:
-            logger.exception(f"Error executing GraphQL query: {e}")
+            logger.error(f"Error processing GraphQL query: {e}")
             return {"error": str(e)}, 500
-
-
-# GraphQLView for the Flask app
-graphql_view = GraphQLView.as_view(
-    'graphql',
-    schema=schema,
-    graphiql=True  # Enable GraphiQL interface for testing
-)

@@ -284,6 +284,23 @@ from routes.ugc import (
     UgcCategoryDetailsResource, UgcTrendingItemsResource
 )
 
+# Import Security modules
+from routes.security_routes import (
+    BotDetectionResource, IPReputationResource,
+    RequestValidationResource, AccountMonitoringResource,
+    ItemMonitoringResource, RateLimitStatusResource,
+    IPBanResource, SecurityInfoResource
+)
+
+# Import Monitoring modules
+from routes.monitoring import (
+    SystemResourcesResource, HistoricalMetricsResource,
+    PerformanceResource, EndpointStatsResource,
+    CacheStatsResource, HealthCheckResource,
+    LivenessProbeResource, ReadinessProbeResource,
+    MetricsExportResource
+)
+
 # Import Integrated Analytics modules
 from routes.integrated_analytics import (
     CrossPlatformAnalyticsResource, DeviceTypeAnalyticsResource,
@@ -864,6 +881,27 @@ api.add_resource(UgcItemVersionDetailsResource, '/api/ugc/items/<int:item_id>/ve
 api.add_resource(UgcCategoriesResource, '/api/ugc/categories')
 api.add_resource(UgcCategoryDetailsResource, '/api/ugc/categories/<int:category_id>')
 api.add_resource(UgcTrendingItemsResource, '/api/ugc/trending')
+
+# Register Security API routes
+api.add_resource(BotDetectionResource, '/api/security/bot-detection')
+api.add_resource(IPReputationResource, '/api/security/ip-reputation', '/api/security/ip-reputation/<string:ip>')
+api.add_resource(RequestValidationResource, '/api/security/validate-request')
+api.add_resource(AccountMonitoringResource, '/api/security/account-monitoring')
+api.add_resource(ItemMonitoringResource, '/api/security/item-monitoring')
+api.add_resource(RateLimitStatusResource, '/api/security/rate-limit-status')
+api.add_resource(IPBanResource, '/api/security/ip-ban', '/api/security/ip-ban/<string:ip>')
+api.add_resource(SecurityInfoResource, '/api/security/info')
+
+# Register Monitoring API routes
+api.add_resource(SystemResourcesResource, '/api/monitoring/system-resources')
+api.add_resource(HistoricalMetricsResource, '/api/monitoring/historical-metrics/<string:metric_type>')
+api.add_resource(PerformanceResource, '/api/monitoring/performance')
+api.add_resource(EndpointStatsResource, '/api/monitoring/endpoint-stats')
+api.add_resource(CacheStatsResource, '/api/monitoring/cache-stats')
+api.add_resource(HealthCheckResource, '/api/monitoring/health')
+api.add_resource(LivenessProbeResource, '/api/monitoring/liveness')
+api.add_resource(ReadinessProbeResource, '/api/monitoring/readiness')
+api.add_resource(MetricsExportResource, '/api/monitoring/metrics')
 
 # Web routes for documentation
 @app.route('/')
