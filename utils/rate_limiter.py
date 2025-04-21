@@ -1,7 +1,9 @@
 import time
 import threading
 import logging
+import functools
 from collections import deque
+from flask import request
 
 logger = logging.getLogger(__name__)
 
@@ -46,3 +48,37 @@ class RateLimiter:
             
             # Record this call
             self.calls.append(now)
+
+# Global rate limiter instances for different API categories
+DEFAULT_RATE_LIMITER = RateLimiter(60, 60)  # 60 calls per minute
+USER_RATE_LIMITER = RateLimiter(30, 60)     # 30 calls per minute
+GAME_RATE_LIMITER = RateLimiter(30, 60)     # 30 calls per minute
+GROUP_RATE_LIMITER = RateLimiter(30, 60)    # 30 calls per minute
+ASSET_RATE_LIMITER = RateLimiter(30, 60)    # 30 calls per minute
+
+def rate_limited(f=None, limiter=None):
+    """
+    Decorator to apply rate limiting to API endpoints
+    
+    Args:
+        f (function, optional): Function to decorate. If None, returns a 
+                              decorator with the specified parameters.
+        limiter (RateLimiter, optional): Rate limiter to use. Defaults to DEFAULT_RATE_LIMITER.
+    
+    Returns:
+        function: Decorated function with rate limiting
+    """
+    if limiter is None:
+        limiter = DEFAULT_RATE_LIMITER
+    
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            # Apply rate limiting before calling the function
+            limiter.wait_if_needed()
+            return func(*args, **kwargs)
+        return wrapper
+    
+    if f is None:
+        return decorator
+    return decorator(f)

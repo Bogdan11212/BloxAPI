@@ -360,6 +360,104 @@ def handle_roblox_response(response):
         logger.error(f"Roblox API error: {error_msg}")
         raise RobloxAPIError(response.status_code, error_msg)
 
+def make_request(url, method='GET', params=None, data=None, headers=None, cookies=None, 
+              timeout=CONNECTION_TIMEOUT, retries=MAX_RETRIES, use_demo_data=DEMO_MODE, demo_key=None):
+    """
+    Make a request to the Roblox API with error handling and retries
+    
+    Args:
+        url (str): URL to request
+        method (str, optional): HTTP method. Defaults to 'GET'.
+        params (dict, optional): Query parameters. Defaults to None.
+        data (dict, optional): Request body for POST/PUT. Defaults to None.
+        headers (dict, optional): Request headers. Defaults to None.
+        cookies (dict, optional): Request cookies. Defaults to None.
+        timeout (int, optional): Request timeout. Defaults to CONNECTION_TIMEOUT.
+        retries (int, optional): Number of retries. Defaults to MAX_RETRIES.
+        use_demo_data (bool, optional): Use demo data instead of real API. Defaults to DEMO_MODE.
+        demo_key (str, optional): Key to access demo data. Defaults to None.
+    
+    Returns:
+        dict: Parsed response from API
+    
+    Raises:
+        RobloxAPIError: If the API request fails
+    """
+    # Handle demo mode for development/testing without hitting actual API
+    if use_demo_data and demo_key is not None:
+        # Split the demo key by dots to navigate nested objects
+        keys = demo_key.split('.')
+        data = DEMO_DATA
+        
+        for key in keys:
+            if key in data:
+                data = data[key]
+            else:
+                logger.warning(f"Demo data key '{demo_key}' not found")
+                raise RobloxAPIError(404, f"Demo data for '{demo_key}' not found")
+        
+        # Add random delay to simulate API response time
+        time.sleep(random.uniform(0.1, 0.5))
+        return data
+    
+    # Default headers
+    if headers is None:
+        headers = {}
+    
+    # Apply rate limiting
+    rate_limiter.wait_if_needed()
+    
+    # Try the request with retries
+    retry_count = 0
+    while retry_count <= retries:
+        try:
+            response = requests.request(
+                method=method,
+                url=url,
+                params=params,
+                json=data if method in ['POST', 'PUT', 'PATCH'] else None,
+                headers=headers,
+                cookies=cookies,
+                timeout=timeout
+            )
+            
+            # Process the response
+            return handle_roblox_response(response)
+        
+        except requests.ConnectionError as e:
+            logger.warning(f"Connection error (attempt {retry_count+1}/{retries+1}): {str(e)}")
+            if retry_count >= retries:
+                logger.error(f"Max retries reached for connection error: {str(e)}")
+                raise RobloxAPIError(503, f"Connection error to Roblox API: {str(e)}")
+        
+        except requests.Timeout as e:
+            logger.warning(f"Timeout error (attempt {retry_count+1}/{retries+1}): {str(e)}")
+            if retry_count >= retries:
+                logger.error(f"Max retries reached for timeout error: {str(e)}")
+                raise RobloxAPIError(504, f"Timeout error when connecting to Roblox API: {str(e)}")
+        
+        except RobloxAPIError as e:
+            # Only retry certain status codes
+            if e.status_code in [429, 500, 502, 503, 504]:
+                logger.warning(f"API error (attempt {retry_count+1}/{retries+1}): {e.message}")
+                if retry_count >= retries:
+                    logger.error(f"Max retries reached for API error: {e.message}")
+                    raise
+            else:
+                # Don't retry other errors (404, 403, etc)
+                raise
+        
+        # Exponential backoff before retrying
+        retry_count += 1
+        if retry_count <= retries:
+            sleep_time = RETRY_BACKOFF * (2 ** (retry_count - 1)) + random.uniform(0, 1)
+            logger.info(f"Retrying in {sleep_time:.2f} seconds...")
+            time.sleep(sleep_time)
+    
+    # This should never be reached due to the retry handling above
+    raise RobloxAPIError(500, "Failed to get response from Roblox API after retries")
+
+
 def with_rate_limit(func):
     """
     Decorator to apply rate limiting to API calls

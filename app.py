@@ -164,6 +164,61 @@ from routes.external import (
     RblxValuesRisingItemsResource, RblxValuesFallingItemsResource
 )
 
+# Import new advanced analytics modules
+from routes.advanced_analytics import (
+    UserRetentionAnalyticsResource, UserAcquisitionAnalyticsResource,
+    UserEngagementAnalyticsResource, UserLifetimeValueResource,
+    DeveloperFunnelAnalyticsResource, SessionLengthDistributionResource,
+    SessionFrequencyAnalyticsResource, SessionIntervalAnalyticsResource,
+    PlayerSegmentationResource, CustomEventAnalyticsResource,
+    FunnelConversionAnalyticsResource, PlayerCohortAnalyticsResource,
+    PlayerAttributionAnalyticsResource, AbTestAnalyticsResource,
+    PlayerPredictionResource, FeatureImpactAnalyticsResource,
+    PlayerPatternAnalyticsResource
+)
+
+# Import localization modules
+from routes.localization import (
+    SupportedLanguagesResource, GameTextTranslationsResource,
+    GameInterfaceTranslationsResource, AutoTranslationResource,
+    LocalizationStatsResource, LocalizationQualityResource,
+    LocalizationMissingTermsResource, LocalizationContributorsResource,
+    LocalizationScheduleResource, LocalizationRegionalSettingsResource,
+    LocalizationGlossaryResource, LocalizationMetricsResource,
+    LocalizationFeedbackResource, LocalizationReportsResource,
+    LocalizationExportResource, LocalizationImportResource,
+    LocalizationWorkflowResource, LocalizationServiceProvidersResource,
+    LocalizationStyleGuideResource
+)
+
+# Import AI services modules
+from routes.ai_services import (
+    TextGenerationResource, DialogueGenerationResource,
+    NpcBehaviorGenerationResource, WorldBuildingResource,
+    StoryGenerationResource, QuestGenerationResource,
+    PuzzleGenerationResource, ImagePromptGenerationResource,
+    ContentModerationResource, SentimentAnalysisResource,
+    TextSummaryResource, ChatCompletionResource,
+    TextClassificationResource, NameGenerationResource,
+    AiModelsResource, AiModelDetailsResource,
+    AiUsageLimitsResource, AiPersonalityCreationResource,
+    AiTrainingResource
+)
+
+# Import user content modules
+from routes.user_content import (
+    UserCreationsResource, UserShowcaseResource,
+    UserPortfolioResource, UserFavoriteGamesResource,
+    UserFavoriteGroupsResource, UserFavoriteAssetsResource,
+    UserCollectionsResource, UserCollectionDetailsResource,
+    UserContentRecommendationsResource, UserFeedResource,
+    UserPostsResource, UserActivityResource,
+    UserReviewsResource, UserRatingsResource,
+    UserCommentsResource, UserRecentContentResource,
+    UserTrendingContentResource, UserPopularContentResource,
+    UserContentEngagementResource
+)
+
 # Register API routes
 api.add_resource(UserResource, '/api/users/<int:user_id>')
 api.add_resource(UserBatchResource, '/api/users')
@@ -410,6 +465,88 @@ api.add_resource(AssetDetailsResource, '/api/content-creation/assets/<int:asset_
 api.add_resource(AssetTagsResource, '/api/content-creation/tags')
 api.add_resource(AssetVersionsResource, '/api/content-creation/assets/<int:asset_id>/versions')
 api.add_resource(AssetStatsResource, '/api/content-creation/assets/<int:asset_id>/stats')
+
+# Register Advanced Analytics API routes
+api.add_resource(UserRetentionAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/user-retention')
+api.add_resource(UserAcquisitionAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/user-acquisition')
+api.add_resource(UserEngagementAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/user-engagement')
+api.add_resource(UserLifetimeValueResource, '/api/advanced-analytics/games/<int:universe_id>/user-ltv')
+api.add_resource(DeveloperFunnelAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/funnel')
+api.add_resource(SessionLengthDistributionResource, '/api/advanced-analytics/games/<int:universe_id>/session-length')
+api.add_resource(SessionFrequencyAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/session-frequency')
+api.add_resource(SessionIntervalAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/session-interval')
+api.add_resource(PlayerSegmentationResource, '/api/advanced-analytics/games/<int:universe_id>/player-segments')
+api.add_resource(CustomEventAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/events/<string:event_name>')
+api.add_resource(FunnelConversionAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/funnel-conversion')
+api.add_resource(PlayerCohortAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/player-cohorts')
+api.add_resource(PlayerAttributionAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/player-attribution')
+api.add_resource(AbTestAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/ab-tests/<string:test_id>')
+api.add_resource(PlayerPredictionResource, '/api/advanced-analytics/games/<int:universe_id>/predictions/<string:prediction_type>')
+api.add_resource(FeatureImpactAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/features/<string:feature_id>/impact')
+api.add_resource(PlayerPatternAnalyticsResource, '/api/advanced-analytics/games/<int:universe_id>/player-patterns')
+
+# Register Localization API routes
+api.add_resource(SupportedLanguagesResource, '/api/localization/languages')
+api.add_resource(GameTextTranslationsResource, '/api/localization/games/<int:universe_id>/text')
+api.add_resource(GameInterfaceTranslationsResource, '/api/localization/games/<int:universe_id>/interface')
+api.add_resource(AutoTranslationResource, '/api/localization/auto-translate')
+api.add_resource(LocalizationStatsResource, '/api/localization/games/<int:universe_id>/stats')
+api.add_resource(LocalizationQualityResource, '/api/localization/games/<int:universe_id>/quality')
+api.add_resource(LocalizationMissingTermsResource, '/api/localization/games/<int:universe_id>/missing-terms')
+api.add_resource(LocalizationContributorsResource, '/api/localization/games/<int:universe_id>/contributors')
+api.add_resource(LocalizationScheduleResource, '/api/localization/games/<int:universe_id>/schedule')
+api.add_resource(LocalizationRegionalSettingsResource, '/api/localization/games/<int:universe_id>/regional-settings')
+api.add_resource(LocalizationGlossaryResource, '/api/localization/games/<int:universe_id>/glossary')
+api.add_resource(LocalizationMetricsResource, '/api/localization/games/<int:universe_id>/metrics')
+api.add_resource(LocalizationFeedbackResource, '/api/localization/games/<int:universe_id>/feedback')
+api.add_resource(LocalizationReportsResource, '/api/localization/games/<int:universe_id>/reports')
+api.add_resource(LocalizationExportResource, '/api/localization/games/<int:universe_id>/export')
+api.add_resource(LocalizationImportResource, '/api/localization/games/<int:universe_id>/import')
+api.add_resource(LocalizationWorkflowResource, '/api/localization/games/<int:universe_id>/workflow')
+api.add_resource(LocalizationServiceProvidersResource, '/api/localization/service-providers')
+api.add_resource(LocalizationStyleGuideResource, '/api/localization/games/<int:universe_id>/style-guide')
+
+# Register AI Services API routes
+api.add_resource(TextGenerationResource, '/api/ai/text-generation')
+api.add_resource(DialogueGenerationResource, '/api/ai/dialogue-generation')
+api.add_resource(NpcBehaviorGenerationResource, '/api/ai/npc-behavior')
+api.add_resource(WorldBuildingResource, '/api/ai/world-building')
+api.add_resource(StoryGenerationResource, '/api/ai/story-generation')
+api.add_resource(QuestGenerationResource, '/api/ai/quest-generation')
+api.add_resource(PuzzleGenerationResource, '/api/ai/puzzle-generation')
+api.add_resource(ImagePromptGenerationResource, '/api/ai/image-prompt')
+api.add_resource(ContentModerationResource, '/api/ai/content-moderation')
+api.add_resource(SentimentAnalysisResource, '/api/ai/sentiment-analysis')
+api.add_resource(TextSummaryResource, '/api/ai/text-summary')
+api.add_resource(ChatCompletionResource, '/api/ai/chat-completion')
+api.add_resource(TextClassificationResource, '/api/ai/text-classification')
+api.add_resource(NameGenerationResource, '/api/ai/name-generation')
+api.add_resource(AiModelsResource, '/api/ai/models')
+api.add_resource(AiModelDetailsResource, '/api/ai/models/<string:model_id>')
+api.add_resource(AiUsageLimitsResource, '/api/ai/usage-limits')
+api.add_resource(AiPersonalityCreationResource, '/api/ai/personality-creation')
+api.add_resource(AiTrainingResource, '/api/ai/training')
+
+# Register User Content API routes
+api.add_resource(UserCreationsResource, '/api/user-content/<int:user_id>/creations')
+api.add_resource(UserShowcaseResource, '/api/user-content/<int:user_id>/showcase')
+api.add_resource(UserPortfolioResource, '/api/user-content/<int:user_id>/portfolio')
+api.add_resource(UserFavoriteGamesResource, '/api/user-content/<int:user_id>/favorite-games')
+api.add_resource(UserFavoriteGroupsResource, '/api/user-content/<int:user_id>/favorite-groups')
+api.add_resource(UserFavoriteAssetsResource, '/api/user-content/<int:user_id>/favorite-assets')
+api.add_resource(UserCollectionsResource, '/api/user-content/<int:user_id>/collections')
+api.add_resource(UserCollectionDetailsResource, '/api/user-content/<int:user_id>/collections/<string:collection_id>')
+api.add_resource(UserContentRecommendationsResource, '/api/user-content/<int:user_id>/recommendations')
+api.add_resource(UserFeedResource, '/api/user-content/<int:user_id>/feed')
+api.add_resource(UserPostsResource, '/api/user-content/<int:user_id>/posts')
+api.add_resource(UserActivityResource, '/api/user-content/<int:user_id>/activity')
+api.add_resource(UserReviewsResource, '/api/user-content/<int:user_id>/reviews')
+api.add_resource(UserRatingsResource, '/api/user-content/<int:user_id>/ratings')
+api.add_resource(UserCommentsResource, '/api/user-content/<int:user_id>/comments')
+api.add_resource(UserRecentContentResource, '/api/user-content/<int:user_id>/recent')
+api.add_resource(UserTrendingContentResource, '/api/user-content/<int:user_id>/trending')
+api.add_resource(UserPopularContentResource, '/api/user-content/<int:user_id>/popular')
+api.add_resource(UserContentEngagementResource, '/api/user-content/<int:user_id>/content/<string:content_id>/engagement')
 
 # Web routes for documentation
 @app.route('/')
