@@ -323,6 +323,43 @@ from routes.caching import (
     LoadBalancerStatsResource, GlobalDistributionResource
 )
 
+# Import Platform Integrations modules
+from routes.platform_integrations import (
+    AvailablePlatformsResource, PlatformAuthenticationResource,
+    PlatformConnectionStatusResource, PlatformConnectionRemovalResource,
+    PlatformFriendsImportResource, PlatformGameSyncResource,
+    PlatformInventorySyncResource, PlatformAchievementsResource,
+    PlatformLeaderboardsResource, PlatformCrossSaveResource,
+    PlatformActivitySyncResource, PlatformPurchaseSyncResource,
+    PlatformEventsResource, PlatformEventDetailsResource,
+    PlatformWebhooksResource, PlatformWebhookDetailsResource
+)
+
+# Import Content Management modules
+from routes.content_management import (
+    ContentLibraryResource, ContentItemDetailsResource,
+    ContentUploadResource, ContentVersionsResource,
+    ContentVersionDetailsResource, ContentTagsResource,
+    ContentCategoriesResource, ContentSearchResource,
+    ContentPermissionsResource, ContentCollaboratorsResource,
+    ContentCollaboratorDetailsResource, ContentModelsResource,
+    ContentModelDetailsResource, ContentPluginsResource,
+    ContentPluginDetailsResource, ContentAudioResource,
+    ContentAudioDetailsResource
+)
+
+# Import Business Intelligence modules
+from routes.business_intelligence import (
+    DataWarehouseResource, DataWarehouseDetailsResource,
+    DataSourcesResource, DataSourceDetailsResource,
+    DataTransformationResource, DataTransformationDetailsResource,
+    DataPipelineResource, DataPipelineDetailsResource,
+    DataPipelineRunsResource, DataPipelineRunDetailsResource,
+    DataPipelineTriggerResource, DataExportResource,
+    DataExportDetailsResource, DataQueryResource,
+    DataModelResource, DataModelDetailsResource
+)
+
 # Register API routes
 api.add_resource(UserResource, '/api/users/<int:user_id>')
 api.add_resource(UserBatchResource, '/api/users')
@@ -486,6 +523,98 @@ api.add_resource(GameServerInstancesResource, '/api/servers/games/<int:universe_
 api.add_resource(ServerDetailsResource, '/api/servers/<string:server_id>')
 api.add_resource(ServerPlayersResource, '/api/servers/<string:server_id>/players')
 api.add_resource(ServerStatsResource, '/api/servers/<string:server_id>/stats')
+
+# Register Integrated Analytics API routes
+api.add_resource(CrossPlatformAnalyticsResource, '/api/integrated-analytics/games/<int:universe_id>/cross-platform')
+api.add_resource(DeviceTypeAnalyticsResource, '/api/integrated-analytics/games/<int:universe_id>/devices')
+api.add_resource(GeographicAnalyticsResource, '/api/integrated-analytics/games/<int:universe_id>/geographic')
+api.add_resource(AgeGroupAnalyticsResource, '/api/integrated-analytics/games/<int:universe_id>/age-groups')
+api.add_resource(MonetizationAnalyticsResource, '/api/integrated-analytics/games/<int:universe_id>/monetization')
+api.add_resource(RetentionCohortsResource, '/api/integrated-analytics/games/<int:universe_id>/retention-cohorts')
+api.add_resource(AcquisitionSourcesResource, '/api/integrated-analytics/games/<int:universe_id>/acquisition-sources')
+api.add_resource(PlayerJourneyResource, '/api/integrated-analytics/games/<int:universe_id>/player-journey')
+api.add_resource(EngagementMetricsResource, '/api/integrated-analytics/games/<int:universe_id>/engagement')
+api.add_resource(SocialInteractionsResource, '/api/integrated-analytics/games/<int:universe_id>/social-interactions')
+api.add_resource(FeatureUsageResource, '/api/integrated-analytics/games/<int:universe_id>/feature-usage')
+api.add_resource(ChurnPredictionResource, '/api/integrated-analytics/games/<int:universe_id>/churn-prediction')
+api.add_resource(UserSegmentPerformanceResource, '/api/integrated-analytics/games/<int:universe_id>/segments/<int:segment_id>')
+api.add_resource(CompetitorAnalysisResource, '/api/integrated-analytics/games/<int:universe_id>/competitor-analysis')
+api.add_resource(TrendAnalysisResource, '/api/integrated-analytics/games/<int:universe_id>/trends')
+api.add_resource(CustomDashboardResource, '/api/integrated-analytics/games/<int:universe_id>/dashboards/<int:dashboard_id>')
+api.add_resource(RealTimeMetricsResource, '/api/integrated-analytics/games/<int:universe_id>/real-time')
+
+# Register Caching API routes
+api.add_resource(CacheConfigurationResource, '/api/caching/configuration')
+api.add_resource(CacheStatisticsResource, '/api/caching/statistics')
+api.add_resource(CacheInvalidationResource, '/api/caching/invalidate')
+api.add_resource(CachePreheatResource, '/api/caching/preheat')
+api.add_resource(PerformanceMetricsResource, '/api/caching/performance')
+api.add_resource(ApiLatencyResource, '/api/caching/latency')
+api.add_resource(ErrorRateResource, '/api/caching/error-rate')
+api.add_resource(RateLimitStatsResource, '/api/caching/rate-limits')
+api.add_resource(CdnConfigurationResource, '/api/caching/cdn/configuration')
+api.add_resource(CdnPurgeResource, '/api/caching/cdn/purge')
+api.add_resource(CdnAnalyticsResource, '/api/caching/cdn/analytics')
+api.add_resource(BandwidthUsageResource, '/api/caching/bandwidth')
+api.add_resource(RequestDistributionResource, '/api/caching/requests/distribution')
+api.add_resource(LoadBalancerConfigResource, '/api/caching/load-balancer/configuration')
+api.add_resource(LoadBalancerStatsResource, '/api/caching/load-balancer/statistics')
+api.add_resource(GlobalDistributionResource, '/api/caching/global-distribution')
+
+# Register Platform Integrations API routes
+api.add_resource(AvailablePlatformsResource, '/api/platforms')
+api.add_resource(PlatformAuthenticationResource, '/api/platforms/<string:platform_id>/auth')
+api.add_resource(PlatformConnectionStatusResource, '/api/users/<int:user_id>/platforms')
+api.add_resource(PlatformConnectionRemovalResource, '/api/users/<int:user_id>/platforms/<string:platform_id>')
+api.add_resource(PlatformFriendsImportResource, '/api/users/<int:user_id>/platforms/<string:platform_id>/friends')
+api.add_resource(PlatformGameSyncResource, '/api/games/<int:universe_id>/platforms/<string:platform_id>/sync')
+api.add_resource(PlatformInventorySyncResource, '/api/users/<int:user_id>/platforms/<string:platform_id>/inventory')
+api.add_resource(PlatformAchievementsResource, '/api/users/<int:user_id>/platforms/<string:platform_id>/achievements')
+api.add_resource(PlatformLeaderboardsResource, '/api/games/<int:universe_id>/platforms/<string:platform_id>/leaderboards')
+api.add_resource(PlatformCrossSaveResource, '/api/users/<int:user_id>/games/<int:universe_id>/platforms/<string:platform_id>/saves')
+api.add_resource(PlatformActivitySyncResource, '/api/users/<int:user_id>/platforms/<string:platform_id>/activity')
+api.add_resource(PlatformPurchaseSyncResource, '/api/users/<int:user_id>/platforms/<string:platform_id>/purchases')
+api.add_resource(PlatformEventsResource, '/api/platforms/<string:platform_id>/events')
+api.add_resource(PlatformEventDetailsResource, '/api/platforms/<string:platform_id>/events/<string:event_id>')
+api.add_resource(PlatformWebhooksResource, '/api/platforms/<string:platform_id>/webhooks')
+api.add_resource(PlatformWebhookDetailsResource, '/api/platforms/<string:platform_id>/webhooks/<string:webhook_id>')
+
+# Register Content Management API routes
+api.add_resource(ContentLibraryResource, '/api/content/library')
+api.add_resource(ContentItemDetailsResource, '/api/content/items/<string:content_id>')
+api.add_resource(ContentUploadResource, '/api/content/upload')
+api.add_resource(ContentVersionsResource, '/api/content/items/<string:content_id>/versions')
+api.add_resource(ContentVersionDetailsResource, '/api/content/items/<string:content_id>/versions/<string:version_id>')
+api.add_resource(ContentTagsResource, '/api/content/tags')
+api.add_resource(ContentCategoriesResource, '/api/content/categories')
+api.add_resource(ContentSearchResource, '/api/content/search')
+api.add_resource(ContentPermissionsResource, '/api/content/items/<string:content_id>/permissions')
+api.add_resource(ContentCollaboratorsResource, '/api/content/items/<string:content_id>/collaborators')
+api.add_resource(ContentCollaboratorDetailsResource, '/api/content/items/<string:content_id>/collaborators/<int:user_id>')
+api.add_resource(ContentModelsResource, '/api/content/models')
+api.add_resource(ContentModelDetailsResource, '/api/content/models/<string:model_id>')
+api.add_resource(ContentPluginsResource, '/api/content/plugins')
+api.add_resource(ContentPluginDetailsResource, '/api/content/plugins/<string:plugin_id>')
+api.add_resource(ContentAudioResource, '/api/content/audio')
+api.add_resource(ContentAudioDetailsResource, '/api/content/audio/<string:audio_id>')
+
+# Register Business Intelligence API routes
+api.add_resource(DataWarehouseResource, '/api/bi/warehouses')
+api.add_resource(DataWarehouseDetailsResource, '/api/bi/warehouses/<string:warehouse_id>')
+api.add_resource(DataSourcesResource, '/api/bi/sources')
+api.add_resource(DataSourceDetailsResource, '/api/bi/sources/<string:source_id>')
+api.add_resource(DataTransformationResource, '/api/bi/transformations')
+api.add_resource(DataTransformationDetailsResource, '/api/bi/transformations/<string:transformation_id>')
+api.add_resource(DataPipelineResource, '/api/bi/pipelines')
+api.add_resource(DataPipelineDetailsResource, '/api/bi/pipelines/<string:pipeline_id>')
+api.add_resource(DataPipelineRunsResource, '/api/bi/pipelines/<string:pipeline_id>/runs')
+api.add_resource(DataPipelineRunDetailsResource, '/api/bi/pipelines/<string:pipeline_id>/runs/<string:run_id>')
+api.add_resource(DataPipelineTriggerResource, '/api/bi/pipelines/<string:pipeline_id>/trigger')
+api.add_resource(DataExportResource, '/api/bi/exports')
+api.add_resource(DataExportDetailsResource, '/api/bi/exports/<string:export_id>')
+api.add_resource(DataQueryResource, '/api/bi/query')
+api.add_resource(DataModelResource, '/api/bi/models')
+api.add_resource(DataModelDetailsResource, '/api/bi/models/<string:model_id>')
 api.add_resource(ServerLogsResource, '/api/servers/<string:server_id>/logs')
 api.add_resource(ServerMessageResource, '/api/servers/<string:server_id>/message')
 api.add_resource(ServerShutdownResource, '/api/servers/<string:server_id>/shutdown')

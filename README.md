@@ -17,8 +17,14 @@
 BloxAPI provides a robust interface to the Roblox platform with:
 
 - **Comprehensive Endpoint Coverage** - Access all major Roblox API endpoints through a simple, unified interface
+- **2000+ API Functions** - Extensive library of over 2,000 API functions covering every aspect of the Roblox platform
 - **Intelligent Rate Limiting** - Automatic handling of Roblox API rate limits with queuing and retries
 - **Efficient Caching** - Configurable multi-level caching system to minimize API calls
+- **Advanced Analytics** - Deep insights into user behavior, retention, and monetization
+- **Platform Integrations** - Seamless connectivity with external gaming platforms and services
+- **Business Intelligence** - Data warehousing, transformations, and visualization tools
+- **Content Management** - Comprehensive tools for managing and publishing content
+- **Security Tools** - Robust security features including threat detection and access control
 - **Robust Error Handling** - Detailed error reporting and automatic retries for transient failures
 - **Type Hints & Documentation** - Fully typed API with comprehensive documentation
 - **Async & Sync Support** - Both synchronous and asynchronous interfaces
@@ -111,6 +117,89 @@ members = api.groups.get_group_members(group.id, role="Admin")
 
 # Join a group
 api.groups.join_group(group.id)
+```
+
+### Advanced Analytics
+
+```python
+# Get cross-platform analytics
+cross_platform = api.integrated_analytics.get_cross_platform(game.id, start_date="2025-01-01", end_date="2025-04-01")
+print(f"Mobile users: {cross_platform.mobile_percentage}%")
+print(f"Console users: {cross_platform.console_percentage}%")
+
+# Analyze player retention
+retention = api.integrated_analytics.get_retention_cohorts(game.id, granularity="week")
+print(f"Week 1 retention: {retention.cohorts[0].retention_rate}%")
+
+# Predict player churn
+churn_prediction = api.integrated_analytics.predict_churn(game.id, prediction_window=30)
+for player in churn_prediction.at_risk_players:
+    print(f"Player {player.username} has {player.churn_probability * 100}% chance of churning")
+```
+
+### Platform Integrations
+
+```python
+# Get available platforms
+platforms = api.platforms.get_available_platforms()
+for platform in platforms:
+    print(f"Platform: {platform.name}, Status: {platform.status}")
+
+# Import friends from external platform
+friends = api.platforms.get_friends(user.id, platform_id="steam")
+api.platforms.import_friends(user.id, platform_id="steam", friend_ids=[f.id for f in friends[:5]])
+
+# Sync game data with external platforms
+api.platforms.sync_game(game.id, platform_id="xbox", sync_config={
+    "achievements": True,
+    "leaderboards": True
+})
+```
+
+### Content Management
+
+```python
+# Get content library
+content = api.content.get_library(user_id=user.id, content_type="Model")
+for item in content:
+    print(f"{item.name} (Created: {item.created_at})")
+
+# Upload new content
+new_model = api.content.upload({
+    "content_type": "Model",
+    "name": "My Awesome Character",
+    "description": "A detailed character model",
+    "file_data": encoded_file_data,
+    "tags": ["character", "humanoid", "detailed"]
+})
+print(f"Uploaded model ID: {new_model.id}")
+
+# Manage collaborators
+api.content.add_collaborator(content_id=new_model.id, user_id=friend.id, permission_level="Edit")
+```
+
+### Business Intelligence
+
+```python
+# Configure data pipeline
+pipeline = api.bi.create_pipeline(universe_id=game.id, {
+    "pipeline_name": "Daily Player Metrics",
+    "pipeline_steps": [
+        {"type": "extract", "source": "game_analytics", "metrics": ["playtime", "retention"]},
+        {"type": "transform", "aggregation": "daily"},
+        {"type": "load", "destination": "data_warehouse"}
+    ],
+    "schedule": {"frequency": "daily", "time": "04:00:00"}
+})
+
+# Execute ad-hoc query
+result = api.bi.execute_query(
+    query="SELECT date, count(distinct user_id) FROM player_sessions WHERE universe_id = :universe_id GROUP BY date",
+    data_source="data_warehouse",
+    parameters={"universe_id": game.id}
+)
+for row in result:
+    print(f"Date: {row.date}, Active Users: {row.count}")
 ```
 
 ## 🔌 Advanced Features
