@@ -298,6 +298,31 @@ from routes.ugc import (
     UgcCategoryDetailsResource, UgcTrendingItemsResource
 )
 
+# Import Integrated Analytics modules
+from routes.integrated_analytics import (
+    CrossPlatformAnalyticsResource, DeviceTypeAnalyticsResource,
+    GeographicAnalyticsResource, AgeGroupAnalyticsResource,
+    MonetizationAnalyticsResource, RetentionCohortsResource,
+    AcquisitionSourcesResource, PlayerJourneyResource,
+    EngagementMetricsResource, SocialInteractionsResource,
+    FeatureUsageResource, ChurnPredictionResource,
+    UserSegmentPerformanceResource, CompetitorAnalysisResource,
+    TrendAnalysisResource, CustomDashboardResource,
+    RealTimeMetricsResource
+)
+
+# Import Caching and Performance modules
+from routes.caching import (
+    CacheConfigurationResource, CacheStatisticsResource,
+    CacheInvalidationResource, CachePreheatResource,
+    PerformanceMetricsResource, ApiLatencyResource,
+    ErrorRateResource, RateLimitStatsResource,
+    CdnConfigurationResource, CdnPurgeResource,
+    CdnAnalyticsResource, BandwidthUsageResource,
+    RequestDistributionResource, LoadBalancerConfigResource,
+    LoadBalancerStatsResource, GlobalDistributionResource
+)
+
 # Register API routes
 api.add_resource(UserResource, '/api/users/<int:user_id>')
 api.add_resource(UserBatchResource, '/api/users')
