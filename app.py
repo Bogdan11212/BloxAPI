@@ -364,6 +364,53 @@ api.add_resource(UserConnectionsResource, '/api/user-profiles/<int:user_id>/conn
 api.add_resource(UserProfileThemeResource, '/api/user-profiles/<int:user_id>/theme')
 api.add_resource(UserRobloxBadgesResource, '/api/user-profiles/<int:user_id>/roblox-badges')
 
+# Register Security API routes
+api.add_resource(SecuritySettingsResource, '/api/security/<int:user_id>/settings')
+api.add_resource(SecurityActivityLogResource, '/api/security/<int:user_id>/activity-log')
+api.add_resource(AccountLockStatusResource, '/api/security/<int:user_id>/account-lock')
+api.add_resource(EmailVerificationStatusResource, '/api/security/<int:user_id>/email-verification')
+api.add_resource(PhoneVerificationStatusResource, '/api/security/<int:user_id>/phone-verification')
+api.add_resource(TwoStepVerificationResource, '/api/security/<int:user_id>/two-step-verification')
+api.add_resource(DeviceVerificationResource, '/api/security/<int:user_id>/device-verification')
+api.add_resource(PasswordResetResource, '/api/security/password-reset/<string:verification_token>')
+api.add_resource(AccountRestrictionsResource, '/api/security/<int:user_id>/restrictions')
+api.add_resource(AccountRiskAssessmentResource, '/api/security/<int:user_id>/risk-assessment')
+
+# Register Developer Platform API routes
+api.add_resource(ApiKeysResource, '/api/developer-platform/<int:user_id>/api-keys')
+api.add_resource(ApiKeyUsageResource, '/api/developer-platform/api-keys/<string:key_id>/usage')
+api.add_resource(WebhooksResource, '/api/developer-platform/<int:user_id>/webhooks')
+api.add_resource(WebhookDeliveryHistoryResource, '/api/developer-platform/webhooks/<string:webhook_id>/history')
+api.add_resource(DeveloperForumsResource, '/api/developer-platform/<int:user_id>/forums')
+api.add_resource(DeveloperForumPostsResource, '/api/developer-platform/<int:user_id>/forum-posts')
+api.add_resource(DeveloperExchangeResource, '/api/developer-platform/<int:user_id>/devex')
+api.add_resource(DeveloperToolsUsageResource, '/api/developer-platform/<int:user_id>/tools-usage')
+api.add_resource(DeveloperAnalyticsConfigResource, '/api/developer-platform/games/<int:universe_id>/analytics-config')
+api.add_resource(DeveloperStatsResource, '/api/developer-platform/<int:user_id>/stats')
+
+# Register Marketplace API routes
+api.add_resource(MarketplaceItemsResource, '/api/marketplace/items')
+api.add_resource(MarketplaceItemDetailsResource, '/api/marketplace/items/<int:item_id>')
+api.add_resource(MarketplaceSimilarItemsResource, '/api/marketplace/items/<int:item_id>/similar')
+api.add_resource(MarketplaceItemCommentsResource, '/api/marketplace/items/<int:item_id>/comments')
+api.add_resource(MarketplaceItemRecommendationsResource, '/api/marketplace/users/<int:user_id>/recommendations')
+api.add_resource(MarketplaceBundlesResource, '/api/marketplace/bundles')
+api.add_resource(MarketplaceBundleDetailsResource, '/api/marketplace/bundles/<int:bundle_id>')
+api.add_resource(MarketplaceFeaturedItemsResource, '/api/marketplace/featured')
+api.add_resource(MarketplacePriceHistoryResource, '/api/marketplace/items/<int:item_id>/price-history')
+api.add_resource(MarketplaceSalesResource, '/api/marketplace/items/<int:item_id>/sales')
+
+# Register Content Creation API routes
+api.add_resource(ContentTemplatesResource, '/api/content-creation/templates')
+api.add_resource(ContentTemplateDetailsResource, '/api/content-creation/templates/<string:template_id>')
+api.add_resource(ContentTemplateReviewsResource, '/api/content-creation/templates/<string:template_id>/reviews')
+api.add_resource(AssetCreationResource, '/api/content-creation/users/<int:user_id>/stats')
+api.add_resource(AssetLibraryResource, '/api/content-creation/users/<int:user_id>/assets')
+api.add_resource(AssetDetailsResource, '/api/content-creation/assets/<int:asset_id>')
+api.add_resource(AssetTagsResource, '/api/content-creation/tags')
+api.add_resource(AssetVersionsResource, '/api/content-creation/assets/<int:asset_id>/versions')
+api.add_resource(AssetStatsResource, '/api/content-creation/assets/<int:asset_id>/stats')
+
 # Web routes for documentation
 @app.route('/')
 def index():
