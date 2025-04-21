@@ -108,6 +108,41 @@ from routes.user_profiles import (
     UserConnectionsResource, UserProfileThemeResource, UserRobloxBadgesResource
 )
 
+# Import new security API modules
+from routes.security import (
+    SecuritySettingsResource, SecurityActivityLogResource,
+    AccountLockStatusResource, EmailVerificationStatusResource,
+    PhoneVerificationStatusResource, TwoStepVerificationResource,
+    DeviceVerificationResource, PasswordResetResource,
+    AccountRestrictionsResource, AccountRiskAssessmentResource
+)
+
+# Import new developer platform API modules
+from routes.developer_platform import (
+    ApiKeysResource, ApiKeyUsageResource, WebhooksResource,
+    WebhookDeliveryHistoryResource, DeveloperForumsResource,
+    DeveloperForumPostsResource, DeveloperExchangeResource,
+    DeveloperToolsUsageResource, DeveloperAnalyticsConfigResource,
+    DeveloperStatsResource
+)
+
+# Import new marketplace API modules
+from routes.marketplace import (
+    MarketplaceItemsResource, MarketplaceItemDetailsResource,
+    MarketplaceSimilarItemsResource, MarketplaceItemCommentsResource,
+    MarketplaceItemRecommendationsResource, MarketplaceBundlesResource,
+    MarketplaceBundleDetailsResource, MarketplaceFeaturedItemsResource,
+    MarketplacePriceHistoryResource, MarketplaceSalesResource
+)
+
+# Import new content creation API modules
+from routes.content_creation import (
+    ContentTemplatesResource, ContentTemplateDetailsResource,
+    ContentTemplateReviewsResource, AssetCreationResource,
+    AssetLibraryResource, AssetDetailsResource,
+    AssetTagsResource, AssetVersionsResource, AssetStatsResource
+)
+
 # Import external service integrations
 from routes.external import (
     # Rolimon's routes
