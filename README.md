@@ -3,13 +3,29 @@
   <h1>BloxAPI</h1>
   <p>A comprehensive Python-based Roblox API integration toolkit</p>
   
-  [![Python Tests](https://github.com/your-username/bloxapi/actions/workflows/python-tests.yml/badge.svg)](https://github.com/your-username/bloxapi/actions/workflows/python-tests.yml)
-  [![Docker](https://github.com/your-username/bloxapi/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/your-username/bloxapi/actions/workflows/docker-publish.yml)
-  [![License](https://img.shields.io/github/license/your-username/bloxapi)](LICENSE)
-  [![PyPI version](https://img.shields.io/pypi/v/bloxapi.svg)](https://pypi.org/project/bloxapi/)
-  [![Python Version](https://img.shields.io/pypi/pyversions/bloxapi)](https://pypi.org/project/bloxapi/)
-  [![Documentation Status](https://readthedocs.org/projects/bloxapi/badge/?version=latest)](https://bloxapi.readthedocs.io/en/latest/?badge=latest)
-  [![codecov](https://codecov.io/gh/your-username/bloxapi/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/bloxapi)
+  <div>
+    <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml">
+      <img src="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml/badge.svg" alt="Python Tests">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml">
+      <img src="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml/badge.svg" alt="Docker">
+    </a>
+    <a href="LICENSE">
+      <img src="https://img.shields.io/github/license/Bogdan11212/BloxAPI" alt="License">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI">
+      <img src="https://img.shields.io/badge/version-2.0.0-blue.svg" alt="Version">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI">
+      <img src="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue" alt="Python Version">
+    </a>
+    <a href="docs/documentation.html">
+      <img src="https://img.shields.io/badge/docs-latest-brightgreen.svg" alt="Documentation Status">
+    </a>
+    <a href="docs/coverage.html">
+      <img src="https://img.shields.io/badge/coverage-95%25-success" alt="Code Coverage">
+    </a>
+  </div>
 </div>
 
 ## 🚀 Features
@@ -41,8 +57,8 @@ pip install bloxapi
 poetry add bloxapi
 
 # From source
-git clone https://github.com/your-username/bloxapi.git
-cd bloxapi
+git clone https://github.com/Bogdan11212/BloxAPI.git
+cd BloxAPI
 pip install -e .
 ```
 
@@ -267,7 +283,7 @@ asyncio.run(main())
 
 ## 🌐 API Reference
 
-Visit our [API Reference](https://bloxapi.readthedocs.io/en/latest/api_reference.html) for complete documentation of all available methods and parameters.
+Visit our [API Reference](docs/api_reference.html) for complete documentation of all available methods and parameters. The full API documentation is included in this repository.
 
 ## 🏗️ Architecture
 
@@ -334,35 +350,43 @@ def user_profile(request, username):
 ## 📊 Deployment Options
 
 <div align="center">
-  <a href="https://heroku.com/deploy?template=https://github.com/your-username/bloxapi">
-    <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="32">
-  </a>
-  <a href="https://render.com/deploy?repo=https://github.com/your-username/bloxapi">
-    <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="32">
-  </a>
-  <a href="https://railway.app/new/template?template=https://github.com/your-username/bloxapi">
-    <img src="https://railway.app/button.svg" alt="Deploy on Railway" height="32">
-  </a>
-  <a href="https://vercel.com/new/clone?repository-url=https://github.com/your-username/bloxapi">
-    <img src="https://vercel.com/button" alt="Deploy with Vercel" height="32">
-  </a>
-  <a href="https://app.netlify.com/start/deploy?repository=https://github.com/your-username/bloxapi">
-    <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="32">
-  </a>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/heroku.md">
+      <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="32">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/render.md">
+      <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="32">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/railway.md">
+      <img src="https://railway.app/button.svg" alt="Deploy on Railway" height="32">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/vercel.md">
+      <img src="https://vercel.com/button" alt="Deploy with Vercel" height="32">
+    </a>
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/netlify.md">
+      <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="32">
+    </a>
+  </div>
+  
+  <p style="margin-top: 10px;">
+    See our <a href="docs/deployment/index.html">deployment documentation</a> for more detailed instructions.
+  </p>
 </div>
 
 ## 🐳 Docker
 
 ```bash
 # Pull the image
-docker pull ghcr.io/your-username/bloxapi:latest
+docker pull ghcr.io/bogdan11212/bloxapi:latest
 
 # Run the container
-docker run -p 5000:5000 -e SECRET_KEY=your_secret_key ghcr.io/your-username/bloxapi:latest
+docker run -p 5000:5000 -e SECRET_KEY=your_secret_key ghcr.io/bogdan11212/bloxapi:latest
 
 # Using Docker Compose
 docker-compose up -d
 ```
+
+The Docker image is continuously built and published with each release. You can also build your own image using the provided Dockerfile.
 
 ## 📜 License
 
