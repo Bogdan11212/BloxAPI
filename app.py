@@ -145,23 +145,9 @@ from routes.content_creation import (
 
 # Import external service integrations
 from routes.external import (
-    # Rolimon's routes
-    RolimonItemDetailsResource, RolimonItemValuesResource,
-    RolimonItemPriceHistoryResource, RolimonDealsResource,
-    RolimonPlayerRapResource, RolimonPlayerValueResource,
-    RolimonPlayerInventoryValueResource,
-    
-    # Rblx.Trade routes
-    RblxTradeAdsResource, RblxTradePlayerReputationResource,
-    RblxTradeValueCalculatorResource,
-    
-    # Roliverse routes
-    RoliversePlayerTradingActivityResource, RoliverseMarketTrendsResource,
-    RoliverseDemandIndexResource,
-    
-    # Rblx Values routes
-    RblxValuesItemProjectedStatusResource, RblxValuesItemStabilityResource,
-    RblxValuesRisingItemsResource, RblxValuesFallingItemsResource
+    # URL shortener bypass
+    URLShortenerBypassResource, URLContentExtractionResource,
+    BatchURLProcessingResource
 )
 
 # Import new advanced analytics modules
@@ -438,30 +424,10 @@ api.add_resource(GroupPayoutsResource, '/api/groups/<int:group_id>/payouts')
 api.add_resource(GroupAuditLogResource, '/api/groups/<int:group_id>/audit-log')
 api.add_resource(GroupSocialsResource, '/api/groups/<int:group_id>/socials')
 
-# Register External Services API routes (RoliMon's)
-api.add_resource(RolimonItemDetailsResource, '/api/external/rolimon/items/<int:item_id>')
-api.add_resource(RolimonItemValuesResource, '/api/external/rolimon/items/values')
-api.add_resource(RolimonItemPriceHistoryResource, '/api/external/rolimon/items/<int:item_id>/history')
-api.add_resource(RolimonDealsResource, '/api/external/rolimon/deals')
-api.add_resource(RolimonPlayerRapResource, '/api/external/rolimon/players/<int:user_id>/rap')
-api.add_resource(RolimonPlayerValueResource, '/api/external/rolimon/players/<int:user_id>/value')
-api.add_resource(RolimonPlayerInventoryValueResource, '/api/external/rolimon/players/<int:user_id>/inventory-value')
-
-# Register External Services API routes (Rblx.Trade)
-api.add_resource(RblxTradeAdsResource, '/api/external/rblx-trade/trade-ads')
-api.add_resource(RblxTradePlayerReputationResource, '/api/external/rblx-trade/players/<int:user_id>/reputation')
-api.add_resource(RblxTradeValueCalculatorResource, '/api/external/rblx-trade/trade-calculator')
-
-# Register External Services API routes (Roliverse)
-api.add_resource(RoliversePlayerTradingActivityResource, '/api/external/roliverse/players/<int:user_id>/trades')
-api.add_resource(RoliverseMarketTrendsResource, '/api/external/roliverse/market/trends')
-api.add_resource(RoliverseDemandIndexResource, '/api/external/roliverse/items/<int:item_id>/demand')
-
-# Register External Services API routes (Rblx Values)
-api.add_resource(RblxValuesItemProjectedStatusResource, '/api/external/rblx-values/items/<int:item_id>/projected')
-api.add_resource(RblxValuesItemStabilityResource, '/api/external/rblx-values/items/<int:item_id>/stability')
-api.add_resource(RblxValuesRisingItemsResource, '/api/external/rblx-values/market/rising')
-api.add_resource(RblxValuesFallingItemsResource, '/api/external/rblx-values/market/falling')
+# Register URL Shortener Bypass API routes
+api.add_resource(URLShortenerBypassResource, '/api/external/url/bypass')
+api.add_resource(URLContentExtractionResource, '/api/external/url/content')
+api.add_resource(BatchURLProcessingResource, '/api/external/url/batch')
 
 # Register Events API routes
 api.add_resource(UserEventsResource, '/api/events/users/<int:user_id>')
