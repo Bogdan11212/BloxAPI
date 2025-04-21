@@ -1,30 +1,34 @@
 <div align="center">
   <img src="docs/images/logo.png" alt="BloxAPI Logo" width="200"/>
   <h1>BloxAPI</h1>
-  <p>A comprehensive Python-based Roblox API integration toolkit</p>
+  <p>A comprehensive Python-based Roblox API integration toolkit with 2000+ functions</p>
   
-  <div>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; margin-bottom: 15px;">
     <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml">
-      <img src="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml/badge.svg" alt="Python Tests">
+      <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github" alt="Python Tests">
     </a>
     <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml">
-      <img src="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml/badge.svg" alt="Docker">
+      <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/docker-publish.yml?label=build&style=for-the-badge&logo=docker" alt="Docker">
     </a>
     <a href="LICENSE">
-      <img src="https://img.shields.io/github/license/Bogdan11212/BloxAPI" alt="License">
+      <img src="https://img.shields.io/github/license/Bogdan11212/BloxAPI?style=for-the-badge" alt="License">
     </a>
     <a href="https://github.com/Bogdan11212/BloxAPI">
-      <img src="https://img.shields.io/badge/version-2.0.0-blue.svg" alt="Version">
+      <img src="https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge&logo=semver" alt="Version">
     </a>
     <a href="https://github.com/Bogdan11212/BloxAPI">
-      <img src="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue" alt="Python Version">
+      <img src="https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11-blue?style=for-the-badge&logo=python" alt="Python Version">
     </a>
     <a href="docs/documentation.html">
-      <img src="https://img.shields.io/badge/docs-latest-brightgreen.svg" alt="Documentation Status">
+      <img src="https://img.shields.io/badge/docs-comprehensive-brightgreen?style=for-the-badge&logo=bookstack" alt="Documentation Status">
     </a>
     <a href="docs/coverage.html">
-      <img src="https://img.shields.io/badge/coverage-95%25-success" alt="Code Coverage">
+      <img src="https://img.shields.io/badge/coverage-95%25-success?style=for-the-badge&logo=codecov" alt="Code Coverage">
     </a>
+  </div>
+  
+  <div>
+    <img src="docs/images/api-overview.png" alt="API Overview" width="600" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
   </div>
 </div>
 
