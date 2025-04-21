@@ -2,7 +2,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["openssl", "postgresql", "inkscape", "imagemagick", "librsvg"]
+packages = ["imagemagick", "inkscape", "librsvg", "openssl", "postgresql"]
 
 [deployment]
 deploymentTarget = "autoscale"
