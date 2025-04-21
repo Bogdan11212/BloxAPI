@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="600px" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BloxAPI Architecture</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="layerGradient1">
+            <stop stop-color="#FF5252" offset="0%"></stop>
+            <stop stop-color="#FF1744" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="layerGradient2">
+            <stop stop-color="#536DFE" offset="0%"></stop>
+            <stop stop-color="#3D5AFE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="layerGradient3">
+            <stop stop-color="#00BCD4" offset="0%"></stop>
+            <stop stop-color="#00ACC1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="layerGradient4">
+            <stop stop-color="#4CAF50" offset="0%"></stop>
+            <stop stop-color="#43A047" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#1E293B" x="0" y="0" width="800" height="600"></rect>
+        
+        <!-- API Layer -->
+        <g transform="translate(100, 100)">
+            <rect fill="url(#layerGradient1)" x="0" y="0" width="600" height="80" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" x="250" y="45">API Layer</text>
+            <text font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF" x="180" y="65">Routes, Controllers, Request Handling</text>
+        </g>
+        
+        <!-- Service Layer -->
+        <g transform="translate(100, 200)">
+            <rect fill="url(#layerGradient2)" x="0" y="0" width="600" height="80" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" x="240" y="45">Service Layer</text>
+            <text font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF" x="220" y="65">Business Logic</text>
+        </g>
+        
+        <!-- Data Access Layer -->
+        <g transform="translate(100, 300)">
+            <rect fill="url(#layerGradient3)" x="0" y="0" width="600" height="80" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" x="220" y="45">Data Access Layer</text>
+            <text font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF" x="180" y="65">API Clients, Models, Data Mappers</text>
+        </g>
+        
+        <!-- Utility Layer -->
+        <g transform="translate(100, 400)">
+            <rect fill="url(#layerGradient4)" x="0" y="0" width="600" height="80" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" x="240" y="45">Utility Layer</text>
+            <text font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF" x="170" y="65">Logging, Rate Limiting, Caching, etc.</text>
+        </g>
+        
+        <!-- External Systems -->
+        <g transform="translate(100, 500)">
+            <rect fill="#64748B" x="0" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="30" y="35">Roblox API</text>
+            
+            <rect fill="#64748B" x="160" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="170" y="35">RoliMon's API</text>
+            
+            <rect fill="#64748B" x="320" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="330" y="35">Rblx.Trade API</text>
+            
+            <rect fill="#64748B" x="480" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="500" y="35">Other APIs</text>
+        </g>
+        
+        <!-- Client Applications -->
+        <g transform="translate(100, 20)">
+            <rect fill="#64748B" x="0" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="20" y="35">Web Clients</text>
+            
+            <rect fill="#64748B" x="160" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="180" y="35">Mobile Apps</text>
+            
+            <rect fill="#64748B" x="320" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="335" y="35">Desktop Apps</text>
+            
+            <rect fill="#64748B" x="480" y="0" width="140" height="60" rx="8"></rect>
+            <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" x="500" y="35">Scripts</text>
+        </g>
+        
+        <!-- Connection Lines -->
+        <!-- Clients to API Layer -->
+        <line x1="170" y1="80" x2="170" y2="100" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="230" y1="80" x2="230" y2="100" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="390" y1="80" x2="390" y2="100" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="550" y1="80" x2="550" y2="100" stroke="#FFFFFF" stroke-width="2"></line>
+        
+        <!-- API Layer to Service Layer -->
+        <line x1="400" y1="180" x2="400" y2="200" stroke="#FFFFFF" stroke-width="2"></line>
+        
+        <!-- Service Layer to Data Access Layer -->
+        <line x1="400" y1="280" x2="400" y2="300" stroke="#FFFFFF" stroke-width="2"></line>
+        
+        <!-- Data Access Layer to Utility Layer -->
+        <line x1="400" y1="380" x2="400" y2="400" stroke="#FFFFFF" stroke-width="2"></line>
+        
+        <!-- Utility Layer to External Systems -->
+        <line x1="170" y1="480" x2="170" y2="500" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="230" y1="480" x2="230" y2="500" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="390" y1="480" x2="390" y2="500" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="550" y1="480" x2="550" y2="500" stroke="#FFFFFF" stroke-width="2"></line>
+    </g>
+</svg>
