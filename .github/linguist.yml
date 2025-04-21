@@ -1,0 +1,11 @@
+# Linguist overrides
+# See https://github.com/github/linguist#overrides
+
+# Generated documentation
+docs/generated/**/* linguist-generated=true
+
+# Sample code doesn't count in language statistics
+examples/**/* linguist-documentation=true
+
+# Vendored code
+vendor/**/* linguist-vendored=true
