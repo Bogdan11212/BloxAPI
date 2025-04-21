@@ -2,6 +2,10 @@
 
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/preview.png" alt="BloxAPI Preview" width="800px" />
+
+<h3>Your Ultimate Gateway to the Roblox Platform</h3>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.9+-brightgreen.svg)
 ![Flask](https://img.shields.io/badge/Flask-2.0+-lightgrey.svg)
@@ -10,8 +14,16 @@
 [![Forks](https://img.shields.io/github/forks/Bogdan11212/BloxAPI?style=social)](https://github.com/Bogdan11212/BloxAPI/network/members)
 [![Contributors](https://img.shields.io/github/contributors/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/graphs/contributors)
 [![Last Commit](https://img.shields.io/github/last-commit/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/commits/master)
+[![Open Issues](https://img.shields.io/github/issues/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/issues)
+[![Discussions](https://img.shields.io/github/discussions/Bogdan11212/BloxAPI)](https://github.com/Bogdan11212/BloxAPI/discussions)
 
-<img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/preview.png" alt="BloxAPI Preview" width="800px" />
+<br>
+
+[![Deploy to Replit](https://repl.it/badge/github/Bogdan11212/BloxAPI)](https://repl.it/github/Bogdan11212/BloxAPI)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Bogdan11212/BloxAPI)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Bogdan11212/BloxAPI)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBogdan11212%2FBloxAPI)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Bogdan11212/BloxAPI)
 
 </div>
 
@@ -31,45 +43,120 @@
 
 ## 🌟 Features
 
-- **Complete Platform Coverage**: Access virtually every aspect of the Roblox platform
-- **Always Live Data**: Every request connects directly to Roblox's real API
-- **User-Friendly Endpoints**: Clean, consistent, and well-documented API endpoints
-- **Modern UI**: Interactive documentation and API explorer
-- **Cross-Platform Support**: Use with any programming language via standard HTTP requests
-- **Advanced Rate Limiting**: Built-in protection against hitting Roblox API limits
-- **Robust Error Handling**: Comprehensive error reporting, retries and logging
-- **External Service Integrations**: Connect with RoliMon's, Rblx.Trade, Roliverse and Rblx Values
-- **Events System**: Track real-time events for users, games, and groups
-- **Moderation Tools**: Content moderation, safety settings, and text filtering
-- **Statistics API**: Get detailed analytics on games, players, and demographics
-- **Server Management**: Monitor and control game server instances and VIP servers
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/features.svg" alt="BloxAPI Features" width="200px" />
+</div>
+
+<table>
+  <tr>
+    <td width="33%" align="center">
+      <h3>🌐 Platform Coverage</h3>
+      <p>Access virtually every aspect of the Roblox platform with comprehensive API coverage</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>🔄 Live Data</h3>
+      <p>Every request connects directly to Roblox's real API for up-to-date information</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>📊 Analytics</h3>
+      <p>Get detailed statistics on games, players, and demographics</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="center">
+      <h3>🛡️ Rate Limiting</h3>
+      <p>Built-in protection against hitting Roblox API limits with intelligent retries</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>🔌 Integrations</h3>
+      <p>Connect with RoliMon's, Rblx.Trade, Roliverse and Rblx Values</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>📱 Cross-Platform</h3>
+      <p>Use with any programming language via standard HTTP requests</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="center">
+      <h3>🚨 Error Handling</h3>
+      <p>Comprehensive error reporting, automatic retries and detailed logging</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>🔔 Events</h3>
+      <p>Track real-time events for users, games, and groups</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>🖥️ Server Management</h3>
+      <p>Monitor and control game server instances and VIP servers</p>
+    </td>
+  </tr>
+</table>
 
 ## 💻 Installation
 
-### Prerequisites
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/installation.svg" alt="Installation" width="180px" />
+</div>
 
-- Python 3.9+
-- pip (Python package manager)
+### Multiple Installation Options
 
-### Setup
+<details open>
+  <summary><strong>🐍 Standard Python Installation</strong></summary>
+  
+  ### Prerequisites
+  - Python 3.9+
+  - pip (Python package manager)
 
-1. Clone the repository
-```bash
-git clone https://github.com/Bogdan11212/BloxAPI.git
-cd BloxAPI
-```
+  ### Setup
+  1. Clone the repository
+  ```bash
+  git clone https://github.com/Bogdan11212/BloxAPI.git
+  cd BloxAPI
+  ```
 
-2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
+  2. Install dependencies
+  ```bash
+  pip install -r requirements.txt
+  ```
 
-3. Run the development server
-```bash
-python main.py
-```
+  3. Run the development server
+  ```bash
+  python main.py
+  ```
 
-The API will be available at `http://localhost:5000`
+  The API will be available at `http://localhost:5000`
+</details>
+
+<details>
+  <summary><strong>🐳 Docker Installation</strong></summary>
+  
+  ### Prerequisites
+  - Docker
+
+  ### Setup
+  1. Clone the repository
+  ```bash
+  git clone https://github.com/Bogdan11212/BloxAPI.git
+  cd BloxAPI
+  ```
+
+  2. Build and run with Docker Compose
+  ```bash
+  docker-compose up --build
+  ```
+
+  The API will be available at `http://localhost:5000`
+</details>
+
+<details>
+  <summary><strong>☁️ One-Click Cloud Deployment</strong></summary>
+  
+  ### Options
+  - [Deploy to Replit](https://repl.it/github/Bogdan11212/BloxAPI)
+  - [Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/Bogdan11212/BloxAPI)
+  - [Deploy to Render](https://render.com/deploy?repo=https://github.com/Bogdan11212/BloxAPI)
+  - [Deploy with Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBogdan11212%2FBloxAPI)
+</details>
 
 ## 🚀 Quick Start
 
@@ -91,23 +178,98 @@ print(search_results)
 
 ## 📖 API Documentation
 
-Full API documentation is available at `/docs` when the server is running.
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/documentation.svg" alt="API Documentation" width="200px" />
+</div>
 
-### Main Endpoints
+Full interactive API documentation with request/response examples and schema information is available at **`/docs`** when the server is running.
 
-- **Users**: `/api/users/{userId}`
-- **Games**: `/api/games/{gameId}`
-- **Groups**: `/api/groups/{groupId}`
-- **Assets**: `/api/assets/{assetId}`
-- **Catalog**: `/api/catalog/search`
-- **Economy**: `/api/economy/currency/exchange-rate`
-- **Badges**: `/api/badges/{badgeId}`
-- **Events**: `/api/events/{entity_type}/{entity_id}`
-- **Moderation**: `/api/moderation/content/{content_type}/{content_id}`
-- **Statistics**: `/api/statistics/games/{universe_id}/universe`
-- **Servers**: `/api/servers/games/{universe_id}/instances`
-- **Social**: `/api/social/users/{user_id}/connections`
-- **Monetization**: `/api/monetization/games/{universe_id}/developer-products`
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/api-screenshot.png" alt="API Documentation Screenshot" width="800px" />
+</div>
+
+### Core API Categories
+
+<div class="endpoint-grid">
+  <table>
+    <tr>
+      <th width="25%" align="center">🧑‍🤝‍🧑 User & Social</th>
+      <th width="25%" align="center">🎮 Games & Servers</th>
+      <th width="25%" align="center">💰 Economy & Assets</th>
+      <th width="25%" align="center">📊 Analytics & Events</th>
+    </tr>
+    <tr valign="top">
+      <td>
+        <ul>
+          <li><code>/api/users/{userId}</code></li>
+          <li><code>/api/users/search</code></li>
+          <li><code>/api/users/{userId}/friends</code></li>
+          <li><code>/api/groups/{groupId}</code></li>
+          <li><code>/api/social/users/{userId}/connections</code></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><code>/api/games/{gameId}</code></li>
+          <li><code>/api/games/{universeId}/details</code></li>
+          <li><code>/api/servers/games/{universeId}/instances</code></li>
+          <li><code>/api/games/{universeId}/servers/vip</code></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><code>/api/assets/{assetId}</code></li>
+          <li><code>/api/catalog/search</code></li>
+          <li><code>/api/economy/currency/exchange-rate</code></li>
+          <li><code>/api/inventory/users/{userId}/assets</code></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><code>/api/statistics/games/{universeId}/universe</code></li>
+          <li><code>/api/analytics/games/{universeId}/{metricType}</code></li>
+          <li><code>/api/events/{entityType}/{entityId}</code></li>
+          <li><code>/api/notifications/users/{userId}</code></li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+### Advanced API Features
+
+<details>
+  <summary><strong>🔐 Authentication & Security</strong></summary>
+  <ul>
+    <li><code>/api/auth/token</code> - Get an authentication token</li>
+    <li><code>/api/auth/validate</code> - Validate a token</li>
+    <li><code>/api/auth/refresh</code> - Refresh an authentication token</li>
+    <li><code>/api/users/{userId}/security/settings</code> - Get security settings</li>
+    <li><code>/api/moderation/content/{contentType}/{contentId}</code> - Check content moderation status</li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>👥 Group Management</strong></summary>
+  <ul>
+    <li><code>/api/groups/{groupId}/users</code> - Get group members</li>
+    <li><code>/api/groups/{groupId}/roles</code> - Get group roles</li>
+    <li><code>/api/groups/{groupId}/wall/posts</code> - Get group wall posts</li>
+    <li><code>/api/groups/{groupId}/relationships</code> - Get group relationships</li>
+    <li><code>/api/groups/{groupId}/audit-log</code> - Get group audit log</li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>💹 Developer Economics</strong></summary>
+  <ul>
+    <li><code>/api/monetization/games/{universeId}/developer-products</code> - Get developer products</li>
+    <li><code>/api/monetization/games/{universeId}/gamepasses</code> - Get game passes</li>
+    <li><code>/api/monetization/games/{universeId}/revenue</code> - Get revenue information</li>
+    <li><code>/api/economy/assets/{assetId}/resellers</code> - Get asset resellers</li>
+    <li><code>/api/economy/assets/{assetId}/price-history</code> - Get asset price history</li>
+  </ul>
+</details>
 
 ## 🔄 Integrations
 
@@ -139,7 +301,15 @@ Check item stability and projected status:
 
 ## 🔍 Examples
 
-### Example 1: Get User's Friends
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Bogdan11212/BloxAPI/main/docs/images/code-examples.svg" alt="Code Examples" width="200px" />
+</div>
+
+<table width="100%">
+<tr>
+<td width="50%" valign="top">
+
+### 💬 Get User's Friends
 
 ```javascript
 fetch('http://localhost:5000/api/users/1/friends')
@@ -147,15 +317,7 @@ fetch('http://localhost:5000/api/users/1/friends')
   .then(data => console.log(data));
 ```
 
-### Example 2: Search the Catalog
-
-```javascript
-fetch('http://localhost:5000/api/catalog/search?keyword=dominus&category=hats&limit=25')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
-
-### Example 3: Get Game Statistics
+### 🎮 Get Game Statistics
 
 ```javascript
 fetch('http://localhost:5000/api/statistics/games/1234567890/universe')
@@ -163,15 +325,7 @@ fetch('http://localhost:5000/api/statistics/games/1234567890/universe')
   .then(data => console.log(data));
 ```
 
-### Example 4: Check Content Moderation Status
-
-```javascript
-fetch('http://localhost:5000/api/moderation/content/asset/1234567')
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
-
-### Example 5: Get Game Server Instances
+### 🏆 Get Game Server Instances
 
 ```javascript
 fetch('http://localhost:5000/api/servers/games/1234567890/instances?limit=10')
@@ -179,13 +333,64 @@ fetch('http://localhost:5000/api/servers/games/1234567890/instances?limit=10')
   .then(data => console.log(data));
 ```
 
-### Example 6: Get Item Value from RoliMon's
+</td>
+<td width="50%" valign="top">
+
+### 🛒 Search the Catalog
+
+```javascript
+fetch('http://localhost:5000/api/catalog/search?keyword=dominus&category=hats&limit=25')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### 🛡️ Check Content Moderation Status
+
+```javascript
+fetch('http://localhost:5000/api/moderation/content/asset/1234567')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### 💰 Get Item Value from RoliMon's
 
 ```javascript
 fetch('http://localhost:5000/api/external/rolimon/items/1365767/history')
   .then(response => response.json())
   .then(data => console.log(data));
 ```
+
+</td>
+</tr>
+</table>
+
+<div align="center">
+  <details>
+    <summary><strong>📚 View More Examples</strong></summary>
+    <br>
+    
+### 📊 Track User Analytics
+```javascript
+fetch('http://localhost:5000/api/analytics/users/1234567/visits?time_frame=past30days')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### 👥 Get Group Members
+```javascript
+fetch('http://localhost:5000/api/groups/1234567/members?limit=100')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### 🧩 Get Asset Information
+```javascript
+fetch('http://localhost:5000/api/assets/123456789/info?include_bundles=true')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+  </details>
+</div>
 
 ## 🛣️ Roadmap
 

@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/main.py"
+    }
+  ],
+  "env": {
+    "SESSION_SECRET": {
+      "description": "A secret key for session encryption",
+      "value": "change-this-to-a-secure-value"
+    }
+  }
+}

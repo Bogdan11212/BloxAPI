@@ -1,0 +1,36 @@
+{
+  "name": "BloxAPI",
+  "description": "A comprehensive Python-based Roblox API integration toolkit",
+  "repository": "https://github.com/Bogdan11212/BloxAPI",
+  "keywords": ["python", "flask", "api", "roblox", "gaming", "platform"],
+  "success_url": "/docs",
+  "env": {
+    "SESSION_SECRET": {
+      "description": "A secret key for session encryption",
+      "generator": "secret"
+    },
+    "DATABASE_URL": {
+      "description": "URL for the PostgreSQL database",
+      "value": "postgresql://postgres:postgres@localhost:5432/bloxapi"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "python setup_database.py"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
+}
