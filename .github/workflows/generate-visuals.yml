@@ -38,3 +38,7 @@ jobs:
           git add docs/images/* docs/badges/* static/images/* || true
           git commit -m "Auto-generate visual assets [skip ci]" || true
           git push
+          
+      - name: Ensure Workflow Persistence
+        run: |
+          echo "Workflow completed successfully."

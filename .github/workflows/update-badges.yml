@@ -53,3 +53,7 @@ jobs:
           git add badges/*.json
           git commit -m "Update badges [skip ci]" || true
           git push
+          
+      - name: Ensure Workflow Persistence
+        run: |
+          echo "Workflow completed successfully."

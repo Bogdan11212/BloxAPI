@@ -8,7 +8,7 @@
   <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin-bottom: 25px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
     <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 15px;">
       <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml">
-        <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github&labelColor=1A1F35&color=5E81F5" alt="Python Tests">
+        <img src="[def]" alt="Python Tests">
       </a>
       <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml">
         <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/docker-publish.yml?label=build&style=for-the-badge&logo=docker&labelColor=1A1F35&color=5E81F5" alt="Docker">
@@ -756,3 +756,5 @@ docker-compose up -d</pre>
     <span style="color: #B2BEDA; font-size: 14px;">Built with ❤️ by the BloxAPI team</span>
   </div>
 </div>
+
+[def]: ttps://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github&labelColor=1A1F35&color=5E81F
