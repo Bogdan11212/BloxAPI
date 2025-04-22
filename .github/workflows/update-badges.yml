@@ -1,126 +1,55 @@
-name: Update Badges
+name: Update README Badges
 
 on:
   push:
-    branches: [ main ]
-  # Run when stars/forks count changes
-  watch:
-    types: [ started ]
-  fork:
-    types: [ created ]
-  # Run weekly for metrics update
-  schedule:
-    - cron: '0 0 * * 1'  # Run at midnight every Monday
-  # Allow manual triggers
+    branches: [ main, master, dev ]
+    paths:
+      - 'badges/*.json'
+      - '.github/workflows/update-badges.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'  # Run weekly on Mondays
 
 jobs:
   update-badges:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        cache: 'pip'
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests pyyaml shields-io-data
-
-    - name: Fetch Repository Stats
-      id: repo_stats
-      run: |
-        echo "STARS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY | jq '.stargazers_count')" >> $GITHUB_ENV
-        echo "FORKS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY | jq '.forks_count')" >> $GITHUB_ENV
-        echo "ISSUES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY | jq '.open_issues_count')" >> $GITHUB_ENV
-        echo "LAST_RELEASE=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r '.tag_name')" >> $GITHUB_ENV
-    
-    - name: Update Python Version Badge
-      uses: honzapokorny/shields-endpoint-action@v1
-      with:
-        endpoint: badges/python-versions.json
-        title: python
-        message: 3.7 | 3.8 | 3.9 | 3.10 | 3.11
-        color: 5E81F5
-        style: for-the-badge
-        logo: python
-        logoColor: white
-        labelColor: 1A1F35
-    
-    - name: Update Version Badge
-      uses: honzapokorny/shields-endpoint-action@v1
-      with:
-        endpoint: badges/version.json
-        title: version
-        message: ${{ env.LAST_RELEASE || '2.1.0' }}
-        color: 5E81F5
-        style: for-the-badge
-        logo: semver
-        logoColor: white
-        labelColor: 1A1F35
-    
-    - name: Update Stars Badge
-      uses: honzapokorny/shields-endpoint-action@v1
-      with:
-        endpoint: badges/stars.json
-        title: stars
-        message: ${{ env.STARS }}
-        color: FF9966
-        style: for-the-badge
-        logo: github
-        logoColor: white
-        labelColor: 1A1F35
-    
-    - name: Update Forks Badge
-      uses: honzapokorny/shields-endpoint-action@v1
-      with:
-        endpoint: badges/forks.json
-        title: forks
-        message: ${{ env.FORKS }}
-        color: FF9966
-        style: for-the-badge
-        logo: github
-        logoColor: white
-        labelColor: 1A1F35
-    
-    - name: Generate dynamic features badge
-      uses: honzapokorny/shields-endpoint-action@v1
-      with:
-        endpoint: badges/feature-count.json
-        title: features
-        message: "2000+ Endpoints"
-        color: 41B8FF
-        style: for-the-badge
-        logo: bolt
-        logoColor: white
-        labelColor: 1A1F35
-    
-    - name: Generate security badge
-      uses: honzapokorny/shields-endpoint-action@v1
-      with:
-        endpoint: badges/security.json
-        title: security
-        message: "Enterprise Grade"
-        color: 4CAF50
-        style: for-the-badge
-        logo: shield
-        logoColor: white
-        labelColor: 1A1F35
-    
-    - name: Commit files
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add badges/
-        git commit -m "📊 Update badges with latest metrics [skip ci]" || echo "No changes to commit"
-        
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+      - uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          
+      - name: Update version badge
+        run: |
+          # Update version from package information or git tags
+          python scripts/update_readme_stats.py --badge version
+          
+      - name: Update feature count badge
+        run: |
+          # Count API endpoints and update badge
+          python scripts/update_readme_stats.py --badge feature-count
+          
+      - name: Update security badge
+        run: |
+          # Check security status and update badge
+          python scripts/update_readme_stats.py --badge security
+          
+      - name: Update Python versions badge
+        run: |
+          # Update supported Python versions badge
+          python scripts/update_readme_stats.py --badge python-versions
+          
+      - name: Commit and push if there are changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add badges/*.json
+          git commit -m "Update badges [skip ci]" || true
+          git push

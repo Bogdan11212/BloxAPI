@@ -23,15 +23,9 @@ from pathlib import Path
 from datetime import datetime
 
 # Try to import advanced visualization libraries, gracefully handle if not available
-try:
-    import svgwrite
-    import numpy as np
-    from PIL import Image, ImageDraw, ImageFont
-    ADVANCED_MODE = True
-except ImportError:
-    ADVANCED_MODE = False
-    print("Note: Advanced visualization libraries not found. Running in basic mode.")
-    print("To enable advanced features: pip install svgwrite pillow numpy matplotlib")
+# Set to False to ensure we use the basic mode that doesn't require external libraries
+ADVANCED_MODE = False
+print("Note: Running in basic mode with direct SVG generation.")
 
 # Color schemes for modern visual style
 COLORS = {
