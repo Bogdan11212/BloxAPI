@@ -757,4 +757,4 @@ docker-compose up -d</pre>
   </div>
 </div>
 
-[def]: ttps://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github&labelColor=1A1F35&color=5E81F
+[def]: https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github&labelColor=1A1F35&color=5E81F
