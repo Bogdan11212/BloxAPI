@@ -672,13 +672,416 @@ Refer to the {platform.capitalize()} documentation for platform-specific setting
     print(f"✓ Deployment documentation created in docs/deployment/")
 
 
+# Create architecture diagram
+def create_architecture_diagram():
+    """Create an architecture diagram for the BloxAPI system"""
+    if not ADVANCED_MODE:
+        print("⚠️ Advanced visualization libraries required for architecture diagram.")
+        return
+        
+    output_svg = "docs/images/api-architecture.svg"
+    output_png = "docs/images/api-architecture.png"
+    
+    # Create SVG
+    width, height = 800, 600
+    dwg = svgwrite.Drawing(output_svg, size=(width, height))
+    
+    # Define gradients
+    main_grad = dwg.linearGradient(start=(0, 0), end=(0, height))
+    main_grad.add_stop_color(0, '#0F172A')
+    main_grad.add_stop_color(1, '#1E293B')
+    dwg.defs.add(main_grad)
+    
+    primary_grad = dwg.linearGradient(start=(0, 0), end=(100, 50))
+    primary_grad.add_stop_color(0, COLORS['primary'])
+    primary_grad.add_stop_color(1, COLORS['secondary'])
+    dwg.defs.add(primary_grad)
+    
+    secondary_grad = dwg.linearGradient(start=(0, 0), end=(100, 50))
+    secondary_grad.add_stop_color(0, COLORS['accent'])
+    secondary_grad.add_stop_color(1, COLORS['accent2'])
+    dwg.defs.add(secondary_grad)
+    
+    # Add background
+    dwg.add(dwg.rect((0, 0), (width, height), fill=main_grad.get_funciri(), rx=5, ry=5))
+    
+    # Add grid pattern
+    pattern = dwg.pattern(id="grid", patternUnits="userSpaceOnUse", size=(50, 50))
+    pattern.add(dwg.path(d="M 50 0 L 0 0 0 50", fill="none", 
+                        stroke=COLORS['light'], stroke_width=0.5, stroke_opacity=0.1))
+    dwg.defs.add(pattern)
+    
+    dwg.add(dwg.rect((0, 0), (width, height), fill=pattern.get_funciri()))
+    
+    # Define component styles
+    def create_component(x, y, w, h, title, is_primary=True, icon=None):
+        group = dwg.g()
+        # Create rectangle with gradient
+        gradient = primary_grad if is_primary else secondary_grad
+        rect = dwg.rect((x, y), (w, h), rx=10, ry=10, fill=gradient.get_funciri(),
+                       stroke=COLORS['light'], stroke_width=1, stroke_opacity=0.3)
+        group.add(rect)
+        
+        # Create inner shadow effect
+        highlight = dwg.rect((x+2, y+2), (w-4, 15), rx=8, ry=8, 
+                            fill='white', fill_opacity=0.15)
+        group.add(highlight)
+        
+        # Add title
+        title_text = dwg.text(title, insert=(x + w/2, y + 30), text_anchor="middle",
+                             font_size=16, fill=COLORS['light'], font_weight="bold")
+        group.add(title_text)
+        
+        # Add icon if provided
+        if icon:
+            icon_text = dwg.text(icon, insert=(x + w/2, y + h/2 + 10),
+                               text_anchor="middle", font_size=28)
+            group.add(icon_text)
+            
+        return group
+    
+    # Create connections between components
+    def create_connection(start_x, start_y, end_x, end_y, is_bidirectional=False):
+        marker_size = 5
+        line_color = COLORS['light']
+        line_opacity = 0.6
+        
+        # Create arrowhead marker
+        marker = dwg.marker(insert=(marker_size, marker_size/2), size=(marker_size, marker_size),
+                           orient="auto", markerUnits="strokeWidth")
+        marker.add(dwg.path(d=f"M 0 0 L {marker_size} {marker_size/2} L 0 {marker_size} z",
+                          fill=line_color))
+        dwg.defs.add(marker)
+        
+        # Draw the path
+        path = dwg.path(d=f"M {start_x} {start_y} L {end_x} {end_y}",
+                       stroke=line_color, stroke_width=2, stroke_opacity=line_opacity,
+                       marker_end=marker.get_funciri())
+        
+        # If bidirectional, add second marker
+        if is_bidirectional:
+            marker2 = dwg.marker(insert=(0, marker_size/2), size=(marker_size, marker_size),
+                               orient="auto", markerUnits="strokeWidth")
+            marker2.add(dwg.path(d=f"M {marker_size} 0 L 0 {marker_size/2} L {marker_size} {marker_size} z",
+                               fill=line_color))
+            dwg.defs.add(marker2)
+            
+            path['marker-start'] = marker2.get_funciri()
+            
+        return path
+    
+    # ************ Architecture Components ****************
+    
+    # Add title
+    title = dwg.text("BloxAPI Architecture", insert=(width/2, 40), text_anchor="middle",
+                   font_size=24, fill=COLORS['light'], font_weight="bold")
+    dwg.add(title)
+    
+    # Add subtitle
+    subtitle = dwg.text("Security-Enhanced API Integration Toolkit", insert=(width/2, 70), 
+                      text_anchor="middle", font_size=16, fill=COLORS['muted'])
+    dwg.add(subtitle)
+    
+    # Define components
+    components = [
+        # Core components
+        {"x": 300, "y": 120, "w": 200, "h": 80, "title": "API Gateway", "is_primary": True, "icon": "🚪"},
+        {"x": 300, "y": 240, "w": 200, "h": 80, "title": "GraphQL Engine", "is_primary": True, "icon": "📊"},
+        {"x": 300, "y": 360, "w": 200, "h": 80, "title": "REST API Layer", "is_primary": True, "icon": "🔗"},
+        {"x": 300, "y": 480, "w": 200, "h": 80, "title": "Roblox API Connector", "is_primary": True, "icon": "🎮"},
+        
+        # Left components
+        {"x": 80, "y": 180, "w": 150, "h": 70, "title": "Bot Protection", "is_primary": False, "icon": "🤖"},
+        {"x": 80, "y": 280, "w": 150, "h": 70, "title": "Fraud Detection", "is_primary": False, "icon": "🕵️"},
+        {"x": 80, "y": 380, "w": 150, "h": 70, "title": "Redis Cache", "is_primary": False, "icon": "⚡"},
+        
+        # Right components
+        {"x": 570, "y": 180, "w": 150, "h": 70, "title": "Webhooks", "is_primary": False, "icon": "🔔"},
+        {"x": 570, "y": 280, "w": 150, "h": 70, "title": "Data Export", "is_primary": False, "icon": "📤"},
+        {"x": 570, "y": 380, "w": 150, "h": 70, "title": "Monitoring", "is_primary": False, "icon": "📈"},
+    ]
+    
+    # Add all components
+    for comp in components:
+        dwg.add(create_component(
+            comp["x"], comp["y"], comp["w"], comp["h"], 
+            comp["title"], comp["is_primary"], comp["icon"]
+        ))
+    
+    # Define connections
+    connections = [
+        # Vertical backbone connections
+        {"start_x": 400, "start_y": 200, "end_x": 400, "end_y": 240, "bidirectional": True},
+        {"start_x": 400, "start_y": 320, "end_x": 400, "end_y": 360, "bidirectional": True},
+        {"start_x": 400, "start_y": 440, "end_x": 400, "end_y": 480, "bidirectional": True},
+        
+        # Left side connections
+        {"start_x": 230, "start_y": 215, "end_x": 300, "end_y": 160, "bidirectional": False},
+        {"start_x": 230, "start_y": 315, "end_x": 300, "end_y": 280, "bidirectional": False},
+        {"start_x": 230, "start_y": 415, "end_x": 300, "end_y": 400, "bidirectional": True},
+        
+        # Right side connections
+        {"start_x": 500, "start_y": 160, "end_x": 570, "end_y": 215, "bidirectional": True},
+        {"start_x": 500, "start_y": 280, "end_x": 570, "end_y": 315, "bidirectional": True},
+        {"start_x": 500, "start_y": 400, "end_x": 570, "end_y": 415, "bidirectional": False},
+    ]
+    
+    # Add all connections
+    for conn in connections:
+        dwg.add(create_connection(
+            conn["start_x"], conn["start_y"], conn["end_x"], conn["end_y"], conn["bidirectional"]
+        ))
+    
+    # Add legend
+    legend_x = 50
+    legend_y = 500
+    legend_group = dwg.g()
+    
+    # Primary component legend
+    legend_group.add(dwg.rect((legend_x, legend_y), (20, 20), rx=5, ry=5,
+                             fill=primary_grad.get_funciri())))
+    legend_group.add(dwg.text("Core Components", insert=(legend_x + 30, legend_y + 15),
+                            fill=COLORS['light'], font_size=14))
+    
+    # Secondary component legend
+    legend_group.add(dwg.rect((legend_x, legend_y + 30), (20, 20), rx=5, ry=5,
+                             fill=secondary_grad.get_funciri())))
+    legend_group.add(dwg.text("Security & Performance", insert=(legend_x + 30, legend_y + 45),
+                            fill=COLORS['light'], font_size=14))
+    
+    # Add legend to diagram
+    dwg.add(legend_group)
+    
+    # Save the SVG file
+    dwg.save()
+    
+    # Generate PNG version
+    try:
+        subprocess.run(['rsvg-convert', '-w', '800', '-h', '600', output_svg, '-o', output_png], check=True)
+        print(f"✓ Created architecture diagram: {output_svg} and {output_png}")
+    except Exception as e:
+        print(f"⚠️ Could not convert SVG to PNG: {e}")
+        print(f"✓ Architecture diagram created at {output_svg} only")
+    
+    return output_svg
+
+# Create API overview diagram
+def create_api_overview():
+    """Create visual API overview diagram"""
+    if not ADVANCED_MODE:
+        print("⚠️ Advanced visualization libraries required for API overview diagram.")
+        return
+        
+    output_svg = "docs/images/api-overview.svg"
+    output_png = "docs/images/api-overview.png"
+    
+    # Create SVG
+    width, height = 900, 600
+    dwg = svgwrite.Drawing(output_svg, size=(width, height))
+    
+    # Background
+    bg_grad = dwg.linearGradient(start=(0, 0), end=(0, height))
+    bg_grad.add_stop_color(0, '#0F172A')
+    bg_grad.add_stop_color(1, '#1E293B')
+    dwg.defs.add(bg_grad)
+    dwg.add(dwg.rect((0, 0), (width, height), fill=bg_grad.get_funciri(), rx=10, ry=10))
+    
+    # Add subtle grid pattern
+    pattern = dwg.pattern(id="grid", patternUnits="userSpaceOnUse", size=(20, 20))
+    pattern.add(dwg.path(d="M 20 0 L 0 0 0 20", fill="none", 
+                        stroke=COLORS['light'], stroke_width=0.2, stroke_opacity=0.1))
+    dwg.defs.add(pattern)
+    dwg.add(dwg.rect((0, 0), (width, height), fill=pattern.get_funciri()))
+    
+    # Add title
+    title = dwg.text("BloxAPI Comprehensive API Coverage", insert=(width/2, 40), 
+                    text_anchor="middle", font_size=28, fill=COLORS['light'], font_weight="bold")
+    dwg.add(title)
+    
+    # Add subtitle
+    subtitle = dwg.text("2000+ Integrated API Endpoints with Enhanced Security",
+                       insert=(width/2, 75), text_anchor="middle", 
+                       font_size=16, fill=COLORS['muted'])
+    dwg.add(subtitle)
+    
+    # Define API categories
+    categories = [
+        {"name": "User Data", "icon": "👤", "count": 320, "color": "#4CAF50"},
+        {"name": "Game Analysis", "icon": "🎮", "count": 280, "color": "#2196F3"},
+        {"name": "Economy", "icon": "💰", "count": 210, "color": "#FFC107"},
+        {"name": "Social", "icon": "👥", "count": 260, "color": "#9C27B0"},
+        {"name": "Content", "icon": "🎨", "count": 320, "color": "#FF5722"},
+        {"name": "Security", "icon": "🔒", "count": 180, "color": "#607D8B"},
+        {"name": "Analytics", "icon": "📊", "count": 250, "color": "#3F51B5"},
+        {"name": "Marketplace", "icon": "🛒", "count": 240, "color": "#E91E63"},
+    ]
+    
+    # Create a bubble chart visualization
+    center_x, center_y = width/2, height/2 + 50
+    orbit_radius = 180
+    max_bubble_size = 90
+    min_bubble_size = 60
+    
+    # Calculate positions in a circle
+    for i, category in enumerate(categories):
+        angle = (2 * math.pi * i) / len(categories)
+        x = center_x + orbit_radius * math.cos(angle)
+        y = center_y + orbit_radius * math.sin(angle)
+        
+        # Calculate bubble size based on count
+        max_count = max(cat["count"] for cat in categories)
+        size_ratio = category["count"] / max_count
+        bubble_size = min_bubble_size + (max_bubble_size - min_bubble_size) * size_ratio
+        
+        # Create gradient for bubble
+        bubble_grad = dwg.radialGradient(center=(x, y), r=bubble_size/2)
+        bubble_grad.add_stop_color(0, category["color"], 0.9)
+        bubble_grad.add_stop_color(1, category["color"], 0.5)
+        dwg.defs.add(bubble_grad)
+        
+        # Create bubble
+        bubble = dwg.circle(center=(x, y), r=bubble_size/2, 
+                          fill=bubble_grad.get_funciri(),
+                          stroke=COLORS['light'], stroke_width=1, stroke_opacity=0.3)
+        
+        # Add glow effect
+        glow = dwg.filter(id=f'glow{i}')
+        glow.feGaussianBlur(in_='SourceAlpha', stdDeviation=5)
+        glow.feOffset(dx=0, dy=0, result='offsetblur')
+        glow.feFlood(flood_color=category["color"], flood_opacity=0.3)
+        glow.feComposite(in2='offsetblur', operator='in')
+        glow.feMerge().feMergeNode()
+        glow.feMerge().feMergeNode(in_='SourceGraphic')
+        dwg.defs.add(glow)
+        
+        # Apply glow to bubble
+        bubble['filter'] = glow.get_funciri()
+        
+        # Create group for the category
+        group = dwg.g()
+        group.add(bubble)
+        
+        # Add icon
+        icon = dwg.text(category["icon"], insert=(x, y-10), text_anchor="middle", font_size=32)
+        group.add(icon)
+        
+        # Add name
+        name = dwg.text(category["name"], insert=(x, y+15), text_anchor="middle", 
+                       font_size=14, fill=COLORS['light'], font_weight="bold")
+        group.add(name)
+        
+        # Add count
+        count = dwg.text(f"{category['count']}+ APIs", insert=(x, y+35), text_anchor="middle", 
+                        font_size=12, fill=COLORS['muted'])
+        group.add(count)
+        
+        # Add connection to center
+        line = dwg.line(start=(center_x, center_y), end=(x, y), 
+                       stroke=category["color"], stroke_width=1.5, 
+                       stroke_opacity=0.4, stroke_dasharray="5,3")
+        dwg.add(line)
+        
+        # Add group to drawing
+        dwg.add(group)
+    
+    # Create central hub
+    central_grad = dwg.radialGradient(center=(center_x, center_y), r=60)
+    central_grad.add_stop_color(0, COLORS['primary'], 0.9)
+    central_grad.add_stop_color(1, COLORS['secondary'], 0.7)
+    dwg.defs.add(central_grad)
+    
+    # Central hub glow
+    central_glow = dwg.filter(id='central_glow')
+    central_glow.feGaussianBlur(in_='SourceAlpha', stdDeviation=10)
+    central_glow.feOffset(dx=0, dy=0, result='offsetblur')
+    central_glow.feFlood(flood_color=COLORS['primary'], flood_opacity=0.5)
+    central_glow.feComposite(in2='offsetblur', operator='in')
+    central_glow.feMerge().feMergeNode()
+    central_glow.feMerge().feMergeNode(in_='SourceGraphic')
+    dwg.defs.add(central_glow)
+    
+    # Create central hub
+    central_hub = dwg.circle(center=(center_x, center_y), r=60, 
+                            fill=central_grad.get_funciri(),
+                            stroke=COLORS['light'], stroke_width=2, stroke_opacity=0.5,
+                            filter=central_glow.get_funciri())
+    dwg.add(central_hub)
+    
+    # Add BloxAPI logo to center
+    central_icon = dwg.text("🧊", insert=(center_x, center_y-10), 
+                          text_anchor="middle", font_size=40)
+    dwg.add(central_icon)
+    
+    central_text = dwg.text("BloxAPI", insert=(center_x, center_y+20), 
+                          text_anchor="middle", font_size=18, fill=COLORS['light'], 
+                          font_weight="bold")
+    dwg.add(central_text)
+    
+    # Add total count
+    total = sum(cat["count"] for cat in categories)
+    total_text = dwg.text(f"Total: {total}+ endpoints", 
+                         insert=(width/2, height-40), text_anchor="middle", 
+                         font_size=16, fill=COLORS['muted'])
+    dwg.add(total_text)
+    
+    # Save the SVG
+    dwg.save()
+    
+    # Generate PNG version
+    try:
+        subprocess.run(['rsvg-convert', '-w', '900', '-h', '600', output_svg, '-o', output_png], check=True)
+        print(f"✓ Created API overview: {output_svg} and {output_png}")
+    except Exception as e:
+        print(f"⚠️ Could not convert SVG to PNG: {e}")
+        print(f"✓ API overview created at {output_svg} only")
+    
+    return output_svg
+
 # Main function
 def main():
     """Main function to create all assets"""
+    parser = argparse.ArgumentParser(description="Generate visual assets for BloxAPI")
+    parser.add_argument('--all', action='store_true', help='Generate all assets')
+    parser.add_argument('--logo', action='store_true', help='Generate logo')
+    parser.add_argument('--animated-logo', action='store_true', help='Generate animated logo')
+    parser.add_argument('--icons', action='store_true', help='Generate feature icons')
+    parser.add_argument('--architecture', action='store_true', help='Generate architecture diagram')
+    parser.add_argument('--api-overview', action='store_true', help='Generate API overview diagram')
+    parser.add_argument('--deployment', action='store_true', help='Generate deployment docs')
+    
+    args = parser.parse_args()
+    
+    # If no specific options, generate all
+    if not (args.logo or args.animated_logo or args.icons or args.architecture or args.api_overview or args.deployment):
+        args.all = True
+    
+    print(f"🎨 BloxAPI Visual Asset Generator")
+    print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+    
     ensure_dirs()
-    create_logo()
-    create_feature_icons()
-    create_deployment_docs()
+    
+    if args.all or args.logo:
+        if ADVANCED_MODE:
+            create_modern_logo()
+        else:
+            create_logo()
+    
+    if args.all or args.animated_logo:
+        if ADVANCED_MODE:
+            create_modern_logo(animated=True)
+    
+    if args.all or args.icons:
+        create_feature_icons()
+    
+    if args.all or args.architecture:
+        create_architecture_diagram()
+    
+    if args.all or args.api_overview:
+        create_api_overview()
+    
+    if args.all or args.deployment:
+        create_deployment_docs()
+    
     print("\n✅ All README assets created successfully!")
 
 

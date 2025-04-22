@@ -631,35 +631,100 @@ def user_profile(request, username):
     })
 ```
 
+## 🚀 GitHub Workflows
+
+BloxAPI leverages powerful GitHub Actions workflows to maintain a dynamic, visually engaging project:
+
+<div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin: 25px 0; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+  <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 280px; background: rgba(20, 24, 36, 0.5); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2);">
+      <h3 style="color: #41B8FF; margin-top: 0; display: flex; align-items: center;">
+        <span style="background: #5E81F5; width: 24px; height: 24px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px;">🎨</span>
+        Visual Assets Generator
+      </h3>
+      <p style="color: #B2BEDA; font-size: 14px;">Automatically generates beautiful SVG diagrams, icons, and visual elements whenever the codebase is updated.</p>
+      <div style="color: #E0E6F4; font-family: monospace; background: rgba(0,0,0,0.2); border-radius: 4px; padding: 8px; font-size: 12px; margin-top: 10px;">workflow: generate-visuals.yml</div>
+    </div>
+    
+    <div style="flex: 1; min-width: 280px; background: rgba(20, 24, 36, 0.5); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2);">
+      <h3 style="color: #41B8FF; margin-top: 0; display: flex; align-items: center;">
+        <span style="background: #5E81F5; width: 24px; height: 24px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px;">📊</span>
+        Badge Updater
+      </h3>
+      <p style="color: #B2BEDA; font-size: 14px;">Keeps repository statistics badges up-to-date with real-time metrics from GitHub and package registries.</p>
+      <div style="color: #E0E6F4; font-family: monospace; background: rgba(0,0,0,0.2); border-radius: 4px; padding: 8px; font-size: 12px; margin-top: 10px;">workflow: update-badges.yml</div>
+    </div>
+    
+    <div style="flex: 1; min-width: 280px; background: rgba(20, 24, 36, 0.5); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2);">
+      <h3 style="color: #41B8FF; margin-top: 0; display: flex; align-items: center;">
+        <span style="background: #5E81F5; width: 24px; height: 24px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px;">📚</span>
+        Documentation Builder
+      </h3>
+      <p style="color: #B2BEDA; font-size: 14px;">Builds beautiful, responsive documentation pages from markdown files with syntax highlighting and interactive elements.</p>
+      <div style="color: #E0E6F4; font-family: monospace; background: rgba(0,0,0,0.2); border-radius: 4px; padding: 8px; font-size: 12px; margin-top: 10px;">workflow: build-docs.yml</div>
+    </div>
+  </div>
+</div>
+
+These workflows ensure that BloxAPI maintains its modern, professional appearance with minimal manual effort, automatically generating assets whenever code changes are pushed.
+
 ## 📊 Deployment Options
 
-<div align="center">
-  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/heroku.md">
-      <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="32">
+<div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 25px; margin: 30px 0; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);">
+  <h3 style="margin-top: 0; color: #E0E6F4; font-size: 18px; margin-bottom: 20px; text-align: center;">One-Click Deployment Options</h3>
+  
+  <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/heroku.md" style="text-decoration: none;">
+      <div style="background: rgba(20, 24, 36, 0.7); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2); width: 160px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
+        <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="32" style="margin-bottom: 10px;">
+        <div style="color: #E0E6F4; font-size: 14px;">Heroku</div>
+      </div>
     </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/render.md">
-      <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="32">
+    
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/render.md" style="text-decoration: none;">
+      <div style="background: rgba(20, 24, 36, 0.7); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2); width: 160px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
+        <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="32" style="margin-bottom: 10px;">
+        <div style="color: #E0E6F4; font-size: 14px;">Render</div>
+      </div>
     </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/railway.md">
-      <img src="https://railway.app/button.svg" alt="Deploy on Railway" height="32">
+    
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/railway.md" style="text-decoration: none;">
+      <div style="background: rgba(20, 24, 36, 0.7); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2); width: 160px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
+        <img src="https://railway.app/button.svg" alt="Deploy on Railway" height="32" style="margin-bottom: 10px;">
+        <div style="color: #E0E6F4; font-size: 14px;">Railway</div>
+      </div>
     </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/vercel.md">
-      <img src="https://vercel.com/button" alt="Deploy with Vercel" height="32">
+    
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/vercel.md" style="text-decoration: none;">
+      <div style="background: rgba(20, 24, 36, 0.7); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2); width: 160px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
+        <img src="https://vercel.com/button" alt="Deploy with Vercel" height="32" style="margin-bottom: 10px;">
+        <div style="color: #E0E6F4; font-size: 14px;">Vercel</div>
+      </div>
     </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/netlify.md">
-      <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="32">
+    
+    <a href="https://github.com/Bogdan11212/BloxAPI/blob/main/docs/deployment/netlify.md" style="text-decoration: none;">
+      <div style="background: rgba(20, 24, 36, 0.7); border-radius: 8px; padding: 15px; border: 1px solid rgba(94, 129, 245, 0.2); width: 160px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;">
+        <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="32" style="margin-bottom: 10px;">
+        <div style="color: #E0E6F4; font-size: 14px;">Netlify</div>
+      </div>
     </a>
   </div>
   
-  <p style="margin-top: 10px;">
-    See our <a href="docs/deployment/index.html">deployment documentation</a> for more detailed instructions.
+  <p style="margin-top: 20px; text-align: center; color: #B2BEDA;">
+    See our <a href="docs/deployment/index.html" style="color: #41B8FF;">deployment documentation</a> for detailed instructions.
   </p>
 </div>
 
 ## 🐳 Docker
 
-```bash
+<div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin: 25px 0; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+  <h3 style="color: #41B8FF; margin-top: 0; display: flex; align-items: center;">
+    <span style="background: #5E81F5; width: 24px; height: 24px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px;">🐳</span>
+    Docker Deployment
+  </h3>
+  
+  <div style="background: rgba(20, 24, 36, 0.5); border-radius: 8px; padding: 15px; margin-top: 15px; font-family: monospace; color: #E0E6F4; overflow-x: auto;">
+    <pre style="margin: 0; overflow-x: auto; padding: 10px 0;">
 # Pull the image
 docker pull ghcr.io/bogdan11212/bloxapi:latest
 
@@ -667,17 +732,27 @@ docker pull ghcr.io/bogdan11212/bloxapi:latest
 docker run -p 5000:5000 -e SECRET_KEY=your_secret_key ghcr.io/bogdan11212/bloxapi:latest
 
 # Using Docker Compose
-docker-compose up -d
-```
-
-The Docker image is continuously built and published with each release. You can also build your own image using the provided Dockerfile.
+docker-compose up -d</pre>
+  </div>
+  
+  <p style="color: #B2BEDA; font-size: 14px; margin-top: 15px;">
+    The Docker image is continuously built and published with each release. You can also build your own image using the provided Dockerfile.
+  </p>
+</div>
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+<div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin: 25px 0; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); text-align: center;">
+  <h3 style="color: #E0E6F4; margin-top: 0; margin-bottom: 15px;">MIT License</h3>
+  <p style="color: #B2BEDA; font-size: 14px;">
+    This project is licensed under the MIT License - see the <a href="LICENSE" style="color: #41B8FF;">LICENSE</a> file for details.
+  </p>
+</div>
 
 ---
 
-<div align="center">
-  <sub>Built with ❤️ by the BloxAPI team</sub>
+<div align="center" style="margin-top: 50px; margin-bottom: 20px;">
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 40px; padding: 10px 20px; display: inline-block; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+    <span style="color: #B2BEDA; font-size: 14px;">Built with ❤️ by the BloxAPI team</span>
+  </div>
 </div>

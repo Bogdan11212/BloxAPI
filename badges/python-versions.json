@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "label": "python",
+  "message": "3.7 | 3.8 | 3.9 | 3.10 | 3.11",
+  "color": "5E81F5",
+  "style": "for-the-badge",
+  "logo": "python",
+  "logoColor": "white",
+  "labelColor": "1A1F35"
+}

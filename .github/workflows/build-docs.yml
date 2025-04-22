@@ -1,0 +1,486 @@
+name: Build Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'templates/**'
+      - 'static/**'
+      - 'routes/**'
+      - '.github/workflows/build-docs.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'templates/**'
+      - 'static/**'
+      - 'routes/**'
+      - '.github/workflows/build-docs.yml'
+  # Allow manual triggers
+  workflow_dispatch:
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flask jinja2 markdown pygments pyyaml
+    
+    - name: Build documentation
+      run: |
+        mkdir -p docs/build
+        python -c "
+import os
+import re
+import markdown
+import yaml
+import json
+from flask import Flask, render_template_string
+from jinja2 import Environment, FileSystemLoader
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+
+# Setup Jinja environment
+env = Environment(loader=FileSystemLoader(['templates', 'docs']))
+
+# Create CSS for syntax highlighting
+pygments_css = HtmlFormatter(style='monokai').get_style_defs('.highlight')
+with open('docs/build/pygments.css', 'w') as f:
+    f.write(pygments_css)
+
+# Load docs configuration if exists
+config = {}
+if os.path.exists('docs/config.yaml'):
+    with open('docs/config.yaml', 'r') as f:
+        config = yaml.safe_load(f)
+
+# Base template with modern styling
+base_template = '''
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>{{ title }} - BloxAPI Documentation</title>
+    <link rel=\"stylesheet\" href=\"./pygments.css\">
+    <style>
+        :root {
+            --primary-color: #5E81F5;
+            --secondary-color: #41B8FF;
+            --accent-color: #FF5E62;
+            --accent2-color: #FF9966;
+            --dark-color: #1A1F35;
+            --darker-color: #141824;
+            --light-color: #E0E6F4;
+            --muted-color: #B2BEDA;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--light-color);
+            background: linear-gradient(135deg, var(--darker-color), var(--dark-color));
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        nav a:hover {
+            border-color: white;
+        }
+        
+        .main-content {
+            background: rgba(26, 31, 53, 0.8);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: 1px solid rgba(94, 129, 245, 0.2);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: white;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid rgba(94, 129, 245, 0.3);
+            padding-bottom: 0.3em;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent2-color);
+            text-decoration: underline;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            padding: 0.2em 0.4em;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: #282c34;
+            border-radius: 6px;
+            padding: 1em;
+            overflow-x: auto;
+            margin: 1.5em 0;
+            border: 1px solid rgba(94, 129, 245, 0.2);
+        }
+        
+        pre code {
+            background: transparent;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+        }
+        
+        table, th, td {
+            border: 1px solid rgba(94, 129, 245, 0.2);
+        }
+        
+        th, td {
+            padding: 0.75em;
+            text-align: left;
+        }
+        
+        th {
+            background-color: rgba(94, 129, 245, 0.1);
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(20, 24, 36, 0.9));
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(94, 129, 245, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .card-title {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-body {
+            color: var(--muted-color);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.2em 0.8em;
+            background: rgba(94, 129, 245, 0.2);
+            border-radius: 20px;
+            margin-right: 0.5em;
+            font-size: 0.8em;
+            color: var(--light-color);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.2em 0.8em;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 0.5em;
+        }
+        
+        .badge-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .badge-accent {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        footer {
+            background: rgba(20, 24, 36, 0.8);
+            color: var(--muted-color);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(94, 129, 245, 0.2);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--muted-color);
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class=\"container\">
+            <div class=\"logo\">
+                <img src=\"../images/logo.svg\" alt=\"BloxAPI Logo\">
+                <span>BloxAPI</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href=\"./index.html\">Home</a></li>
+                    <li><a href=\"./api-reference.html\">API Reference</a></li>
+                    <li><a href=\"./examples.html\">Examples</a></li>
+                    <li><a href=\"https://github.com/Bogdan11212/BloxAPI\">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class=\"container\">
+        <div class=\"main-content\">
+            {{ content | safe }}
+        </div>
+    </div>
+    
+    <footer>
+        <div class=\"container\">
+            <div class=\"footer-content\">
+                <div>&copy; {{ current_year }} BloxAPI Team. All rights reserved.</div>
+                <div class=\"footer-links\">
+                    <a href=\"https://github.com/Bogdan11212/BloxAPI\">GitHub</a>
+                    <a href=\"./license.html\">License</a>
+                    <a href=\"./privacy.html\">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+'''
+
+# Process and convert markdown files
+md_files = []
+for root, _, files in os.walk('docs'):
+    for file in files:
+        if file.endswith('.md'):
+            md_path = os.path.join(root, file)
+            rel_path = os.path.relpath(md_path, 'docs')
+            output_path = os.path.join('docs/build', rel_path.replace('.md', '.html'))
+            
+            # Create output directory if it doesn't exist
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+            
+            with open(md_path, 'r') as f:
+                md_content = f.read()
+            
+            # Extract title from first heading or filename
+            title_match = re.search(r'^# (.+)$', md_content, re.MULTILINE)
+            title = title_match.group(1) if title_match else os.path.basename(file).replace('.md', '')
+            
+            # Convert markdown to HTML
+            html_content = markdown.markdown(
+                md_content,
+                extensions=['fenced_code', 'codehilite', 'tables', 'toc']
+            )
+            
+            # Apply the template
+            template = env.from_string(base_template)
+            rendered_html = template.render(
+                title=title,
+                content=html_content,
+                current_year='2025'
+            )
+            
+            with open(output_path, 'w') as f:
+                f.write(rendered_html)
+            
+            md_files.append({'path': rel_path, 'title': title, 'output': output_path})
+            print(f'Processed: {rel_path} -> {output_path}')
+
+# Create index of documentation
+index_content = '''
+# BloxAPI Documentation
+
+Welcome to the official documentation for BloxAPI, a comprehensive Python-based Roblox API integration toolkit with 2000+ functions.
+
+## Available Documentation
+
+'''
+
+for doc in md_files:
+    index_content += f'- [{doc[\"title\"]}]({os.path.basename(doc[\"output\"])})\n'
+
+# Convert index content to HTML
+index_html = markdown.markdown(index_content, extensions=['fenced_code', 'codehilite', 'tables'])
+
+# Apply template to index
+template = env.from_string(base_template)
+rendered_index = template.render(
+    title='Documentation Index',
+    content=index_html,
+    current_year='2025'
+)
+
+# Save index file
+with open('docs/build/index.html', 'w') as f:
+    f.write(rendered_index)
+
+print('Documentation build complete!')
+        "
+    
+    - name: Copy Assets
+      run: |
+        # Copy static assets and images to build directory
+        mkdir -p docs/build/images
+        cp -r docs/images/* docs/build/images/ || true
+        cp -r static/* docs/build/ || true
+    
+    - name: Setup GitHub Pages
+      if: github.event_name != 'pull_request'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/build
+        publish_branch: gh-pages
+        keep_files: true

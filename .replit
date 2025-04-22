@@ -2,7 +2,7 @@ modules = ["python-3.11", "python3"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["cargo", "imagemagick", "inkscape", "libiconv", "librsvg", "libxcrypt", "openssl", "pkg-config", "postgresql", "rustc"]
+packages = ["cairo", "cargo", "ffmpeg-full", "freetype", "ghostscript", "gobject-introspection", "gtk3", "imagemagick", "inkscape", "lcms2", "libiconv", "libimagequant", "libjpeg", "librsvg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "openssl", "pkg-config", "postgresql", "qhull", "rustc", "tcl", "tk", "zlib"]
 
 [deployment]
 deploymentTarget = "autoscale"

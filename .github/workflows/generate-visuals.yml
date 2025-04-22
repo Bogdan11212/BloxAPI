@@ -1,0 +1,67 @@
+name: Generate Visual Assets
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'widget_builder.py'
+      - 'README.md'
+      - '.github/workflows/generate-visuals.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'widget_builder.py'
+      - 'README.md'
+      - '.github/workflows/generate-visuals.yml'
+  # Allow manual triggers
+  workflow_dispatch:
+  
+  # Schedule for automatic updates
+  schedule:
+    - cron: '0 2 * * 0'  # Run at 2:00 AM every Sunday
+
+jobs:
+  generate-assets:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        sudo apt-get update
+        sudo apt-get install -y librsvg2-bin  # For rsvg-convert
+        pip install svgwrite pillow numpy matplotlib requests
+    
+    - name: Generate visual assets
+      run: |
+        python widget_builder.py --all
+    
+    - name: Check if there are changes
+      id: check_changes
+      run: |
+        git diff --exit-code --quiet docs/ || echo "changes=true" >> $GITHUB_OUTPUT
+    
+    - name: Commit files
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add docs/
+        git commit -m "🎨 Update visual assets [skip ci]"
+    
+    - name: Push changes
+      if: steps.check_changes.outputs.changes == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}

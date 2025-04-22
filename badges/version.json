@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "label": "version",
+  "message": "2.1.0",
+  "color": "5E81F5",
+  "style": "for-the-badge",
+  "logo": "semver",
+  "logoColor": "white",
+  "labelColor": "1A1F35"
+}

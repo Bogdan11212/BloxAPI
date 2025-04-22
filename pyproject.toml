@@ -28,4 +28,8 @@ dependencies = [
     "redis>=5.2.1",
     "flask-graphql>=2.0.0",
     "psutil>=7.0.0",
+    "pillow>=11.2.1",
+    "numpy>=2.2.5",
+    "matplotlib>=3.10.1",
+    "svgwrite>=1.4.3",
 ]
