@@ -3,20 +3,50 @@ Widget Builder for BloxAPI
 
 This script creates SVG images and badges for the BloxAPI project README.
 It generates the following assets:
-1. Logo SVG
-2. Feature icons
-3. README badges
-4. Deployment buttons
+1. Logo SVG with modern design and animation options
+2. Feature icons with interactive elements
+3. README badges with custom styling
+4. Architecture diagrams and visual documentation
+5. Deployment buttons with hover effects
+6. Interactive UI elements for better documentation
 """
 
 import os
+import sys
+import math
 import argparse
 import json
+import random
 import subprocess
 import textwrap
 from pathlib import Path
 from datetime import datetime
 
+# Try to import advanced visualization libraries, gracefully handle if not available
+try:
+    import svgwrite
+    import numpy as np
+    from PIL import Image, ImageDraw, ImageFont
+    ADVANCED_MODE = True
+except ImportError:
+    ADVANCED_MODE = False
+    print("Note: Advanced visualization libraries not found. Running in basic mode.")
+    print("To enable advanced features: pip install svgwrite pillow numpy matplotlib")
+
+# Color schemes for modern visual style
+COLORS = {
+    "primary": "#5E81F5",
+    "secondary": "#41B8FF",
+    "accent": "#FF5E62",
+    "accent2": "#FF9966",
+    "dark": "#1A1F35",
+    "darker": "#141824",
+    "light": "#E0E6F4",
+    "muted": "#B2BEDA",
+    "success": "#4CAF50",
+    "warning": "#FFC107",
+    "error": "#FF5252",
+}
 
 # Create directories if they don't exist
 def ensure_dirs():
@@ -26,6 +56,8 @@ def ensure_dirs():
         'docs/badges',
         'docs/deployment',
         'static/images/icons',
+        'static/images/diagrams',
+        'static/images/animations',
     ]
     for dir_path in dirs:
         Path(dir_path).mkdir(parents=True, exist_ok=True)
@@ -68,15 +100,222 @@ def create_logo():
         print(f"✓ Logo created at {logo_path} only")
 
 
-# Create Feature Icons
+# Create modern logo with 3D cube design
+def create_modern_logo(animated=False):
+    """Create the modern BloxAPI logo as SVG with 3D cube effect
+    
+    Args:
+        animated (bool): Whether to create an animated version with rotation
+    """
+    output_path = 'docs/images/logo.svg' if not animated else 'docs/images/logo-animated.svg'
+    
+    if not ADVANCED_MODE:
+        print("⚠️ Advanced visualization libraries required for modern logo. Using basic logo instead.")
+        return create_logo()
+    
+    width, height = 500, 500
+    
+    # Create SVG document
+    dwg = svgwrite.Drawing(output_path, size=(width, height), profile='tiny')
+    
+    # Create background
+    dwg.add(dwg.rect((0, 0), (width, height), fill='none'))
+    
+    # Create a circular gradient for the background
+    radial = dwg.radialGradient(center=(width/2, height/2), r=width/2, 
+                              fx=width/3, fy=height/3)
+    radial.add_stop_color(0, COLORS['primary'], 0.9)
+    radial.add_stop_color(0.7, COLORS['dark'], 0.95)
+    radial.add_stop_color(1, COLORS['darker'], 1)
+    dwg.defs.add(radial)
+    
+    # Add a subtle background circle
+    dwg.add(dwg.circle(center=(width/2, height/2), r=width/2.2, 
+                     fill=radial.get_funciri()))
+    
+    # Create cube shape
+    cube_size = width * 0.6
+    center_x, center_y = width/2, height/2
+    offset = cube_size * 0.2
+    
+    # Create linear gradients for each face
+    top_gradient = dwg.linearGradient(start=(center_x - cube_size/2, center_y - cube_size/2), 
+                                     end=(center_x, center_y - cube_size/4))
+    top_gradient.add_stop_color(0, COLORS['secondary'], 0.9)
+    top_gradient.add_stop_color(1, COLORS['primary'], 0.8)
+    dwg.defs.add(top_gradient)
+    
+    left_gradient = dwg.linearGradient(start=(center_x - cube_size/2, center_y - cube_size/2), 
+                                      end=(center_x - cube_size/4, center_y + cube_size/2))
+    left_gradient.add_stop_color(0, COLORS['accent'], 0.9)
+    left_gradient.add_stop_color(1, COLORS['accent2'], 0.8)
+    dwg.defs.add(left_gradient)
+    
+    right_gradient = dwg.linearGradient(start=(center_x, center_y - cube_size/4), 
+                                       end=(center_x + cube_size/2, center_y + cube_size/2))
+    right_gradient.add_stop_color(0, COLORS['primary'], 0.95)
+    right_gradient.add_stop_color(1, COLORS['dark'], 0.8)
+    dwg.defs.add(right_gradient)
+    
+    # Draw cube faces
+    # Top face (parallelogram)
+    top_points = [
+        (center_x - cube_size/2, center_y - cube_size/4),
+        (center_x, center_y - cube_size/2),
+        (center_x + cube_size/2, center_y - cube_size/4),
+        (center_x, center_y),
+    ]
+    top_face = dwg.polygon(top_points, fill=top_gradient.get_funciri(), 
+                          stroke=COLORS['light'], stroke_width=2, stroke_opacity=0.3)
+    dwg.add(top_face)
+    
+    # Left face
+    left_points = [
+        (center_x - cube_size/2, center_y - cube_size/4),
+        (center_x, center_y),
+        (center_x, center_y + cube_size/2),
+        (center_x - cube_size/2, center_y + cube_size/4),
+    ]
+    left_face = dwg.polygon(left_points, fill=left_gradient.get_funciri(), 
+                           stroke=COLORS['light'], stroke_width=2, stroke_opacity=0.3)
+    dwg.add(left_face)
+    
+    # Right face
+    right_points = [
+        (center_x, center_y),
+        (center_x + cube_size/2, center_y - cube_size/4),
+        (center_x + cube_size/2, center_y + cube_size/4),
+        (center_x, center_y + cube_size/2),
+    ]
+    right_face = dwg.polygon(right_points, fill=right_gradient.get_funciri(), 
+                            stroke=COLORS['light'], stroke_width=2, stroke_opacity=0.3)
+    dwg.add(right_face)
+    
+    # Add highlights
+    highlight_points = [
+        (center_x - cube_size/4, center_y - cube_size/8),
+        (center_x, center_y - cube_size/4),
+        (center_x + cube_size/4, center_y - cube_size/8),
+    ]
+    dwg.add(dwg.polyline(highlight_points, stroke=COLORS['light'], 
+                        stroke_width=2, stroke_opacity=0.7, fill='none'))
+    
+    # Add shadow beneath the cube
+    shadow_filter = dwg.filter(id='shadow', x='-20%', y='-20%', width='140%', height='140%')
+    shadow_filter.feGaussianBlur(in_='SourceAlpha', stdDeviation=15)
+    shadow_filter.feOffset(dx=0, dy=10, result='offsetblur')
+    shadow_filter.feComponentTransfer().feFuncA(type='linear', slope=0.3)
+    
+    filter_merge = shadow_filter.feMerge()
+    filter_merge.feMergeNode(in_='offsetblur')
+    filter_merge.feMergeNode(in_='SourceGraphic')
+    
+    dwg.defs.add(shadow_filter)
+    
+    # Group the cube and apply shadow
+    cube_group = dwg.g(filter=shadow_filter.get_funciri())
+    cube_group.add(top_face)
+    cube_group.add(left_face)
+    cube_group.add(right_face)
+    
+    # Add glow effect
+    glow_filter = dwg.filter(id='glow', x='-20%', y='-20%', width='140%', height='140%')
+    glow_filter.feGaussianBlur(in_='SourceAlpha', stdDeviation=10, result='blur')
+    glow_filter.feFlood(flood_color=COLORS['secondary'], flood_opacity=0.3, result='color')
+    glow_filter.feComposite(in_='color', in2='blur', operator='in', result='shadow')
+    glow_filter.feComposite(in_='SourceGraphic', in2='shadow', operator='over')
+    dwg.defs.add(glow_filter)
+    
+    # Apply glow to the cube
+    cube_group['filter'] = glow_filter.get_funciri()
+    dwg.add(cube_group)
+    
+    # Add animation if requested
+    if animated:
+        # Rotation animation
+        animate = dwg.animate(
+            attributeName='transform',
+            type='rotate',
+            from_='0 250 250',
+            to='360 250 250',
+            dur='20s',
+            repeatCount='indefinite'
+        )
+        cube_group.add(animate)
+        
+        # Subtle pulsing animation
+        animate_opacity = dwg.animate(
+            attributeName='opacity',
+            values='0.9;1;0.9',
+            dur='3s',
+            repeatCount='indefinite'
+        )
+        cube_group.add(animate_opacity)
+    
+    # Save the SVG file
+    dwg.save()
+    
+    # Also generate PNG version for broader compatibility
+    png_output_path = output_path.replace('.svg', '.png')
+    try:
+        subprocess.run(['rsvg-convert', '-w', '200', '-h', '200', output_path, '-o', png_output_path], check=True)
+        print(f"✓ Created modern logo: {output_path} and {png_output_path}")
+    except Exception as e:
+        print(f"⚠️ Could not convert SVG to PNG: {e}")
+        print(f"✓ Logo created at {output_path} only")
+    
+    return output_path
+
+# SVG Logo Creator (basic version as fallback)
+def create_logo():
+    """Create the BloxAPI logo as SVG (basic version)"""
+    logo_path = 'docs/images/logo.svg'
+    
+    # Create a simple yet attractive logo
+    logo_svg = """<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5E81F5" />
+            <stop offset="100%" stop-color="#41B8FF" />
+        </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.3" />
+        </filter>
+    </defs>
+    <rect x="40" y="40" width="120" height="120" rx="16" fill="url(#gradient)" filter="url(#shadow)" />
+    <path d="M75 70 L75 130 L90 130 L90 105 L110 105 L110 130 L125 130 L125 70 L110 70 L110 90 L90 90 L90 70 Z" 
+          fill="white" />
+    <circle cx="140" cy="70" r="10" fill="#FF5E62" />
+</svg>"""
+    
+    with open(logo_path, 'w') as f:
+        f.write(logo_svg)
+    
+    # Convert SVG to PNG for GitHub display
+    try:
+        png_path = logo_path.replace('.svg', '.png')
+        subprocess.run(['rsvg-convert', '-w', '200', '-h', '200', logo_path, '-o', png_path], check=True)
+        print(f"✓ Logo created at {logo_path} and {png_path}")
+    except Exception as e:
+        print(f"⚠️ Could not convert SVG to PNG: {e}")
+        print(f"✓ Logo created at {logo_path} only")
+    
+    return logo_path
+
+# Create modern feature icons with animations
 def create_feature_icons():
     """Create icons for features section in README"""
+    if ADVANCED_MODE:
+        create_modern_feature_icons()
+        return
+    
+    # Fallback to basic icons if advanced mode is not available
     icons = {
         'architecture': """<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
             <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#3b82f6" />
-                    <stop offset="100%" stop-color="#2563eb" />
+                    <stop offset="0%" stop-color="#5E81F5" />
+                    <stop offset="100%" stop-color="#41B8FF" />
                 </linearGradient>
             </defs>
             <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#grad1)" />
@@ -88,6 +327,56 @@ def create_feature_icons():
             <rect x="60" y="35" width="10" height="5" rx="1" fill="#3b82f6" />
             <rect x="60" y="45" width="10" height="5" rx="1" fill="#3b82f6" />
             <rect x="60" y="55" width="10" height="5" rx="1" fill="#3b82f6" />
+        </svg>""",
+        
+        'api-overview': """<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="apiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#41B8FF" />
+                    <stop offset="100%" stop-color="#5E81F5" />
+                </linearGradient>
+            </defs>
+            <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#apiGrad)" />
+            <path d="M30 40 L70 40 M30 60 L70 60 M40 30 L40 70 M60 30 L60 70" 
+                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.8" fill="none" />
+            <circle cx="40" cy="40" r="5" fill="white" opacity="0.9" />
+            <circle cx="60" cy="40" r="5" fill="white" opacity="0.9" />
+            <circle cx="40" cy="60" r="5" fill="white" opacity="0.9" />
+            <circle cx="60" cy="60" r="5" fill="white" opacity="0.9" />
+        </svg>""",
+        
+        'graphql': """<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="graphqlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF5E62" />
+                    <stop offset="100%" stop-color="#FF9966" />
+                </linearGradient>
+            </defs>
+            <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#graphqlGrad)" />
+            <path d="M50 25 L75 38 L75 62 L50 75 L25 62 L25 38 Z" 
+                  stroke="white" stroke-width="2" stroke-opacity="0.9" fill="none" />
+            <path d="M50 25 L50 75 M25 38 L75 38 M25 62 L75 62" 
+                  stroke="white" stroke-width="2" stroke-opacity="0.7" fill="none" />
+            <circle cx="50" cy="25" r="4" fill="white" />
+            <circle cx="75" cy="38" r="4" fill="white" />
+            <circle cx="75" cy="62" r="4" fill="white" />
+            <circle cx="50" cy="75" r="4" fill="white" />
+            <circle cx="25" cy="62" r="4" fill="white" />
+            <circle cx="25" cy="38" r="4" fill="white" />
+        </svg>""",
+        
+        'security': """<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="securityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4CAF50" />
+                    <stop offset="100%" stop-color="#2E7D32" />
+                </linearGradient>
+            </defs>
+            <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#securityGrad)" />
+            <path d="M50 30 L30 40 L30 60 C30 70 40 75 50 80 C60 75 70 70 70 60 L70 40 Z" 
+                  fill="white" fill-opacity="0.2" stroke="white" stroke-width="2" />
+            <path d="M40 55 L45 60 L60 45" 
+                  stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
         </svg>""",
         
         'code-examples': """<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
@@ -167,6 +456,81 @@ def create_feature_icons():
             print(f"⚠️ Could not convert SVG to PNG for {name}: {e}")
     
     print(f"✓ Feature icons created in docs/images/")
+
+# Create modern feature icons using svgwrite
+def create_modern_feature_icons():
+    """Create modern feature icons with advanced styling"""
+    icons = [
+        {"name": "api-overview", "emoji": "🔗", "title": "API Overview"},
+        {"name": "architecture", "emoji": "🏗️", "title": "Architecture"},
+        {"name": "code-examples", "emoji": "📝", "title": "Code Examples"},
+        {"name": "documentation", "emoji": "📚", "title": "Documentation"},
+        {"name": "features", "emoji": "✨", "title": "Features"},
+        {"name": "installation", "emoji": "📦", "title": "Installation"},
+        {"name": "security", "emoji": "🔒", "title": "Security"},
+        {"name": "graphql", "emoji": "📊", "title": "GraphQL Support"},
+    ]
+    
+    for icon in icons:
+        output_svg = f"docs/images/{icon['name']}.svg"
+        output_png = f"docs/images/{icon['name']}.png"
+        
+        # Create SVG
+        width, height = 400, 250
+        dwg = svgwrite.Drawing(output_svg, size=(width, height))
+        
+        # Background with gradient
+        gradient = dwg.linearGradient(start=(0, 0), end=(width, height))
+        gradient.add_stop_color(0, COLORS['dark'])
+        gradient.add_stop_color(1, COLORS['darker'])
+        dwg.defs.add(gradient)
+        
+        # Add a subtle pattern to the background
+        pattern = dwg.pattern(id="pattern", patternUnits="userSpaceOnUse", size=(20, 20))
+        pattern.add(dwg.rect((0, 0), (20, 20), fill=gradient.get_funciri()))
+        pattern.add(dwg.circle((10, 10), r=1, fill=COLORS['primary'], fill_opacity=0.3))
+        dwg.defs.add(pattern)
+        
+        # Add background with pattern
+        dwg.add(dwg.rect((0, 0), (width, height), fill=pattern.get_funciri(), rx=10, ry=10))
+        
+        # Add border with primary color
+        border_gradient = dwg.linearGradient(start=(0, 0), end=(width, height))
+        border_gradient.add_stop_color(0, COLORS['primary'])
+        border_gradient.add_stop_color(0.5, COLORS['secondary'])
+        border_gradient.add_stop_color(1, COLORS['accent'])
+        dwg.defs.add(border_gradient)
+        
+        dwg.add(dwg.rect((0, 0), (width, height), stroke=border_gradient.get_funciri(), 
+                        stroke_width=2, fill='none', rx=10, ry=10))
+        
+        # Create a group for the icon content
+        icon_group = dwg.g()
+        
+        # Add emoji as the central icon
+        emoji_text = dwg.text(icon['emoji'], insert=(width/2, height/2-20), 
+                            text_anchor="middle", font_size=80)
+        icon_group.add(emoji_text)
+        
+        # Add title
+        title_text = dwg.text(icon['title'], insert=(width/2, height/2+60), 
+                             text_anchor="middle", font_size=24, 
+                             fill=COLORS['light'])
+        icon_group.add(title_text)
+        
+        # Add the icon group to the drawing
+        dwg.add(icon_group)
+        
+        # Save the SVG
+        dwg.save()
+        
+        # Generate PNG version
+        try:
+            subprocess.run(['rsvg-convert', '-w', '400', '-h', '250', output_svg, '-o', output_png], check=True)
+        except Exception as e:
+            print(f"⚠️ Could not convert SVG to PNG for {icon['name']}: {e}")
+    
+    print(f"✓ Created {len(icons)} modern feature icons in docs/images/")
 
 
 # Create Deployment Documentation Files

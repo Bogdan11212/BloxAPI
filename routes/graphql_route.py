@@ -9,7 +9,6 @@ import logging
 import json
 from flask import request, jsonify
 from flask_restful import Resource
-from flask_graphql import GraphQLView
 from utils.graphql_schema import schema
 
 # Configure logging

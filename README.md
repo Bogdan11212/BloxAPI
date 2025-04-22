@@ -1,55 +1,225 @@
 <div align="center">
-  <img src="docs/images/logo.png" alt="BloxAPI Logo" width="200"/>
-  <h1>BloxAPI</h1>
-  <p>A comprehensive Python-based Roblox API integration toolkit with 2000+ functions</p>
+  <img src="docs/images/logo.png" alt="BloxAPI Logo" width="220" style="filter: drop-shadow(0 0 15px rgba(65, 184, 255, 0.5));"/>
   
-  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; margin-bottom: 15px;">
-    <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml">
-      <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github" alt="Python Tests">
-    </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml">
-      <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/docker-publish.yml?label=build&style=for-the-badge&logo=docker" alt="Docker">
-    </a>
-    <a href="LICENSE">
-      <img src="https://img.shields.io/github/license/Bogdan11212/BloxAPI?style=for-the-badge" alt="License">
-    </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI">
-      <img src="https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge&logo=semver" alt="Version">
-    </a>
-    <a href="https://github.com/Bogdan11212/BloxAPI">
-      <img src="https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11-blue?style=for-the-badge&logo=python" alt="Python Version">
-    </a>
-    <a href="docs/documentation.html">
-      <img src="https://img.shields.io/badge/docs-comprehensive-brightgreen?style=for-the-badge&logo=bookstack" alt="Documentation Status">
-    </a>
-    <a href="docs/coverage.html">
-      <img src="https://img.shields.io/badge/coverage-95%25-success?style=for-the-badge&logo=codecov" alt="Code Coverage">
-    </a>
+  <h1 style="font-size:3.5rem; margin-top:0.5rem; background: linear-gradient(90deg, #FF5E62, #FF9966); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 15px rgba(255, 94, 98, 0.25);">BloxAPI</h1>
+  
+  <p style="font-size:1.3rem; max-width:700px; margin:0 auto 1.5rem; color:#B2BEDA; letter-spacing:0.5px; line-height:1.6;">A next-generation Roblox API integration toolkit with 2000+ functions and advanced security features</p>
+  
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin-bottom: 25px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 15px;">
+      <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/python-tests.yml">
+        <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/python-tests.yml?label=tests&style=for-the-badge&logo=github&labelColor=1A1F35&color=5E81F5" alt="Python Tests">
+      </a>
+      <a href="https://github.com/Bogdan11212/BloxAPI/actions/workflows/docker-publish.yml">
+        <img src="https://img.shields.io/github/actions/workflow/status/Bogdan11212/BloxAPI/docker-publish.yml?label=build&style=for-the-badge&logo=docker&labelColor=1A1F35&color=5E81F5" alt="Docker">
+      </a>
+      <a href="LICENSE">
+        <img src="https://img.shields.io/github/license/Bogdan11212/BloxAPI?style=for-the-badge&labelColor=1A1F35&color=5E81F5" alt="License">
+      </a>
+      <a href="https://github.com/Bogdan11212/BloxAPI">
+        <img src="https://img.shields.io/badge/version-2.1.0-blue?style=for-the-badge&logo=semver&logoColor=white&labelColor=1A1F35&color=5E81F5" alt="Version">
+      </a>
+      <a href="https://github.com/Bogdan11212/BloxAPI">
+        <img src="https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11-blue?style=for-the-badge&logo=python&logoColor=white&labelColor=1A1F35&color=5E81F5" alt="Python Version">
+      </a>
+      <a href="docs/documentation.html">
+        <img src="https://img.shields.io/badge/docs-comprehensive-brightgreen?style=for-the-badge&logo=bookstack&logoColor=white&labelColor=1A1F35&color=5E81F5" alt="Documentation Status">
+      </a>
+      <a href="docs/coverage.html">
+        <img src="https://img.shields.io/badge/coverage-95%25-success?style=for-the-badge&logo=codecov&logoColor=white&labelColor=1A1F35&color=5E81F5" alt="Code Coverage">
+      </a>
+    </div>
+    
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
+      <img src="https://img.shields.io/badge/GraphQL_Support-Ready-5E81F5?style=for-the-badge&logo=graphql&logoColor=white&labelColor=1A1F35" alt="GraphQL Support">
+      <img src="https://img.shields.io/badge/Redis_Caching-Enabled-5E81F5?style=for-the-badge&logo=redis&logoColor=white&labelColor=1A1F35" alt="Redis Caching">
+      <img src="https://img.shields.io/badge/Bot_Protection-Advanced-5E81F5?style=for-the-badge&logo=robotframework&logoColor=white&labelColor=1A1F35" alt="Bot Protection">
+      <img src="https://img.shields.io/badge/Fraud_Detection-AI_Powered-5E81F5?style=for-the-badge&logo=shieldsdotio&logoColor=white&labelColor=1A1F35" alt="Fraud Detection">
+    </div>
   </div>
   
-  <div>
-    <img src="docs/images/api-overview.png" alt="API Overview" width="600" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+  <div style="position: relative; margin: 30px auto; transform: perspective(1000px) rotateX(10deg); transition: all 0.3s ease;">
+    <img src="docs/images/api-overview.png" alt="API Overview" width="700" style="max-width: 100%; border-radius: 8px; filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3)); border: 1px solid rgba(65, 184, 255, 0.2);" />
+    <div style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #FF5E62, #FF9966); color: white; font-weight: bold; padding: 5px 10px; border-radius: 4px; font-size: 14px; box-shadow: 0 4px 15px rgba(255, 94, 98, 0.25);">v2.1.0</div>
+  </div>
+  
+  <div style="margin: 25px auto; max-width: 800px; background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.05); text-align: left;">
+    <div style="display: flex; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(65, 184, 255, 0.2); padding-bottom: 10px;">
+      <span style="background: linear-gradient(45deg, #FF5E62, #FF9966); color: white; font-weight: bold; padding: 5px 10px; border-radius: 20px; font-size: 14px; margin-right: 10px;">NEW</span>
+      <span style="color: #E0E6F4; font-weight: 500;">Enhanced with cutting-edge security features and real-time analytics</span>
+    </div>
+    <p style="color: #B2BEDA; margin-bottom: 0; font-size: 14px;">Latest update includes Bot Protection, Fraud Detection, GraphQL API, and extensive security improvements to keep your Roblox integrations safe and scalable.</p>
   </div>
 </div>
 
-## 🚀 Features
+## 🔥 Core Features
 
-BloxAPI provides a robust interface to the Roblox platform with:
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+      <div style="background: linear-gradient(135deg, #5E81F5, #41B8FF); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 10px rgba(65, 184, 255, 0.3);">
+        <span style="font-size: 20px;">🔗</span>
+      </div>
+      <h3 style="margin: 0; color: #E0E6F4; font-size: 18px; font-weight: 600;">Comprehensive API</h3>
+    </div>
+    <p style="color: #B2BEDA; font-size: 14px; line-height: 1.5; margin: 0;">Unified access to all major Roblox API endpoints with 2000+ functions covering every aspect of the platform.</p>
+  </div>
 
-- **Comprehensive Endpoint Coverage** - Access all major Roblox API endpoints through a simple, unified interface
-- **2000+ API Functions** - Extensive library of over 2,000 API functions covering every aspect of the Roblox platform
-- **Intelligent Rate Limiting** - Automatic handling of Roblox API rate limits with queuing and retries
-- **Efficient Caching** - Configurable multi-level caching system to minimize API calls
-- **Advanced Analytics** - Deep insights into user behavior, retention, and monetization
-- **Platform Integrations** - Seamless connectivity with external gaming platforms and services
-- **Business Intelligence** - Data warehousing, transformations, and visualization tools
-- **Content Management** - Comprehensive tools for managing and publishing content
-- **Security Tools** - Robust security features including threat detection and access control
-- **Robust Error Handling** - Detailed error reporting and automatic retries for transient failures
-- **Type Hints & Documentation** - Fully typed API with comprehensive documentation
-- **Async & Sync Support** - Both synchronous and asynchronous interfaces
-- **Extensible Design** - Easy to extend for custom use cases
-- **Cross-Platform** - Works on Windows, macOS, and Linux
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+      <div style="background: linear-gradient(135deg, #5E81F5, #41B8FF); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 10px rgba(65, 184, 255, 0.3);">
+        <span style="font-size: 20px;">⚡</span>
+      </div>
+      <h3 style="margin: 0; color: #E0E6F4; font-size: 18px; font-weight: 600;">Redis Caching</h3>
+    </div>
+    <p style="color: #B2BEDA; font-size: 14px; line-height: 1.5; margin: 0;">High-performance data caching system minimizing API calls with configurable TTL and invalidation strategies.</p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+      <div style="background: linear-gradient(135deg, #5E81F5, #41B8FF); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 10px rgba(65, 184, 255, 0.3);">
+        <span style="font-size: 20px;">📊</span>
+      </div>
+      <h3 style="margin: 0; color: #E0E6F4; font-size: 18px; font-weight: 600;">GraphQL Support</h3>
+    </div>
+    <p style="color: #B2BEDA; font-size: 14px; line-height: 1.5; margin: 0;">Flexible data fetching with GraphQL allowing complex queries and efficient responses with exactly what you need.</p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+      <div style="background: linear-gradient(135deg, #5E81F5, #41B8FF); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 10px rgba(65, 184, 255, 0.3);">
+        <span style="font-size: 20px;">🔒</span>
+      </div>
+      <h3 style="margin: 0; color: #E0E6F4; font-size: 18px; font-weight: 600;">End-to-End Encryption</h3>
+    </div>
+    <p style="color: #B2BEDA; font-size: 14px; line-height: 1.5; margin: 0;">Secure data transmission with industry-standard encryption protecting sensitive information end-to-end.</p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+      <div style="background: linear-gradient(135deg, #5E81F5, #41B8FF); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 10px rgba(65, 184, 255, 0.3);">
+        <span style="font-size: 20px;">🤖</span>
+      </div>
+      <h3 style="margin: 0; color: #E0E6F4; font-size: 18px; font-weight: 600;">Bot Protection</h3>
+    </div>
+    <p style="color: #B2BEDA; font-size: 14px; line-height: 1.5; margin: 0;">Advanced detection and prevention of automated attacks with behavior analysis and intelligent rate limiting.</p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+      <div style="background: linear-gradient(135deg, #5E81F5, #41B8FF); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 10px rgba(65, 184, 255, 0.3);">
+        <span style="font-size: 20px;">🕵️</span>
+      </div>
+      <h3 style="margin: 0; color: #E0E6F4; font-size: 18px; font-weight: 600;">Fraud Detection</h3>
+    </div>
+    <p style="color: #B2BEDA; font-size: 14px; line-height: 1.5; margin: 0;">AI-powered system detects suspicious transactions and user behavior to protect your game economy and players.</p>
+  </div>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(25, 33, 57, 0.8), rgba(33, 43, 74, 0.8)); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin: 30px 0; border: 1px solid rgba(65, 184, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);">
+  <h3 style="margin-top: 0; color: #E0E6F4; font-size: 18px; font-weight: 600; display: flex; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(65, 184, 255, 0.2); padding-bottom: 10px;">
+    <span style="background: linear-gradient(45deg, #FF5E62, #FF9966); color: white; font-weight: bold; padding: 5px 10px; border-radius: 20px; font-size: 14px; margin-right: 10px;">NEW</span>
+    Advanced Features
+  </h3>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Webhooks</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Real-time event notifications for platform events</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Auto-Scaling</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Dynamic resource allocation based on demand</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Data Export</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Multi-format data export (CSV, JSON, XML)</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Data Migration</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Seamless data transfer between games</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Advanced Analytics</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Deep insights into player behavior</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">External Service Integration</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Discord, Twitter, and 3rd-party APIs</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Real-time Monitoring</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Live system performance metrics</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Microtransactions</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Comprehensive in-game purchase handling</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Business Intelligence</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Data warehousing and visualization</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Content Management</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Tools for content publishing and curation</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Async & Sync Support</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Both programming paradigms supported</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: start;">
+      <div style="color: #41B8FF; margin-right: 10px; font-size: 16px;">✦</div>
+      <div>
+        <span style="color: #E0E6F4; font-weight: 500; font-size: 15px;">Cross-Platform</span>
+        <p style="color: #B2BEDA; font-size: 13px; margin-top: 5px;">Windows, macOS, and Linux compatibility</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## 📦 Installation
 
@@ -237,6 +407,93 @@ api = BloxAPI(api_key="your_api_key_here")
 me = api.users.get_authenticated_user()
 ```
 
+### GraphQL API
+
+```python
+# Execute a GraphQL query
+result = api.graphql.execute("""
+query {
+  user(id: 1) {
+    id
+    username
+    displayName
+    friends {
+      id
+      username
+    }
+    badges {
+      name
+      description
+      enabled
+    }
+  }
+}
+""")
+
+# Query with variables
+result = api.graphql.execute("""
+query GetGame($id: Int!) {
+  game(id: $id) {
+    id
+    name
+    description
+    visitCount
+    likeCount
+    dislikeCount
+  }
+}
+""", variables={"id": 920587237})
+
+print(f"Game name: {result['game']['name']}")
+```
+
+### Webhooks
+
+```python
+# Register a webhook for game events
+webhook = api.webhooks.create({
+    "url": "https://example.com/webhook/game-events",
+    "events": ["player.join", "player.leave", "purchase.completed"],
+    "universe_id": game.id,
+    "secret": "your_webhook_secret"
+})
+print(f"Webhook ID: {webhook.id}")
+
+# List active webhooks
+webhooks = api.webhooks.get_all()
+for webhook in webhooks:
+    print(f"Webhook {webhook.id}: {webhook.url} ({', '.join(webhook.events)})")
+
+# Delete a webhook
+api.webhooks.delete(webhook.id)
+```
+
+### Security and Fraud Detection
+
+```python
+# Check for suspicious transaction
+result = api.security.check_transaction({
+    "user_id": user.id,
+    "item_id": item.id,
+    "amount": 10000,
+    "currency": "Robux",
+    "account_age_days": 5  # User account age
+})
+
+if result.is_suspicious:
+    print(f"Transaction flagged: {', '.join(result.risk_factors)}")
+    print(f"Risk score: {result.risk_score}/100")
+
+# Monitor for bot activity
+bot_check = api.security.check_bot_activity({
+    "user_agent": request.headers.get("User-Agent"),
+    "ip": request.remote_addr
+})
+
+if bot_check.is_bot and not bot_check.is_allowed:
+    print(f"Blocked bot: {bot_check.bot_name}")
+```
+
 ### Rate Limiting
 
 ```python
@@ -248,10 +505,10 @@ api = BloxAPI(
 )
 ```
 
-### Caching
+### Redis Caching
 
 ```python
-# Configure caching
+# Configure Redis caching
 api = BloxAPI(
     cache=True,
     cache_expire={
@@ -262,6 +519,29 @@ api = BloxAPI(
     cache_backend="redis",
     redis_url="redis://localhost:6379/0"
 )
+
+# Force cache refresh for specific data
+api.cache.invalidate("users", user_id=1234)
+
+# Cache statistics
+stats = api.cache.get_stats()
+print(f"Cache hit rate: {stats.hit_rate * 100}%")
+print(f"Average lookup time: {stats.avg_lookup_time_ms}ms")
+```
+
+### System Monitoring
+
+```python
+# Get system resource usage
+resources = api.monitoring.get_system_resources()
+print(f"CPU: {resources.cpu.percent}%")
+print(f"Memory: {resources.memory.percent}%")
+print(f"Disk: {resources.disk.percent}%")
+
+# Get endpoint performance statistics
+performance = api.monitoring.get_endpoint_stats()
+for endpoint, stats in performance.items():
+    print(f"{endpoint}: {stats.count} requests, {stats.avg_time:.2f}ms avg, {stats.error_rate * 100:.2f}% errors")
 ```
 
 ### Asynchronous Usage

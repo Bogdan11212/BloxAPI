@@ -903,6 +903,12 @@ api.add_resource(LivenessProbeResource, '/api/monitoring/liveness')
 api.add_resource(ReadinessProbeResource, '/api/monitoring/readiness')
 api.add_resource(MetricsExportResource, '/api/monitoring/metrics')
 
+# Import GraphQL route
+from routes.graphql_route import GraphQLResource
+
+# Register GraphQL API route
+api.add_resource(GraphQLResource, '/api/graphql')
+
 # Web routes for documentation
 @app.route('/')
 def index():
