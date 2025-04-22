@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "label": "security",
+  "message": "Enterprise Grade",
+  "color": "4CAF50",
+  "style": "for-the-badge",
+  "logo": "shield",
+  "logoColor": "white",
+  "labelColor": "1A1F35"
+}

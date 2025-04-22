@@ -116,14 +116,13 @@ def create_modern_logo(animated=False):
     width, height = 500, 500
     
     # Create SVG document
-    dwg = svgwrite.Drawing(output_path, size=(width, height), profile='tiny')
+    dwg = svgwrite.Drawing(output_path, size=(width, height))
     
     # Create background
     dwg.add(dwg.rect((0, 0), (width, height), fill='none'))
     
     # Create a circular gradient for the background
-    radial = dwg.radialGradient(center=(width/2, height/2), r=width/2, 
-                              fx=width/3, fy=height/3)
+    radial = dwg.radialGradient(center=(width/2, height/2), r=width/2)
     radial.add_stop_color(0, COLORS['primary'], 0.9)
     radial.add_stop_color(0.7, COLORS['dark'], 0.95)
     radial.add_stop_color(1, COLORS['darker'], 1)
@@ -839,13 +838,13 @@ def create_architecture_diagram():
     
     # Primary component legend
     legend_group.add(dwg.rect((legend_x, legend_y), (20, 20), rx=5, ry=5,
-                             fill=primary_grad.get_funciri())))
+                             fill=primary_grad.get_funciri()))
     legend_group.add(dwg.text("Core Components", insert=(legend_x + 30, legend_y + 15),
                             fill=COLORS['light'], font_size=14))
     
     # Secondary component legend
     legend_group.add(dwg.rect((legend_x, legend_y + 30), (20, 20), rx=5, ry=5,
-                             fill=secondary_grad.get_funciri())))
+                             fill=secondary_grad.get_funciri()))
     legend_group.add(dwg.text("Security & Performance", insert=(legend_x + 30, legend_y + 45),
                             fill=COLORS['light'], font_size=14))
     
@@ -1061,14 +1060,21 @@ def main():
     ensure_dirs()
     
     if args.all or args.logo:
-        if ADVANCED_MODE:
-            create_modern_logo()
-        else:
-            create_logo()
+        try:
+            if ADVANCED_MODE:
+                create_modern_logo()
+            else:
+                create_logo()
+        except Exception as e:
+            print(f"⚠️ Error creating logo: {e}")
+            create_logo()  # Fallback to basic version
     
     if args.all or args.animated_logo:
-        if ADVANCED_MODE:
-            create_modern_logo(animated=True)
+        try:
+            if ADVANCED_MODE:
+                create_modern_logo(animated=True)
+        except Exception as e:
+            print(f"⚠️ Error creating animated logo: {e}")
     
     if args.all or args.icons:
         create_feature_icons()
